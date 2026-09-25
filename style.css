@@ -60,6 +60,8 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -137,10 +139,9 @@ body {
 
 .grid-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   background-image: 
     linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
@@ -607,9 +608,9 @@ body {
    HERO SECTION
    ========================================================================== */
 .hero-section {
-  padding: 4.5rem 0 5rem 0;
+  padding: 3.2rem 0 2.2rem 0;
   position: relative;
-  min-height: calc(100vh - 120px);
+  min-height: auto;
   display: flex;
   align-items: center;
 }
@@ -975,18 +976,18 @@ body {
    SECTION COMMON STYLES
    ========================================================================== */
 .section-wrapper {
-  padding: 6.5rem 0;
+  padding: 3.25rem 0;
   position: relative;
 }
 
 .section-header {
   text-align: center;
   max-width: 680px;
-  margin: 0 auto 3.8rem auto;
+  margin: 0 auto 2rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.65rem;
 }
 
 .section-tag {
@@ -1496,9 +1497,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.4rem 2rem;
+  padding: 1.2rem 1.6rem;
   border-radius: 999px;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.8rem;
   border: 1px solid rgba(255, 255, 255, 0.09);
   overflow-x: auto;
 }
@@ -1647,8 +1648,8 @@ body {
    Dual-Row counter-flowing parallax with imageHeight=410, gap=10
    ========================================================================== */
 .reactbits-parallax-carousel-wrapper {
-  margin-top: 4.5rem;
-  padding-top: 3rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
   border-top: 1px solid rgba(245, 158, 11, 0.2);
   position: relative;
 }
@@ -1656,7 +1657,7 @@ body {
 .parallax-carousel-header {
   text-align: center;
   max-width: 720px;
-  margin: 0 auto 2.8rem;
+  margin: 0 auto 1.4rem;
 }
 
 .travel-gallery-badge {
@@ -1950,8 +1951,8 @@ body {
    SECTION 5: ROOTS, FAMILY & LOVE
    ========================================================================== */
 .baba-tribute-card {
-  padding: 3rem;
-  margin-bottom: 4rem;
+  padding: 2.2rem 2rem;
+  margin-bottom: 2rem;
   border: 1px solid rgba(245, 158, 11, 0.3);
   background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), rgba(13, 18, 29, 0.9));
   position: relative;
@@ -1968,7 +1969,7 @@ body {
   color: #fbbf24;
   font-size: 0.82rem;
   font-weight: 700;
-  margin-bottom: 2rem;
+  margin-bottom: 1.2rem;
 }
 
 .baba-tribute-grid {
@@ -2129,7 +2130,7 @@ body {
 
 /* Love & Companionship Showcase */
 .love-showcase-card {
-  padding: 3rem;
+  padding: 2.2rem 2rem;
   border-radius: 28px;
   background: linear-gradient(135deg, rgba(244, 63, 94, 0.04), rgba(13, 18, 29, 0.8));
 }
@@ -2137,11 +2138,11 @@ body {
 .love-header {
   text-align: center;
   max-width: 600px;
-  margin: 0 auto 3rem auto;
+  margin: 0 auto 1.8rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.5rem;
 }
 
 .love-title {
@@ -2224,8 +2225,8 @@ body {
    REACT BITS PRO: 3D ROTATING CARDS COMPONENT (LOVE SECTION)
    ========================================================================== */
 .reactbits-rotating-cards-wrapper {
-  margin-top: 3.5rem;
-  padding-top: 2.2rem;
+  margin-top: 2rem;
+  padding-top: 1.4rem;
   position: relative;
 }
 
@@ -2234,7 +2235,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 1.2rem;
-  margin-bottom: 2.2rem;
+  margin-bottom: 1.4rem;
 }
 
 .rotating-cards-divider .divider-line {
@@ -2271,7 +2272,7 @@ body {
 .rotating-cards-header {
   text-align: center;
   max-width: 680px;
-  margin: 0 auto 2.5rem;
+  margin: 0 auto 1.5rem;
 }
 
 .love-mini-badge {
@@ -2760,11 +2761,11 @@ body {
 .connect-header {
   text-align: center;
   max-width: 650px;
-  margin: 0 auto 3.5rem auto;
+  margin: 0 auto 1.8rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
 }
 
 .connect-grid {
@@ -3002,7 +3003,7 @@ body {
    FOOTER
    ========================================================================== */
 .footer-wrapper {
-  padding: 4rem 0 2.5rem 0;
+  padding: 2.5rem 0 2rem 0;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   background: #05070a;
 }
@@ -3460,8 +3461,24 @@ body {
     display: flex;
   }
 
+  .section-wrapper {
+    padding: 2.5rem 0;
+  }
+
+  .section-header {
+    margin: 0 auto 1.6rem auto;
+  }
+
+  .section-title {
+    font-size: 2.1rem;
+  }
+
+  .hero-section {
+    padding: 2.4rem 0 1.8rem 0;
+  }
+
   .hero-title {
-    font-size: 2.75rem;
+    font-size: 2.5rem;
   }
 
   .hero-stats-grid {
@@ -3482,28 +3499,69 @@ body {
 
   .connect-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
-  .connect-card {
-    padding: 2.5rem 1.8rem;
+  .connect-card, .connect-box {
+    padding: 2rem 1.5rem;
+  }
+
+  .baba-tribute-card {
+    padding: 1.8rem 1.4rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .love-showcase-card {
+    padding: 1.8rem 1.4rem;
   }
 }
 
 @media (max-width: 640px) {
-  .hero-title {
-    font-size: 2.2rem;
+  .container {
+    padding: 0 1rem;
+  }
+
+  .section-wrapper {
+    padding: 1.8rem 0;
+  }
+
+  .section-header {
+    margin: 0 auto 1.25rem auto;
+    gap: 0.5rem;
   }
 
   .section-title {
-    font-size: 2rem;
+    font-size: 1.65rem;
+    line-height: 1.25;
+  }
+
+  .section-subtitle {
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  .hero-section {
+    padding: 1.6rem 0 1.2rem 0;
+  }
+
+  .hero-title {
+    font-size: 1.95rem;
+    line-height: 1.2;
+  }
+
+  .hero-bio {
+    font-size: 0.92rem;
+    line-height: 1.6;
   }
 
   .baba-title {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
 
   .portrait-image-box {
-    height: 380px;
+    height: 320px;
+    max-width: 320px;
+    margin: 0 auto;
   }
 
   .travel-gallery-grid {
@@ -3511,24 +3569,26 @@ body {
   }
 
   .baba-tribute-card {
-    padding: 1.8rem 1.2rem;
+    padding: 1.4rem 1rem;
+    margin-bottom: 1.2rem;
   }
 
   .love-showcase-card {
-    padding: 1.8rem 1.2rem;
+    padding: 1.4rem 1rem;
   }
 
   .quote-editorial-box {
-    padding: 1.8rem 1.2rem;
+    padding: 1.4rem 1rem;
   }
 
   .editorial-quote {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 
   .travel-route-bar {
-    padding: 1rem;
-    gap: 1.5rem;
+    padding: 0.85rem 1rem;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
     justify-content: flex-start;
   }
 
@@ -3548,6 +3608,41 @@ body {
 
   .story-dialog, .gift-letter-dialog {
     padding: 1.8rem 1.2rem;
+  }
+
+  .connect-card, .connect-box {
+    padding: 1.5rem 1rem;
+  }
+
+  .footer-wrapper {
+    padding: 2rem 0 1.5rem 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+
+  .section-title {
+    font-size: 1.45rem;
+  }
+
+  .hero-title {
+    font-size: 1.65rem;
+  }
+
+  .portrait-image-box {
+    height: 270px;
+    max-width: 270px;
+  }
+
+  .bento-card {
+    padding: 1.4rem 1rem;
+  }
+
+  .pillar-card {
+    padding: 1.4rem 1rem;
   }
 }
 
@@ -3571,10 +3666,9 @@ body {
 /* Interactive Particle Canvas */
 .particle-canvas {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   z-index: 0;
   opacity: 0.55;
@@ -3848,7 +3942,7 @@ body {
   position: relative;
   max-width: 960px;
   margin: 0 auto;
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
 .timeline-center-line {
@@ -3865,7 +3959,7 @@ body {
 
 .timeline-item {
   position: relative;
-  margin-bottom: 3.5rem;
+  margin-bottom: 2rem;
   width: 50%;
   display: flex;
 }
@@ -4508,10 +4602,9 @@ body {
    ========================================================================== */
 .details-page-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(4, 7, 13, 0.95);
   backdrop-filter: blur(28px);
   z-index: 1000;
