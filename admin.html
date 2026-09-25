@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Management Portal — Fahad Bin Husne Ali</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+  <!-- Ambient Glows -->
+  <div class="admin-ambient-glow glow-gold"></div>
+  <div class="admin-ambient-glow glow-cyan"></div>
+
+  <!-- ==========================================
+       1. AUTHENTICATION GATE SCREEN
+       ========================================== -->
+  <div class="admin-auth-screen" id="authScreen">
+    <div class="admin-login-card">
+      <div class="login-brand-icon">
+        <i class="fa-solid fa-shield-halved"></i>
+      </div>
+      <h1 class="login-title">এডমিন কন্ট্রোল প্যানেল</h1>
+      <p class="login-subtitle bengali-font">
+        ফাহাদ বিন হুসনে আলী — নিরাপদ পোর্টাল। সম্পূর্ণ ওয়েবসাইট নিয়ন্ত্রণ ও কনটেন্ট আপডেট করুন।
+      </p>
+
+      <form class="login-form" onsubmit="handleAdminLogin(event)">
+        <div class="form-group">
+          <label class="form-label" for="adminPasswordInput">এডমিন পাসওয়ার্ড (Password)</label>
+          <div class="input-with-icon">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="adminPasswordInput" placeholder="পাসওয়ার্ড লিখুন..." autocomplete="current-password" required>
+          </div>
+        </div>
+
+        <button type="submit" class="admin-login-btn">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i>
+          <span>লগইন করুন (Enter Dashboard)</span>
+        </button>
+      </form>
+
+      <a href="index.html" class="login-back-link">
+        <i class="fa-solid fa-arrow-left"></i> মেইন ওয়েবসাইটে ফিরে যান
+      </a>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       2. MAIN DASHBOARD APP
+       ========================================== -->
+  <div class="admin-app" id="appScreen" style="display: none;">
+
+    <!-- Left Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand-badge">FBH</div>
+        <div class="sidebar-brand-info">
+          <h1>Fahad Bin Husne Ali</h1>
+          <span>Super Administrator</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-category">মেইন মেনু</span>
+        <button class="sidebar-btn active" data-tab="overview" onclick="switchTab('overview')">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>ড্যাশবোর্ড (Overview)</span>
+        </button>
+
+        <span class="nav-category">গ্যালারি ও মিডিয়া</span>
+        <button class="sidebar-btn" data-tab="travel-gallery" onclick="switchTab('travel-gallery')">
+          <i class="fa-solid fa-images"></i>
+          <span>প্যারালাক্স গ্যালারি</span>
+          <span class="sidebar-badge" id="badgePhotos">20</span>
+        </button>
+        <button class="sidebar-btn" data-tab="love-cards" onclick="switchTab('love-cards')">
+          <i class="fa-solid fa-heart"></i>
+          <span>লাভ ও ৩ডি কার্ডস</span>
+          <span class="sidebar-badge" id="badgeLove">10</span>
+        </button>
+
+        <span class="nav-category">কনটেন্ট ও পাবলিশিং</span>
+        <button class="sidebar-btn" data-tab="articles" onclick="switchTab('articles')">
+          <i class="fa-solid fa-feather-pointed"></i>
+          <span>লেখালেখি ও ব্লগ</span>
+          <span class="sidebar-badge" id="badgeArticles">3</span>
+        </button>
+        <button class="sidebar-btn" data-tab="ventures" onclick="switchTab('ventures')">
+          <i class="fa-solid fa-microchip"></i>
+          <span>The Lab ভেঞ্চারস</span>
+        </button>
+        <button class="sidebar-btn" data-tab="guestbook" onclick="switchTab('guestbook')">
+          <i class="fa-solid fa-comments"></i>
+          <span>গেস্টবুক মেসেজ</span>
+        </button>
+
+        <span class="nav-category">সিস্টেম</span>
+        <button class="sidebar-btn" data-tab="settings" onclick="switchTab('settings')">
+          <i class="fa-solid fa-gear"></i>
+          <span>সেটিংস ও ব্যাকআপ</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="index.html" target="_blank" rel="noopener" class="sidebar-live-link">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <span>মেইন সাইট দেখুন (Live)</span>
+        </a>
+        <button class="sidebar-logout-btn" onclick="handleAdminLogout()">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          <span>লগআউট করুন</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="admin-main">
+
+      <!-- Topbar Header -->
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <h2 class="page-title" id="topbarPageTitle">ড্যাশবোর্ড ও সার্বিক পরিসংখ্যান</h2>
+          <div class="sync-status-badge">
+            <span class="status-dot"></span>
+            <span>লাইভ সিঙ্ক অ্যাক্টিভ (Main Site Connected)</span>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <a href="index.html" target="_blank" class="btn-secondary" title="নতুন ট্যাবে মেইন ওয়েবসাইট দেখুন">
+            <i class="fa-solid fa-globe"></i>
+            <span>ভিজিট সাইট</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- TAB 1: OVERVIEW -->
+      <section class="admin-tab-content active" id="tab-overview">
+        <!-- Quick Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon gold"><i class="fa-solid fa-images"></i></div>
+            <div class="stat-info">
+              <h3 id="statCountPhotos">20</h3>
+              <p>ট্রাভেল গ্যালারি ছবি</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon rose"><i class="fa-solid fa-heart"></i></div>
+            <div class="stat-info">
+              <h3 id="statCountLove">10</h3>
+              <p>লাভ ও কাপল মেমোরিজ</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon cyan"><i class="fa-solid fa-feather-pointed"></i></div>
+            <div class="stat-info">
+              <h3 id="statCountArticles">3</h3>
+              <p>প্রকাশিত আর্টিকেল</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon emerald"><i class="fa-solid fa-microchip"></i></div>
+            <div class="stat-info">
+              <h3 id="statCountVentures">4</h3>
+              <p>ভেঞ্চারস & প্রজেক্টস</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Banner -->
+        <div class="action-banner">
+          <div class="action-banner-text">
+            <h2 class="bengali-font">সম্পূর্ণ রিয়েল-টাইম কন্ট্রোল সিস্টেম 🚀</h2>
+            <p class="bengali-font">
+              এডমিন প্যানেলে যেকোনো ছবি, ক্যাপশন, আর্টিকেল বা তথ্য যোগ, এডিট বা ডিলিট করার সাথে সাথে তা স্বয়ংক্রিয়ভাবে সংরক্ষিত হয় এবং মেইন ওয়েবসাইটে কোনো রিফ্রেশ ছাড়াই সাথে সাথে আপডেট হয়ে যায়।
+            </p>
+          </div>
+          <button class="btn-primary" onclick="switchTab('travel-gallery')">
+            <i class="fa-solid fa-camera-retro"></i>
+            <span>গ্যালারি পরিচালনা করুন</span>
+          </button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+          <div class="admin-item-card" style="padding: 1.5rem;">
+            <h3 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.6rem;">
+              <i class="fa-solid fa-images" style="color: var(--accent-gold);"></i>
+              <span>প্যারালাক্স ক্যারাউসেল গ্যালারি</span>
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.25rem;">
+              ট্রাভেল সেকশনের ডাবল-ফ্লো প্যারালাক্স ক্যারাউসেলের ছবি ও ক্যাপশন ম্যানেজ করুন। রো ১ এবং রো ২-এর জন্য যেকোনো সংখ্যক ছবি আপলোড ও এডিট করা যায়।
+            </p>
+            <button class="btn-primary" onclick="openAddPhotoModal()">
+              <i class="fa-solid fa-plus"></i> নতুন ছবি যোগ করুন
+            </button>
+          </div>
+
+          <div class="admin-item-card" style="padding: 1.5rem;">
+            <h3 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.6rem;">
+              <i class="fa-solid fa-heart" style="color: var(--accent-rose);"></i>
+              <span>লাভ সেকশন (Rotating 3D Cards)</span>
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.25rem;">
+              রুটস ও ফ্যামিলি সেকশনের ৩ডি সার্কুলার রোট্যাটিং কার্ডসের স্মৃতি, কাপল ফটো ও রোমান্টিক ক্যাপশন যুক্ত বা সংশোধন করুন।
+            </p>
+            <button class="btn-primary" onclick="openAddLoveModal()">
+              <i class="fa-solid fa-plus"></i> নতুন লাভ কার্ড যোগ করুন
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: TRAVEL GALLERY -->
+      <section class="admin-tab-content" id="tab-travel-gallery">
+        <div class="section-controls-bar">
+          <div>
+            <h2 class="bengali-font">প্যারালাক্স ট্রাভেল গ্যালারি (Carousel Photos)</h2>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">ছবি ১-১০ হলো Row 1 (Left ➔ Right) এবং ছবি ১১-২০ হলো Row 2 (Right ➔ Left)</p>
+          </div>
+          <button class="btn-primary" onclick="openAddPhotoModal()">
+            <i class="fa-solid fa-plus"></i> নতুন ছবি যোগ করুন
+          </button>
+        </div>
+
+        <div class="admin-grid" id="travelGalleryGrid">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- TAB 3: LOVE CARDS -->
+      <section class="admin-tab-content" id="tab-love-cards">
+        <div class="section-controls-bar">
+          <div>
+            <h2 class="bengali-font">লাভ ও কাপল মেমোরিজ (Rotating 3D Cards)</h2>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">৩ডি সার্কুলার ক্যারাউসেলের স্মৃতিগুলো ম্যানেজ ও এডিট করুন</p>
+          </div>
+          <button class="btn-primary" onclick="openAddLoveModal()">
+            <i class="fa-solid fa-plus"></i> নতুন লাভ কার্ড যোগ করুন
+          </button>
+        </div>
+
+        <div class="admin-grid" id="loveCardsGrid">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- TAB 4: ARTICLES -->
+      <section class="admin-tab-content" id="tab-articles">
+        <div class="section-controls-bar">
+          <div>
+            <h2 class="bengali-font">লেখালেখি ও ব্লগ (Articles & Writings)</h2>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">আর্টিকেল প্রকাশ ও সম্পাদনা করুন</p>
+          </div>
+          <button class="btn-primary" onclick="openAddArticleModal()">
+            <i class="fa-solid fa-plus"></i> নতুন আর্টিকেল লিখুন
+          </button>
+        </div>
+
+        <div id="articlesList">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- TAB 5: VENTURES -->
+      <section class="admin-tab-content" id="tab-ventures">
+        <div class="section-controls-bar">
+          <h2 class="bengali-font">The Lab ও স্টার্টআপ ভেঞ্চারস</h2>
+        </div>
+        <div id="venturesList">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- TAB 6: GUESTBOOK -->
+      <section class="admin-tab-content" id="tab-guestbook">
+        <div class="section-controls-bar">
+          <div>
+            <h2 class="bengali-font">গেস্টবুক মেসেজ মডারেশন</h2>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">ভিজিটরদের শুভকামনা বার্তা দেখুন ও অযাচিত কমেন্ট ডিলিট করুন</p>
+          </div>
+        </div>
+        <div id="guestbookList">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- TAB 7: SETTINGS & BACKUP -->
+      <section class="admin-tab-content" id="tab-settings">
+        <div class="section-controls-bar">
+          <h2 class="bengali-font">সিস্টেম সিকিউরিটি ও ডাটা ব্যাকআপ</h2>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 2rem; max-width: 700px;">
+          <!-- Password Change -->
+          <div class="admin-item-card" style="padding: 1.75rem;">
+            <h3 style="margin-bottom: 0.4rem; font-size: 1.15rem;">এডমিন পাসওয়ার্ড পরিবর্তন (Change Password)</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem;">
+              প্যানেলে প্রবেশের বর্তমান পাসওয়ার্ড পরিবর্তন করতে পারেন।
+            </p>
+            <form onsubmit="handleSavePassword(event)" style="display: flex; gap: 0.85rem;">
+              <input type="text" id="settingsNewPassInput" class="form-input" placeholder="নতুন পাসওয়ার্ড দিন..." style="flex: 1;" required>
+              <button type="submit" class="btn-primary">
+                <i class="fa-solid fa-key"></i> সেভ করুন
+              </button>
+            </form>
+          </div>
+
+          <!-- 1-Click Backup Export -->
+          <div class="admin-item-card" style="padding: 1.75rem;">
+            <h3 style="margin-bottom: 0.4rem; font-size: 1.15rem;">ডাটা ব্যাকআপ ডাউনলোড (Export JSON Backup)</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem;">
+              সম্পূর্ণ ওয়েবসাইটের সকল ছবি, ক্যাপশন, আর্টিকেল ও সেটিংস একটি JSON ফাইলে এক ক্লিকে ডাউনলোড করে নিরাপদে সংরক্ষণ করুন।
+            </p>
+            <button class="btn-secondary" onclick="exportDataBackup()">
+              <i class="fa-solid fa-download"></i> ডাটা ব্যাকআপ ডাউনলোড করুন
+            </button>
+          </div>
+
+          <!-- Backup Restore -->
+          <div class="admin-item-card" style="padding: 1.75rem;">
+            <h3 style="margin-bottom: 0.4rem; font-size: 1.15rem;">ডাটা ব্যাকআপ রিস্টোর (Import Backup)</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem;">
+              পূর্বে সংরক্ষিত JSON ব্যাকআপ ফাইল আপলোড করে ওয়েবসাইট পূর্বাবস্থায় ফিরিয়ে আনুন।
+            </p>
+            <label class="btn-secondary" style="cursor: pointer; display: inline-flex;">
+              <i class="fa-solid fa-upload"></i> ব্যাকআপ ফাইল নির্বাচন করুন
+              <input type="file" accept=".json" onchange="importDataBackup(event)" style="display: none;">
+            </label>
+          </div>
+
+          <!-- Factory Reset -->
+          <div class="admin-item-card" style="padding: 1.75rem; border-color: rgba(244, 63, 94, 0.3);">
+            <h3 style="margin-bottom: 0.4rem; font-size: 1.15rem; color: var(--accent-rose);">ফ্যাক্টরি ডিফল্ট রিসেট (Factory Reset)</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem;">
+              যদি কোনো জটিলতা তৈরি হয়, তবে এক ক্লিকে সম্পূর্ণ ওয়েবসাইটকে প্রাথমিক ফ্রেশ অবস্থায় রিসেট করুন।
+            </p>
+            <button class="btn-danger" onclick="resetToFactoryDefaults()">
+              <i class="fa-solid fa-rotate-left"></i> ফ্যাক্টরি রিসেট করুন
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ==========================================
+       MODAL 1: TRAVEL PHOTO ADD / EDIT
+       ========================================== -->
+  <div class="admin-modal" id="photoEditModal">
+    <div class="admin-modal-backdrop" onclick="closePhotoModal()"></div>
+    <div class="admin-modal-card">
+      <div class="modal-header">
+        <h3 id="photoModalTitle">প্যারালাক্স গ্যালারিতে ছবি যোগ / এডিট</h3>
+        <button class="modal-close-btn" onclick="closePhotoModal()">&times;</button>
+      </div>
+
+      <form class="modal-form" id="photoEditForm" onsubmit="handlePhotoFormSubmit(event)">
+        <input type="hidden" id="photoEditId">
+
+        <div class="form-group">
+          <label class="form-label" for="photoTitleInput">ছবির শিরোনাম (Title) *</label>
+          <input type="text" id="photoTitleInput" class="form-input bengali-font" placeholder="যেমন: হিমালয়ের চূড়ায় মেঘের আনাগোনা" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="photoDescInput">ছবির ক্যাপশন ও গল্প (Caption / Story)</label>
+          <textarea id="photoDescInput" class="form-textarea bengali-font" placeholder="যেমন: কাঠমান্ডুর সর্বোচ্চ প্রান্তে গভীর প্রশান্তি আর সাদা কুয়াশা..."></textarea>
+        </div>
+
+        <!-- Image Selection / Upload -->
+        <div class="form-group">
+          <label class="form-label" for="photoUrlInput">ছবি আপলোড বা নির্বাচন (Image Source) *</label>
+          <div class="img-picker-container">
+            <div class="img-preview-box" onclick="document.getElementById('photoFileInput').click()">
+              <div class="placeholder-text" id="photoPreviewPlaceholder">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <span>কম্পিউটার থেকে ছবি বেছে নিতে এখানে ক্লিক করুন</span>
+                <small style="color: var(--text-dim);">(JPG, PNG, WebP supported)</small>
+              </div>
+              <img id="photoPreviewImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="Preview" style="display: none;">
+            </div>
+            <input type="file" id="photoFileInput" class="file-input-hidden" accept="image/*"
+              onchange="handleImageUpload('photoFileInput', 'photoUrlInput', 'photoPreviewImg', 'photoPreviewPlaceholder')">
+
+            <div class="img-options-divider">অথবা সরাসরি লিঙ্ক / পাথ লিখুন</div>
+
+            <input type="text" id="photoUrlInput" class="form-input"
+              placeholder="./Asist/Travel Gallery/1.jpeg বা https://..."
+              oninput="onPhotoUrlInput(this.value)" required>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1rem;">
+          <button type="button" class="btn-secondary" onclick="closePhotoModal()">বাতিল</button>
+          <button type="submit" class="btn-primary">
+            <i class="fa-solid fa-floppy-disk"></i> সংরক্ষণ করুন (Save)
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL 2: LOVE CARD ADD / EDIT
+       ========================================== -->
+  <div class="admin-modal" id="loveEditModal">
+    <div class="admin-modal-backdrop" onclick="closeLoveModal()"></div>
+    <div class="admin-modal-card">
+      <div class="modal-header">
+        <h3 id="loveModalTitle">লাভ মেমোরি কার্ড যোগ / এডিট</h3>
+        <button class="modal-close-btn" onclick="closeLoveModal()" type="button">&times;</button>
+      </div>
+
+      <form class="modal-form" id="loveEditForm" onsubmit="handleLoveFormSubmit(event)">
+        <input type="hidden" id="loveEditId">
+
+        <div class="form-group">
+          <label class="form-label" for="loveTitleInput">রোমান্টিক ক্যাপশন / শিরোনাম *</label>
+          <input type="text" id="loveTitleInput" class="form-input bengali-font" placeholder="যেমন: সাগরের কোলে একমুঠো প্রেম" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="loveTagInput">ট্যাগ / মুড (Tag)</label>
+            <input type="text" id="loveTagInput" class="form-input" placeholder="যেমন: Beachside Breeze">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="loveDescInput">স্মৃতি ও অনুভূতি (Description / Memory)</label>
+          <textarea id="loveDescInput" class="form-textarea bengali-font" placeholder="যেমন: নীল জলরাশির মৃদু হাওয়ায় হাত ধরে হারিয়ে যাওয়া..."></textarea>
+        </div>
+
+        <!-- Image Selection / Upload -->
+        <div class="form-group">
+          <label class="form-label" for="loveUrlInput">ছবি আপলোড বা লিঙ্ক (Image) *</label>
+          <div class="img-picker-container">
+            <div class="img-preview-box" onclick="document.getElementById('loveFileInput').click()">
+              <div class="placeholder-text" id="lovePreviewPlaceholder">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <span>কম্পিউটার থেকে ছবি বেছে নিতে ক্লিক করুন</span>
+              </div>
+              <img id="lovePreviewImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="Preview" style="display: none;">
+            </div>
+            <input type="file" id="loveFileInput" class="file-input-hidden" accept="image/*"
+              onchange="handleImageUpload('loveFileInput', 'loveUrlInput', 'lovePreviewImg', 'lovePreviewPlaceholder')">
+
+            <div class="img-options-divider">অথবা ছবির পাথ / লিঙ্ক দিন</div>
+
+            <input type="text" id="loveUrlInput" class="form-input"
+              placeholder="./Asist/card/1.jpeg বা লিঙ্ক..."
+              oninput="onLoveUrlInput(this.value)" required>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1rem;">
+          <button type="button" class="btn-secondary" onclick="closeLoveModal()">বাতিল</button>
+          <button type="submit" class="btn-primary">
+            <i class="fa-solid fa-floppy-disk"></i> সংরক্ষণ করুন (Save)
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL 3: ARTICLE ADD / EDIT
+       ========================================== -->
+  <div class="admin-modal" id="articleEditModal">
+    <div class="admin-modal-backdrop" onclick="closeArticleModal()"></div>
+    <div class="admin-modal-card" style="max-width: 750px;">
+      <div class="modal-header">
+        <h3 id="articleModalTitle">আর্টিকেল লিখুন / এডিট করুন</h3>
+        <button class="modal-close-btn" onclick="closeArticleModal()" type="button">&times;</button>
+      </div>
+
+      <form class="modal-form" id="articleEditForm" onsubmit="handleArticleFormSubmit(event)">
+        <input type="hidden" id="articleEditId">
+
+        <div class="form-group">
+          <label class="form-label" for="articleTitleInput">আর্টিকেল শিরোনাম (Title) *</label>
+          <input type="text" id="articleTitleInput" class="form-input bengali-font" placeholder="আর্টিকেলের শিরোনাম লিখুন..." required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="articleCategoryInput">ক্যাটেগরি / ট্যাগ</label>
+            <input type="text" id="articleCategoryInput" class="form-input" placeholder="যেমন: জীবনবোধ / ফিলোসফি">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="articleReadTimeInput">পড়ার সময় (Read Time)</label>
+            <input type="text" id="articleReadTimeInput" class="form-input" placeholder="যেমন: ৫ মিনিট পাঠ">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="articleDateInput">তারিখ (Date)</label>
+          <input type="text" id="articleDateInput" class="form-input" placeholder="যেমন: ১৫ মে ২০২৬">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="articleExcerptInput">সংক্ষিপ্ত সারমর্ম (Excerpt)</label>
+          <textarea id="articleExcerptInput" class="form-textarea bengali-font" style="min-height: 70px;" placeholder="আর্টিকেলের সংক্ষিপ্ত সারাংশ..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="articleContentInput">সম্পূর্ণ লেখার বিস্তারিত (Full Body Content) *</label>
+          <textarea id="articleContentInput" class="form-textarea bengali-font" style="min-height: 220px;" placeholder="সম্পূর্ণ লেখাটি এখানে লিখুন বা পেস্ট করুন..." required></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1rem;">
+          <button type="button" class="btn-secondary" onclick="closeArticleModal()">বাতিল</button>
+          <button type="submit" class="btn-primary">
+            <i class="fa-solid fa-paper-plane"></i> প্রকাশ করুন (Publish)
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+
+</html>

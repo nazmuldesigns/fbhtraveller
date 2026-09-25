@@ -1,0 +1,1750 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fahad Bin Husne Ali | God First • Explorer • Storyteller • Digital Nomad</title>
+  <meta name="description"
+    content="Official portfolio of Fahad Bin Husne Ali — God First, Online Professional, Traveler, Raw Storyteller, Initiator at Permanent Future Lab, and Community Builder.">
+  <meta property="og:title" content="Fahad Bin Husne Ali — Portfolio">
+  <meta property="og:description" content="God First | Online professional | Traveler | Writer | PR guy | Family Man">
+  <meta property="og:image" content="./Asist/Personal/profile1.jpg">
+
+  <!-- Google Fonts: Plus Jakarta Sans, Instrument Serif, Hind Siliguri for Bengali -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome Icons for crisp UI icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Canvas Confetti for celebratory Gift unboxing -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Top Scroll Progress Indicator -->
+  <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+  <!-- Interactive Constellation Particle Canvas -->
+  <canvas id="particleCanvas" class="particle-canvas"></canvas>
+
+  <!-- Ambient Background Glows & Mesh Canvas -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+  <div class="grid-overlay"></div>
+
+  <!-- Navigation -->
+  <header class="navbar-wrapper" id="mainHeader">
+    <nav class="navbar glass-card">
+      <a href="#hero" class="nav-brand">
+        <span class="brand-monogram">FBH</span>
+        <div class="brand-text">
+          <span class="brand-name">Fahad Bin Husne Ali</span>
+          <span class="brand-tagline">God First • Nomad • Builder</span>
+        </div>
+      </a>
+
+      <div class="nav-menu" id="navMenu">
+        <a href="#hero" class="nav-link active" data-nav-tooltip="Identity"><i
+            class="fa-solid fa-compass nav-icon-compass"></i></a>
+        <a href="#writings" class="nav-link" data-nav-tooltip="Writings & Articles"><i
+            class="fa-solid fa-feather-pointed nav-icon-feather"></i></a>
+        <a href="#the-lab" class="nav-link" data-nav-tooltip="The Lab & Ventures"><i
+            class="fa-solid fa-microchip nav-icon-microchip"></i></a>
+        <a href="#genz-hub" class="nav-link" data-nav-tooltip="Gen-Z Tech"><i
+            class="fa-solid fa-vr-cardboard nav-icon-vr"></i></a>
+        <a href="#creed" class="nav-link" data-nav-tooltip="5 Pillars of Creed"><i
+            class="fa-solid fa-shield-halved nav-icon-shield"></i></a>
+        <a href="#timeline" class="nav-link" data-nav-tooltip="Life Odyssey"><i
+            class="fa-solid fa-timeline nav-icon-timeline"></i></a>
+        <a href="#travel-log" class="nav-link" data-nav-tooltip="Travels"><i
+            class="fa-solid fa-map-location-dot nav-icon-map"></i></a>
+        <a href="#roots-love" class="nav-link" data-nav-tooltip="Roots & Love"><i
+            class="fa-solid fa-heart nav-icon-heart"></i></a>
+        <a href="#guestbook" class="nav-link" data-nav-tooltip="Guestbook"><i
+            class="fa-solid fa-comments nav-icon-comments"></i></a>
+        <a href="#connect" class="nav-link" data-nav-tooltip="PR & Connect"><i
+            class="fa-solid fa-paper-plane nav-icon-paperplane"></i></a>
+      </div>
+
+      <div class="nav-actions">
+        <!-- 12K Community Quick Link -->
+        <a href="https://www.facebook.com/fahadbinhusneali1" target="_blank" rel="noopener noreferrer"
+          class="uiverse-btn-primary nav-fb-btn" title="12,000+ Community on Facebook">
+          <i class="fa-brands fa-facebook"></i>
+          <span class="btn-text">12K</span>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Open Navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- SECTION 1: HERO -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-container">
+
+        <div class="hero-content">
+          <!-- God First Badge -->
+          <div class="hero-badge-wrapper">
+            <div class="badge-pill uiverse-badge">
+              <span class="badge-dot"></span>
+              <span class="badge-highlight">God First</span>
+              <span class="badge-separator">|</span>
+              <span class="badge-sub">Faith • Purpose • Freedom</span>
+            </div>
+            <div class="status-live-pill">
+              <span class="ping-circle"></span>
+              <span>Available for Global PR & Advisory</span>
+            </div>
+          </div>
+
+          <h1 class="hero-title">
+            I'm <span class="gradient-text">Fahad Bin Husne Ali</span>
+          </h1>
+
+          <div class="hero-typewriter-box">
+            <span class="typewriter-prefix">A passionate</span>
+            <span class="typewriter-text" id="typewriter"></span>
+            <span class="typewriter-cursor">|</span>
+          </div>
+
+          <p class="hero-bio">
+            Connecting humans across cultures, exploring uncharted horizons, and turning raw human stories into
+            inspiration. From the riverbanks of <strong>Bamna & Barisal</strong> to the ancient Silk Road of
+            <strong>Samarkand</strong> and the skyscrapers of <strong>Kuala Lumpur</strong> — living with purpose,
+            family at heart, and God above all.
+          </p>
+
+          <!-- Core Pillars Tags -->
+          <div class="identity-chips">
+            <span class="chip"><i class="fa-solid fa-laptop-code"></i> Online Professional</span>
+            <span class="chip"><i class="fa-solid fa-plane-departure"></i> Global Explorer</span>
+            <span class="chip"><i class="fa-solid fa-pen-nib"></i> Raw Storyteller</span>
+            <span class="chip"><i class="fa-solid fa-users"></i> Community Architect</span>
+            <span class="chip"><i class="fa-solid fa-house-chimney-window"></i> Proud Family Man</span>
+          </div>
+
+          <!-- Hero Action CTAs -->
+          <div class="hero-cta-group">
+            <a href="#the-lab" class="uiverse-btn-glow">
+              <span class="btn-glow-content">
+                <i class="fa-solid fa-bolt"></i>
+                <span>Explore The Lab & Ventures</span>
+              </span>
+            </a>
+
+            <a href="#writings" class="uiverse-btn-ghost">
+              <i class="fa-solid fa-book-open-reader"></i>
+              <span>Read Stories</span>
+            </a>
+
+            <button class="uiverse-btn-icon" id="heroPlayVoiceBtn" title="Fahad's Creed">
+              <i class="fa-solid fa-quote-left"></i>
+              <span>Life Creed</span>
+            </button>
+          </div>
+
+          <!-- Stat Counters (UIverse Bento Counters) -->
+          <div class="hero-stats-grid">
+            <div class="stat-card glass-card">
+              <div class="stat-number" data-target="12000">12K+</div>
+              <div class="stat-label">Facebook Community</div>
+              <div class="stat-sparkle"><i class="fa-brands fa-facebook-f"></i></div>
+            </div>
+
+            <div class="stat-card glass-card">
+              <div class="stat-number" data-target="4">4+</div>
+              <div class="stat-label">Active Ventures & Roles</div>
+              <div class="stat-sparkle"><i class="fa-solid fa-rocket"></i></div>
+            </div>
+
+            <div class="stat-card glass-card">
+              <div class="stat-number" data-target="500">500+</div>
+              <div class="stat-label">Students & Youths Reached</div>
+              <div class="stat-sparkle"><i class="fa-solid fa-vr-cardboard"></i></div>
+            </div>
+
+            <div class="stat-card glass-card">
+              <div class="stat-number" data-target="3">3+</div>
+              <div class="stat-label">Countries Explored</div>
+              <div class="stat-sparkle"><i class="fa-solid fa-earth-asia"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual / Dynamic Portrait Showcase -->
+        <div class="hero-visual">
+          <div class="portrait-card-wrapper uiverse-card-3d" id="heroCard3D">
+            <!-- Decorative Glow Rings -->
+            <div class="glow-ring glow-ring-1"></div>
+            <div class="glow-ring glow-ring-2"></div>
+
+            <div class="portrait-card glass-card">
+              <!-- Active Photo Frame -->
+              <div class="portrait-image-box">
+                <img src="./Asist/Personal/profile1.jpg" alt="Fahad Bin Husne Ali - Portrait" id="mainHeroImage"
+                  class="hero-img active">
+                <div class="portrait-gradient-overlay"></div>
+
+                <!-- Floating Mini Pills on the Photo -->
+                <div class="float-pill pill-top-right glass-card">
+                  <i class="fa-solid fa-heart text-gold"></i>
+                  <span>God First</span>
+                </div>
+
+                <div class="float-pill pill-bottom-left glass-card">
+                  <div class="pulse-avatar">
+                    <img src="./Asist/Personal/1.jpg" alt="Fahad Nomad">
+                  </div>
+                  <div>
+                    <span class="pill-title">Remote Nomad</span>
+                    <span class="pill-desc">SSP LLC & PFLab</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interactive Portrait Selector Tabs -->
+              <div class="portrait-selector">
+                <button class="selector-dot active" data-img="./Asist/Personal/profile1.jpg"
+                  data-caption="The Thinker & Writer • Contemplative Spirit">
+                  <img src="./Asist/Personal/profile1.jpg" alt="Thinker">
+                  <span>Thinker</span>
+                </button>
+                <button class="selector-dot" data-img="./Asist/Personal/profile.jpg"
+                  data-caption="The Traveler • Silk Road, Samarkand Uzbekistan">
+                  <img src="./Asist/Personal/profile.jpg" alt="Traveler">
+                  <span>Traveler</span>
+                </button>
+                <button class="selector-dot" data-img="./Asist/Personal/1.jpg"
+                  data-caption="Online Professional • Digital Nomad Setup">
+                  <img src="./Asist/Personal/1.jpg" alt="Nomad">
+                  <span>Professional</span>
+                </button>
+                <button class="selector-dot" data-img="./Asist/Personal/2.jpg"
+                  data-caption="Warm & Inspiring Smile • Community Leader">
+                  <img src="./Asist/Personal/2.jpg" alt="Warmth">
+                  <span>Smile</span>
+                </button>
+              </div>
+
+              <div class="portrait-caption" id="portraitCaption">
+                <i class="fa-solid fa-camera"></i>
+                <span id="captionText">The Thinker & Writer • Contemplative Spirit</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 1.5: WRITINGS & ARTICLES (DIRECTLY AFTER HERO) -->
+    <section class="section-wrapper writings-section" id="writings">
+      <div class="container">
+
+        <div class="section-header-flex">
+          <div class="section-header-left">
+            <div class="section-tag uiverse-badge">
+              <i class="fa-solid fa-feather-pointed"></i>
+              <span>The Raw Storyteller</span>
+            </div>
+            <h2 class="section-title">Writings & <span class="gradient-text">Human Thoughts</span></h2>
+            <p class="section-subtitle">
+              Unfiltered, soulful, witty, and profoundly empathetic reflections on society, human struggles, faith, and
+              everyday wonders.
+            </p>
+          </div>
+
+          <div class="section-header-actions">
+            <div class="articles-count-pill" id="articlesCountPill">
+              <i class="fa-solid fa-book-bookmark text-gold"></i>
+              <span id="articlesCountText">৪টি নির্বাচিত লেখা</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Featured Quote Highlight -->
+        <div class="quote-editorial-box glass-card">
+          <div class="quote-sign"><i class="fa-solid fa-quote-left"></i></div>
+          <blockquote class="editorial-quote bengali-font" id="editorialQuoteText">
+            "বিপদ কেটে গেলে মানুষ আর আল্লাহরেই মনে রাখে না..."
+          </blockquote>
+          <p class="editorial-author" id="editorialQuoteAuthor">— ফাহাদ বিন হুসনে আলী (বাবার সাথে জীবনের গভীর উপলব্ধির
+            স্মৃতি)</p>
+          <div class="editorial-tag-pill">Core Philosophy • God First</div>
+        </div>
+
+        <!-- Dynamic Articles Grid (2 Columns, 3 Rows initially, Compact Thumbnails) -->
+        <div class="stories-grid" id="articlesGrid">
+          <!-- Populated dynamically via JS with compact thumbnails, excerpts & details reader -->
+        </div>
+
+        <!-- See More / See All Articles Button -->
+        <div class="articles-see-more-wrap" id="articlesSeeMoreWrap" style="display: none;">
+          <button class="uiverse-btn-glow see-more-btn" id="seeMoreArticlesBtn" onclick="toggleSeeAllArticles()">
+            <span class="btn-glow-content">
+              <i class="fa-solid fa-layer-group"></i>
+              <span id="seeMoreBtnText">সি অল আর্টিকেল (See All Articles)</span>
+            </span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: THE LAB / WHAT I BUILD -->
+    <section class="section-wrapper" id="the-lab">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-tag uiverse-badge">
+            <i class="fa-solid fa-microchip"></i>
+            <span>Ventures & Impact</span>
+          </div>
+          <h2 class="section-title">The Lab — <span class="gradient-text">What I Build</span></h2>
+          <p class="section-subtitle">
+            A fusion of forward-thinking technology initiatives, high-trust virtual operations, and global community
+            networking.
+          </p>
+        </div>
+
+        <div class="bento-ventures-grid">
+
+          <!-- Card 1: Permanent Future Lab (Featured Bento Large) -->
+          <div class="bento-card bento-feature glass-card uiverse-tilt" onclick="openDetailView('venture', 'pflab')">
+            <div class="card-border-glow"></div>
+            <div class="bento-header">
+              <div class="venture-badge tech-badge">
+                <i class="fa-solid fa-vr-cardboard"></i>
+                <span>Innovation Initiative</span>
+              </div>
+              <span class="venture-role">Initiator</span>
+            </div>
+
+            <div class="bento-content-body">
+              <h3 class="venture-title">Permanent Future Lab <span class="hash-tag">#PFLab</span></h3>
+              <p class="venture-desc">
+                Democratizing access to breakthrough innovations. Introducing Virtual Reality (VR), robotics, and
+                next-generation tech to grassroots students and youth across rural and urban institutions in Bangladesh.
+              </p>
+
+              <!-- Photo Proof Strip from GenZ folder -->
+              <div class="venture-gallery-mini" onclick="event.stopPropagation()">
+                <div class="mini-thumb"
+                  onclick="openLightbox('./Asist/GenZ/start.1.jpg', 'Fahad speaking at Permanent Future Lab event wearing #PFLab t-shirt')">
+                  <img src="./Asist/GenZ/start.1.jpg" alt="PFLab Talk">
+                  <span class="thumb-tag">#PFLab Speech</span>
+                </div>
+                <div class="mini-thumb"
+                  onclick="openLightbox('./Asist/GenZ/488735767_704711518685730_2015479684710930061_n.jpg', 'Village students mesmerized experiencing VR technology for the first time')">
+                  <img src="./Asist/GenZ/488735767_704711518685730_2015479684710930061_n.jpg" alt="Village VR">
+                  <span class="thumb-tag">Grassroots VR</span>
+                </div>
+                <div class="mini-thumb"
+                  onclick="openLightbox('./Asist/GenZ/486066417_694356463054569_8132001953531000436_n.jpg', '44th National Science and Technology Week innovation showcase')">
+                  <img src="./Asist/GenZ/486066417_694356463054569_8132001953531000436_n.jpg" alt="National Tech Week">
+                  <span class="thumb-tag">National Tech Fair</span>
+                </div>
+              </div>
+
+              <div class="venture-bullets">
+                <span><i class="fa-solid fa-check-circle"></i> VR Demonstrations in Rural Schools</span>
+                <span><i class="fa-solid fa-check-circle"></i> Inspiring Gen-Z Curiosity</span>
+                <span><i class="fa-solid fa-check-circle"></i> Sharing Future Tech Openly</span>
+              </div>
+
+              <div class="venture-card-footer">
+                <button class="view-detail-pill" onclick="event.stopPropagation(); openDetailView('venture', 'pflab')">
+                  <span>সম্পূর্ণ বিস্তারিত ও কেইস স্টাডি পড়ুন</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Seats2meet.com -->
+          <div class="bento-card glass-card uiverse-tilt" onclick="openDetailView('venture', 'seats2meet')">
+            <div class="card-border-glow"></div>
+            <div class="bento-header">
+              <div class="venture-badge community-badge">
+                <i class="fa-solid fa-handshake"></i>
+                <span>Ecosystem Building</span>
+              </div>
+              <span class="venture-role">Social Entrepreneur</span>
+            </div>
+
+            <h3 class="venture-title">Seats2meet.com</h3>
+            <p class="venture-desc">
+              Pioneering serendipity and collaborative coworking ecosystems. Facilitating unexpected connections, shared
+              knowledge networks, and digital-physical spaces where entrepreneurs and creators thrive together.
+            </p>
+
+            <div class="venture-tags">
+              <span class="mini-pill">Coworking Culture</span>
+              <span class="mini-pill">Serendipity Machine</span>
+              <span class="mini-pill">Social Capital</span>
+            </div>
+
+            <div class="venture-card-footer">
+              <button class="view-detail-pill"
+                onclick="event.stopPropagation(); openDetailView('venture', 'seats2meet')">
+                <span>বিস্তারিত পড়ুন</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 3: SSP Organization LLC -->
+          <div class="bento-card glass-card uiverse-tilt" onclick="openDetailView('venture', 'ssp')">
+            <div class="card-border-glow"></div>
+            <div class="bento-header">
+              <div class="venture-badge corporate-badge">
+                <i class="fa-solid fa-briefcase"></i>
+                <span>US Enterprise Client</span>
+              </div>
+              <span class="venture-role">Virtual Assistant</span>
+            </div>
+
+            <h3 class="venture-title">SSP Organization LLC</h3>
+            <p class="venture-desc">
+              Delivering high-caliber executive support, asynchronous operations, cross-timezone workflow management,
+              and dependable digital administration for high-velocity US operations.
+            </p>
+
+            <div class="venture-tags">
+              <span class="mini-pill">Executive Ops</span>
+              <span class="mini-pill">Remote Mastery</span>
+              <span class="mini-pill">Project Sync</span>
+            </div>
+
+            <div class="venture-card-footer">
+              <button class="view-detail-pill" onclick="event.stopPropagation(); openDetailView('venture', 'ssp')">
+                <span>বিস্তারিত পড়ুন</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 4: Dujm -->
+          <div class="bento-card glass-card uiverse-tilt" onclick="openDetailView('venture', 'dujm')">
+            <div class="card-border-glow"></div>
+            <div class="bento-header">
+              <div class="venture-badge web-badge">
+                <i class="fa-solid fa-globe"></i>
+                <span>Web Strategy</span>
+              </div>
+              <span class="venture-role">Website Manager</span>
+            </div>
+
+            <h3 class="venture-title">Dujm</h3>
+            <p class="venture-desc">
+              Overseeing modern digital footprints, CMS management, content performance, SEO hygiene, and flawless web
+              maintenance to ensure uninterrupted digital presence.
+            </p>
+
+            <div class="venture-tags">
+              <span class="mini-pill">Web Operations</span>
+              <span class="mini-pill">Content Architecture</span>
+              <span class="mini-pill">UX Care</span>
+            </div>
+
+            <div class="venture-card-footer">
+              <button class="view-detail-pill" onclick="event.stopPropagation(); openDetailView('venture', 'dujm')">
+                <span>বিস্তারিত পড়ুন</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 5: Mentorship & GenZ Empowerment -->
+          <div class="bento-card bento-wide glass-card uiverse-tilt" onclick="openDetailView('venture', 'mentorship')">
+            <div class="card-border-glow"></div>
+            <div class="bento-header">
+              <div class="venture-badge mentor-badge">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>Next-Gen Mentorship</span>
+              </div>
+              <span class="venture-role">Youth Mentor</span>
+            </div>
+
+            <div class="mentor-inner-flex">
+              <div class="mentor-info">
+                <h3 class="venture-title">Empowering Young Minds into Digital Freedom</h3>
+                <p class="venture-desc">
+                  Working one-on-one with young aspiring builders (like Nazmul and university students) to help them
+                  understand laptops, digital tools, international markets, and ethical entrepreneurship.
+                </p>
+                <div class="venture-tags">
+                  <span class="mini-pill"><i class="fa-solid fa-laptop"></i> Hands-on Skill Transfer</span>
+                  <span class="mini-pill"><i class="fa-solid fa-seedling"></i> Honest Mentorship</span>
+                </div>
+                <div class="venture-card-footer" style="margin-top:1rem;">
+                  <button class="view-detail-pill"
+                    onclick="event.stopPropagation(); openDetailView('venture', 'mentorship')">
+                    <span>মেন্টরশিপের সম্পূর্ণ গল্প পড়ুন</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="mentor-thumb"
+                onclick="event.stopPropagation(); openLightbox('./Asist/GenZ/nazmul.jpg', 'Fahad working alongside Nazmul on coding & digital skills')">
+                <img src="./Asist/GenZ/nazmul.jpg" alt="Mentoring GenZ">
+                <div class="zoom-indicator"><i class="fa-solid fa-magnifying-glass-plus"></i> View Session</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2.5: THE GEN-Z EMPOWERMENT HUB & FUTURE TECH LAB -->
+    <section class="section-wrapper genz-hub-section" id="genz-hub">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-tag uiverse-badge">
+            <i class="fa-solid fa-vr-cardboard"></i>
+            <span>Future Generations</span>
+          </div>
+          <h2 class="section-title">Gen-Z Tech Hub — <span class="gradient-text">Igniting Tomorrow</span></h2>
+          <p class="section-subtitle">
+            Democratizing deep tech. Bringing Virtual Reality headsets, modern computing, and ethical digital
+            independence to village classrooms and ambitious youth across Bangladesh.
+          </p>
+        </div>
+
+        <!-- GenZ Impact Bento Grid -->
+        <div class="genz-showcase-grid">
+
+          <!-- GenZ Card 1: VR In Rural Classrooms (Featured) -->
+          <div class="genz-card genz-featured glass-card uiverse-tilt" onclick="openDetailView('genz', 'vr-rural')">
+            <div class="genz-img-frame"
+              onclick="event.stopPropagation(); openLightbox('./Asist/GenZ/488735767_704711518685730_2015479684710930061_n.jpg', 'Grassroots students in a rural school mesmerized experiencing Virtual Reality through Permanent Future Lab')">
+              <img src="./Asist/GenZ/488735767_704711518685730_2015479684710930061_n.jpg"
+                alt="Village Students VR Experience" loading="lazy">
+              <div class="img-badge-overlay">
+                <i class="fa-solid fa-eye"></i>
+                <span>Grassroots VR Experience</span>
+              </div>
+            </div>
+            <div class="genz-card-body">
+              <div class="genz-meta-tag">
+                <span class="pulse-dot"></span>
+                <span>Permanent Future Lab Initiative</span>
+              </div>
+              <h3 class="genz-card-title bengali-font">গ্রামের শিশুদের চোখে ভার্চুয়াল রিয়েলিটির বিস্ময়</h3>
+              <p class="genz-card-text bengali-font">
+                প্রযুক্তি কেবল শহরের বিত্তবানদের জন্য নয়। যখন মফস্বলের একটি স্কুলপড়ুয়া বাচ্চা প্রথমবার ভিআর হেডসেট চোখে
+                দিয়ে বলে— <em>"ভাইয়া, আমি তো পুরো অন্য এক জগতে চলে গিয়েছি!"</em>— সেই ক্ষণিকের চমক আর আত্মবিশ্বাসই
+                আগামীর বৈপ্লবিক বাংলাদেশের বীজ।
+              </p>
+              <div class="genz-tags-row">
+                <span class="pill-chip"><i class="fa-solid fa-graduation-cap"></i> স্কুল ওয়ার্কশপ</span>
+                <span class="pill-chip"><i class="fa-solid fa-microchip"></i> হ্যান্ডস-অন টেকনোলজি</span>
+                <span class="pill-chip"><i class="fa-solid fa-heart"></i> বিনামূল্যে জ্ঞান বিতরণ</span>
+              </div>
+              <div class="genz-card-footer" style="margin-top:0.8rem;">
+                <button class="view-detail-pill" onclick="event.stopPropagation(); openDetailView('genz', 'vr-rural')">
+                  <span>ভিআর ক্লাসরুমের সম্পূর্ণ অভিজ্ঞতা ও ছবি পড়ুন</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- GenZ Card 2: 44th National Science & Tech Week -->
+          <div class="genz-card glass-card uiverse-tilt" onclick="openDetailView('genz', 'science-week')">
+            <div class="genz-img-frame"
+              onclick="event.stopPropagation(); openLightbox('./Asist/GenZ/486066417_694356463054569_8132001953531000436_n.jpg', '44th National Science and Technology Week innovation booth — showcasing future technology to the public')">
+              <img src="./Asist/GenZ/486066417_694356463054569_8132001953531000436_n.jpg"
+                alt="National Science and Tech Week" loading="lazy">
+              <div class="img-badge-overlay">
+                <i class="fa-solid fa-award"></i>
+                <span>National Science Week</span>
+              </div>
+            </div>
+            <div class="genz-card-body">
+              <div class="genz-meta-tag">
+                <span>৪৪তম জাতীয় বিজ্ঞান ও প্রযুক্তি সপ্তাহ</span>
+              </div>
+              <h3 class="genz-card-title bengali-font">উদ্ভাবন ও প্রযুক্তির জাতীয় মঞ্চে</h3>
+              <p class="genz-card-text bengali-font">
+                সরকারি ও জাতীয় পর্যায়ে তরুণদের ভবিষ্যৎমুখী প্রযুক্তির সাথে পরিচয় করিয়ে দেওয়া। রোবোটিক্স, এআই এবং উদীয়মান
+                প্রযুক্তির গুরুত্ব তুলে ধরার বাস্তব কর্মযজ্ঞ।
+              </p>
+              <div class="genz-card-footer" style="margin-top:auto;">
+                <button class="view-detail-pill"
+                  onclick="event.stopPropagation(); openDetailView('genz', 'science-week')">
+                  <span>বিস্তারিত পড়ুন</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- GenZ Card 3: Nazmul Mentorship -->
+          <div class="genz-card glass-card uiverse-tilt" onclick="openDetailView('genz', 'nazmul-mentorship')">
+            <div class="genz-img-frame"
+              onclick="event.stopPropagation(); openLightbox('./Asist/GenZ/nazmul.jpg', 'Fahad mentoring Nazmul on international freelance workflows, coding, and remote client communication')">
+              <img src="./Asist/GenZ/nazmul.jpg" alt="Nazmul Mentoring" loading="lazy">
+              <div class="img-badge-overlay">
+                <i class="fa-solid fa-user-graduate"></i>
+                <span>One-on-One Mentorship</span>
+              </div>
+            </div>
+            <div class="genz-card-body">
+              <div class="genz-meta-tag">
+                <span>ব্যক্তিগত মেন্টরশিপ ও দক্ষতা বৃদ্ধি</span>
+              </div>
+              <h3 class="genz-card-title bengali-font">তরুণদের স্বাবলম্বী করার অঙ্গীকার</h3>
+              <p class="genz-card-text bengali-font">
+                নাজমুলের মতো পরিশ্রমী তরুণদের পাশে বসে ল্যাপটপের ব্যবহার, আন্তর্জাতিক ক্লায়েন্টের সাথে যোগাযোগ এবং
+                আত্মসম্মানের সাথে উপার্জনের পথ তৈরি করে দেওয়া।
+              </p>
+              <div class="genz-card-footer" style="margin-top:auto;">
+                <button class="view-detail-pill"
+                  onclick="event.stopPropagation(); openDetailView('genz', 'nazmul-mentorship')">
+                  <span>বিস্তারিত পড়ুন</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- GenZ Card 4: #PFLab Movement Speech -->
+          <div class="genz-card glass-card uiverse-tilt" onclick="openDetailView('genz', 'pflab-philosophy')">
+            <div class="genz-img-frame"
+              onclick="event.stopPropagation(); openLightbox('./Asist/GenZ/start.1.jpg', 'Fahad addressing youth wearing Permanent Future Lab t-shirt with passion and vision')">
+              <img src="./Asist/GenZ/start.1.jpg" alt="PFLab Movement Keynote" loading="lazy">
+              <div class="img-badge-overlay">
+                <i class="fa-solid fa-microphone-lines"></i>
+                <span>#PFLab Philosophy</span>
+              </div>
+            </div>
+            <div class="genz-card-body">
+              <div class="genz-meta-tag">
+                <span>ওপেন সোর্স দর্শন ও যৌথ ভবিষ্যৎ</span>
+              </div>
+              <h3 class="genz-card-title bengali-font">জ্ঞান ভাগ করে নিলে তা বহুগুণ বেড়ে যায়</h3>
+              <p class="genz-card-text bengali-font">
+                "Sharing without ownership, innovating without boundaries." প্রতিটি যুবকের ভেতর লুকিয়ে থাকা সুপ্ত
+                প্রতিভাকে জাগ্রত করার অনুপ্রেরণাদায়ী মুহূর্ত।
+              </p>
+              <div class="genz-card-footer" style="margin-top:auto;">
+                <button class="view-detail-pill"
+                  onclick="event.stopPropagation(); openDetailView('genz', 'pflab-philosophy')">
+                  <span>বিস্তারিত পড়ুন</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2.8: THE 5 PILLARS OF FAHAD'S CREED -->
+    <section class="section-wrapper creed-section" id="creed">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-tag uiverse-badge">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Moral Architecture</span>
+          </div>
+          <h2 class="section-title">The 5 Pillars — <span class="gradient-text">Life Creed & Compass</span></h2>
+          <p class="section-subtitle">
+            The foundational convictions that anchor every business decision, journey, social reflection, and
+            interaction.
+          </p>
+        </div>
+
+        <div class="creed-pillars-grid">
+
+          <!-- Pillar 1: God First -->
+          <div class="pillar-card glass-card uiverse-tilt">
+            <div class="pillar-halo halo-gold"></div>
+            <div class="pillar-num">০১</div>
+            <div class="pillar-icon"><i class="fa-solid fa-hands-praying"></i></div>
+            <h3 class="pillar-title">God First</h3>
+            <span class="pillar-subtitle bengali-font">তাওয়াক্কুল ও শোকরগোযারি</span>
+            <p class="pillar-desc bengali-font">
+              "সব পদচিহ্নের শুরুতে এবং শেষে আল্লাহ। সুখের দিনে কৃতজ্ঞতা আর বিপদের দিনে ধৈর্য— এই বিশ্বাসই আমার জীবনের
+              সকল অর্জন আর মানসিক শান্তির মূল উৎস।"
+            </p>
+            <div class="pillar-tag">Divine Faith & Alignment</div>
+          </div>
+
+          <!-- Pillar 2: Baba's Shade & Roots -->
+          <div class="pillar-card glass-card uiverse-tilt">
+            <div class="pillar-halo halo-emerald"></div>
+            <div class="pillar-num">০২</div>
+            <div class="pillar-icon"><i class="fa-solid fa-tree"></i></div>
+            <h3 class="pillar-title">Baba & Family</h3>
+            <span class="pillar-subtitle bengali-font">বাবার ছায়া ও মাটির শিকড়</span>
+            <p class="pillar-desc bengali-font">
+              "বাবার কাঁধে হাত রেখে দাঁড়ানোর চেয়ে বড় রাজকীয় সম্মান দুনিয়ায় আর কিছু নেই। যে সন্তান মা-বাবাকে সন্তুষ্ট
+              রেখে জীবন পরিচালনা করে, দুনিয়ার কোনো ঝড় তাকে টলাতে পারে না।"
+            </p>
+            <div class="pillar-tag">Devoted Family Man</div>
+          </div>
+
+          <!-- Pillar 3: Raw Truth & Empathy -->
+          <div class="pillar-card glass-card uiverse-tilt">
+            <div class="pillar-halo halo-blue"></div>
+            <div class="pillar-num">০৩</div>
+            <div class="pillar-icon"><i class="fa-solid fa-pen-nib"></i></div>
+            <h3 class="pillar-title">Raw Truth</h3>
+            <span class="pillar-subtitle bengali-font">অকপট কলম ও মানবিক অনুভব</span>
+            <p class="pillar-desc bengali-font">
+              "শব্দ দিয়ে কাউকে চমকে দেওয়ার চেয়ে সাধারণ মানুষের নিঃশব্দ কান্না আর সমাজের মেকি ভণ্ডামিকে নির্ভীকভাবে
+              প্রকাশ করাই কলমের আসল সার্থকতা।"
+            </p>
+            <div class="pillar-tag">Radical Storyteller</div>
+          </div>
+
+          <!-- Pillar 4: Serendipity & Bridges -->
+          <div class="pillar-card glass-card uiverse-tilt">
+            <div class="pillar-halo halo-purple"></div>
+            <div class="pillar-num">০৪</div>
+            <div class="pillar-icon"><i class="fa-solid fa-handshake"></i></div>
+            <h3 class="pillar-title">Open Bridges</h3>
+            <span class="pillar-subtitle bengali-font">কমিউনিটি ও নিঃস্বার্থ মেলবন্ধন</span>
+            <p class="pillar-desc bengali-font">
+              "Seats2meet আর PFLab আমাকে শিখিয়েছে— মানুষ যখন বাণিজ্যিক স্বার্থ ভুলে একে অপরের পাশে দাঁড়ায়, তখন অচেনা
+              মানুষের মাঝেও পরম আত্মীয়তার জন্ম হয়।"
+            </p>
+            <div class="pillar-tag">Community Architect</div>
+          </div>
+
+          <!-- Pillar 5: Humility of the Nomad -->
+          <div class="pillar-card glass-card uiverse-tilt">
+            <div class="pillar-halo halo-cyan"></div>
+            <div class="pillar-num">০৫</div>
+            <div class="pillar-icon"><i class="fa-solid fa-compass"></i></div>
+            <h3 class="pillar-title">Humility</h3>
+            <span class="pillar-subtitle bengali-font">ভ্রমণে অহংকার বিসর্জন</span>
+            <p class="pillar-desc bengali-font">
+              "বামনার নদী থেকে সমরখন্দের নীল মিনার কিংবা হিমালয়ের কোল— ভ্রমণ মনে করিয়ে দেয় স্রষ্টার এই অসীম সৃষ্টিতে
+              আমি কতটা নগণ্য। জীবন তো কেবলি এক সফর।"
+            </p>
+            <div class="pillar-tag">Lifelong Explorer</div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3.5: THE ODYSSEY & LIFE TIMELINE -->
+    <section class="section-wrapper timeline-section" id="timeline">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-tag uiverse-badge">
+            <i class="fa-solid fa-timeline"></i>
+            <span>The Odyssey</span>
+          </div>
+          <h2 class="section-title">The Odyssey — <span class="gradient-text">Milestones & Footprints</span></h2>
+          <p class="section-subtitle">
+            From the serene riverbanks of Southern Bangladesh to the high-trust virtual operations of the US and the
+            ancient Silk Road of Central Asia.
+          </p>
+        </div>
+
+        <div class="timeline-container">
+          <div class="timeline-center-line"></div>
+
+          <!-- Timeline Item 1 -->
+          <div class="timeline-item left-item">
+            <div class="timeline-dot"><i class="fa-solid fa-seedling"></i></div>
+            <div class="timeline-card glass-card uiverse-tilt">
+              <span class="timeline-year">২০১৮ – ২০২০</span>
+              <div class="timeline-badge"><i class="fa-solid fa-location-dot"></i> বামনা ও বরিশাল</div>
+              <h3 class="timeline-title bengali-font">শিকড় ও দূর দিগন্তের হাতছানি</h3>
+              <p class="timeline-body bengali-font">
+                দক্ষিণের নদীবিধৌত বামনার শান্ত পরিবেশে বেড়ে ওঠা। বাবার নৈতিক শিক্ষা আর ধর্মীয় অনুশাসনে জীবনের
+                ভিত্তিপ্রস্তর স্থাপন। ইন্টারনেটের অসীম সম্ভাবনার সাথে প্রথম পরিচয় এবং দূরবর্তী কাজের স্বপ্ন বুনন।
+              </p>
+              <div class="timeline-tag-pill">Early Roots • Moral Anchor</div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 2 -->
+          <div class="timeline-item right-item">
+            <div class="timeline-dot"><i class="fa-solid fa-handshake"></i></div>
+            <div class="timeline-card glass-card uiverse-tilt">
+              <span class="timeline-year">২০২১</span>
+              <div class="timeline-badge"><i class="fa-solid fa-users"></i> Seats2meet.com</div>
+              <h3 class="timeline-title bengali-font">কো-ওয়ার্কিং ও যৌথ সম্ভাবনার বিপ্লব</h3>
+              <p class="timeline-body bengali-font">
+                গ্লোবাল 'Seats2meet' মুভমেন্টে সোশ্যাল এন্টারপ্রেনার হিসেবে পদার্পণ। জ্ঞান বিনিময়ের মাধ্যমে কীভাবে
+                অপরিচিত মানুষ একে অপরের সহযাত্রী হতে পারে— সেই আধুনিক সোশ্যাল ক্যাপিটালের বিস্তারে সক্রিয় ভূমিকা।
+              </p>
+              <div class="timeline-tag-pill">Social Entrepreneurship</div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 3 -->
+          <div class="timeline-item left-item">
+            <div class="timeline-dot"><i class="fa-solid fa-laptop-code"></i></div>
+            <div class="timeline-card glass-card uiverse-tilt">
+              <span class="timeline-year">২০২২</span>
+              <div class="timeline-badge"><i class="fa-solid fa-briefcase"></i> SSP Organization LLC</div>
+              <h3 class="timeline-title bengali-font">আন্তর্জাতিক ভার্চুয়াল নেতৃত্ব ও আস্থা</h3>
+              <p class="timeline-body bengali-font">
+                মার্কিন যুক্তরাষ্ট্রের শীর্ষ এন্টারপ্রাইজের ভার্চুয়াল অ্যাসিস্ট্যান্ট হিসেবে গুরুত্বপূর্ণ এক্সিকিউটিভ
+                কার্যক্রম পরিচালনা। দূরবর্তী কাজের দক্ষতা, সময়নিষ্ঠতা এবং গভীর পেশাদারিত্বের প্রমাণ।
+              </p>
+              <div class="timeline-tag-pill">Executive VA Mastery</div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 4 -->
+          <div class="timeline-item right-item">
+            <div class="timeline-dot"><i class="fa-solid fa-vr-cardboard"></i></div>
+            <div class="timeline-card glass-card uiverse-tilt">
+              <span class="timeline-year">২০২৩</span>
+              <div class="timeline-badge"><i class="fa-solid fa-microchip"></i> Permanent Future Lab</div>
+              <h3 class="timeline-title bengali-font">মফস্বলে ভবিষ্যৎ প্রযুক্তির আলো</h3>
+              <p class="timeline-body bengali-font">
+                #PFLab ইনিশিয়েটর হিসেবে দেশের প্রত্যন্ত অঞ্চলের শিক্ষার্থীদের হাতে তুলে দেওয়া ভার্চুয়াল রিয়েলিটি (VR)
+                হেডসেট। জাতীয় বিজ্ঞান ও প্রযুক্তি সপ্তাহে অংশগ্রহণ এবং নাজমুলের মতো তরুণদের ব্যক্তিগত মেন্টরশিপ।
+              </p>
+              <div class="timeline-tag-pill">Youth & Tech Democratization</div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 5 -->
+          <div class="timeline-item left-item">
+            <div class="timeline-dot"><i class="fa-solid fa-earth-central-asia"></i></div>
+            <div class="timeline-card glass-card uiverse-tilt">
+              <span class="timeline-year">২০২৪</span>
+              <div class="timeline-badge"><i class="fa-solid fa-compass"></i> সিল্ক রোড ও হিমালয়</div>
+              <h3 class="timeline-title bengali-font">সিল্ক রোডের নীল মিনার ও জীবনবোধ</h3>
+              <p class="timeline-body bengali-font">
+                স্ত্রী ও পরিবারকে নিয়ে প্রাচীন সমরখন্দ, বোখারা ও পোখরার হ্রদে অবিস্মরণীয় সফর। ইতিহাসের ধ্বংসাবশেষ আর
+                স্রষ্টার বিশাল সৃষ্টির সামনে দাঁড়িয়ে নিজের অহংকার বিসর্জন ও আত্মোপলব্ধি।
+              </p>
+              <div class="timeline-tag-pill">The Silk Road Explorer</div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 6 -->
+          <div class="timeline-item right-item">
+            <div class="timeline-dot"><i class="fa-solid fa-heart"></i></div>
+            <div class="timeline-card glass-card uiverse-tilt">
+              <span class="timeline-year">বর্তমান ও ভবিষ্যৎ</span>
+              <div class="timeline-badge"><i class="fa-brands fa-facebook"></i> ১২,০০০+ কমিউনিটি ও পরিবার</div>
+              <h3 class="timeline-title bengali-font">God First, কলমের সাহস ও বাবার ছায়া</h3>
+              <p class="timeline-body bengali-font">
+                সামাজিক মাধ্যমে অগণিত মানুষের ভালোবাসা, নির্ভীক ও সংবেদনশীল সাহিত্যকর্ম, বাবার প্রতি অবিচল ভক্তি আর
+                আল্লাহর ওপর তাওয়াক্কুল নিয়ে এক মুক্ত ও মার্জিত জীবনের জয়গান।
+              </p>
+              <div class="timeline-tag-pill">Legacy of Faith & Words</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 4: TRAVEL LOG & EXPLORER'S COMPASS -->
+    <section class="section-wrapper travel-section" id="travel-log">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-tag uiverse-badge">
+            <i class="fa-solid fa-compass"></i>
+            <span>The Explorer</span>
+          </div>
+          <h2 class="section-title">Travel Log — <span class="gradient-text">Bamna to the World</span></h2>
+          <p class="section-subtitle">
+            "Traveling teaches you humility. It shows you what a tiny place you occupy in this vast, wonderful world."
+          </p>
+        </div>
+
+        <!-- Travel Route Interactive Bar -->
+        <div class="travel-route-bar glass-card">
+          <div class="route-node">
+            <span class="node-icon"><i class="fa-solid fa-seedling"></i></span>
+            <span class="node-city">Bamna</span>
+            <span class="node-country">Barguna, BD</span>
+          </div>
+          <div class="route-line"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="route-node">
+            <span class="node-icon"><i class="fa-solid fa-water"></i></span>
+            <span class="node-city">Barisal</span>
+            <span class="node-country">Rivers of South</span>
+          </div>
+          <div class="route-line"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="route-node">
+            <span class="node-icon"><i class="fa-solid fa-mountain"></i></span>
+            <span class="node-city">Pokhara</span>
+            <span class="node-country">Nepal • Himalayas</span>
+          </div>
+          <div class="route-line"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="route-node">
+            <span class="node-icon"><i class="fa-solid fa-mosque"></i></span>
+            <span class="node-city">Samarkand & Bukhara</span>
+            <span class="node-country">Silk Road, Uzbekistan</span>
+          </div>
+          <div class="route-line"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="route-node">
+            <span class="node-icon"><i class="fa-solid fa-city"></i></span>
+            <span class="node-city">Kuala Lumpur</span>
+            <span class="node-country">Twin Towers, Malaysia</span>
+          </div>
+        </div>
+
+        <!-- Gallery Filter Tabs -->
+        <div class="gallery-filter-tabs">
+          <button class="filter-btn active" data-filter="all">All Journeys</button>
+          <button class="filter-btn" data-filter="silk-road">Silk Road & Uzbekistan</button>
+          <button class="filter-btn" data-filter="himalaya">Himalayas & Nepal</button>
+          <button class="filter-btn" data-filter="metropolis">Metropolis & Malaysia</button>
+        </div>
+
+        <!-- Travel Photos Grid -->
+        <div class="travel-gallery-grid">
+
+          <!-- Photo 1: Samarkand Registan Profile -->
+          <div class="travel-item glass-card" data-category="silk-road"
+            onclick="openLightbox('./Asist/Personal/profile.jpg', 'Fahad in blue chapon in front of the magnificent Registan Madrasahs in Samarkand, Uzbekistan')">
+            <div class="travel-img-box">
+              <img src="./Asist/Personal/profile.jpg" alt="Samarkand Registan" loading="lazy">
+              <div class="travel-overlay">
+                <span class="travel-badge"><i class="fa-solid fa-location-dot"></i> Samarkand, Uzbekistan</span>
+                <h4 class="travel-caption-title">The Grand Registan Madrasah</h4>
+                <p class="travel-caption-desc">Standing in awe before centuries of Islamic architecture, blue mosaics,
+                  and profound history.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Photo 2: Royal Throne Samarkand -->
+          <div class="travel-item glass-card" data-category="silk-road"
+            onclick="openLightbox('./Asist/Travel/t.3.jpg', 'Fahad in traditional Amir regal attire on a golden throne in Samarkand')">
+            <div class="travel-img-box">
+              <img src="./Asist/Travel/t.3.jpg" alt="Royal Throne Samarkand" loading="lazy">
+              <div class="travel-overlay">
+                <span class="travel-badge"><i class="fa-solid fa-crown"></i> Samarkand Silk Road</span>
+                <h4 class="travel-caption-title">The Royal Robes of the Silk Road</h4>
+                <p class="travel-caption-desc">Stepping into the history of legendary Central Asian khans and scholars
+                  with ceremonial attire.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Photo 3: Petronas Twin Towers -->
+          <div class="travel-item glass-card" data-category="metropolis"
+            onclick="openLightbox('./Asist/Travel/t.4.jpg', 'Fahad at night beneath the glittering Petronas Twin Towers in Kuala Lumpur, Malaysia')">
+            <div class="travel-img-box">
+              <img src="./Asist/Travel/t.4.jpg" alt="Petronas Twin Towers" loading="lazy">
+              <div class="travel-overlay">
+                <span class="travel-badge"><i class="fa-solid fa-building"></i> Kuala Lumpur, Malaysia</span>
+                <h4 class="travel-caption-title">Under the Twin Towers at Night</h4>
+                <p class="travel-caption-desc">Towering architectural marvel of Southeast Asia — feeling the kinetic
+                  rhythm of a global capital.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Photo 4: Annapurna Phewa Lake Nepal -->
+          <div class="travel-item glass-card" data-category="himalaya"
+            onclick="openLightbox('./Asist/Travel/t.1.jpg', 'Fahad on Phewa Lake with the glowing Himalayan peaks of Annapurna at golden hour')">
+            <div class="travel-img-box">
+              <img src="./Asist/Travel/t.1.jpg" alt="Phewa Lake Nepal" loading="lazy">
+              <div class="travel-overlay">
+                <span class="travel-badge"><i class="fa-solid fa-mountain-sun"></i> Pokhara, Nepal</span>
+                <h4 class="travel-caption-title">Golden Hour on Phewa Lake</h4>
+                <p class="travel-caption-desc">The stillness of alpine waters reflecting snow-kissed peaks of the
+                  majestic Annapurna range.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Photo 5: World Peace Pagoda Nepal -->
+          <div class="travel-item glass-card" data-category="himalaya"
+            onclick="openLightbox('./Asist/Travel/t.2.jpg', 'Fahad at the Shanti Stupa (World Peace Pagoda) overlooking Pokhara valley')">
+            <div class="travel-img-box">
+              <img src="./Asist/Travel/t.2.jpg" alt="World Peace Pagoda" loading="lazy">
+              <div class="travel-overlay">
+                <span class="travel-badge"><i class="fa-solid fa-bell"></i> Pokhara, Nepal</span>
+                <h4 class="travel-caption-title">Shanti Stupa • Whispers of Peace</h4>
+                <p class="travel-caption-desc">Above the clouds at the white Peace Pagoda, soaking in mountain stillness
+                  and serenity.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Photo 6: Kalyan Minaret Bukhara with Wife -->
+          <div class="travel-item glass-card" data-category="silk-road"
+            onclick="openLightbox('./Asist/Love/l.2.jpg', 'Fahad with his wife in front of the historic Kalyan Minaret in Bukhara, Uzbekistan')">
+            <div class="travel-img-box">
+              <img src="./Asist/Love/l.2.jpg" alt="Bukhara Minaret Couple" loading="lazy">
+              <div class="travel-overlay">
+                <span class="travel-badge"><i class="fa-solid fa-heart"></i> Bukhara, Uzbekistan</span>
+                <h4 class="travel-caption-title">Walking Ancient Streets Together</h4>
+                <p class="travel-caption-desc">Under the shadow of the great 12th-century Kalyan Minaret, exploring
+                  timeless wonders hand-in-hand.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- END TRAVEL GRID -->
+
+        <!-- ==========================================================================
+             REACT BITS PRO: PARALLAX CAROUSEL (DUAL-ROW TRAVEL PHOTO GALLERY)
+             Config: imageHeight=410, gap=10, lerp=0.11, dragSensitivity=1
+             Row 1: Images 1-10 auto-play left-to-right
+             Row 2: Images 11-20 auto-play right-to-left
+             Draggable, parallax shift, pause on hover, interactive lightbox
+             ========================================================================== -->
+        <div class="reactbits-parallax-carousel-wrapper">
+          <div class="parallax-carousel-header">
+            <div class="travel-gallery-badge">
+              <i class="fa-solid fa-camera-retro"></i>
+              <span>Travel Photographic Chronicles</span>
+            </div>
+            <h3 class="parallax-carousel-title bengali-font">
+              পথের বাঁকে বন্দি মুহূর্ত — <span class="gradient-gold-text">২০টি নান্দনিক গল্প</span>
+            </h3>
+            <p class="parallax-carousel-subtitle">
+              Interactive dual-flow Parallax Carousel. Row 1 drifts smoothly from left to right, while Row 2 moves counter-current from right to left. Drag freely, enjoy the parallax depth, or click any frame to expand.
+            </p>
+          </div>
+
+          <!-- PARALLAX CAROUSEL ROOT CONTAINER -->
+          <div class="parallax-carousel-container" id="travelParallaxCarousel"
+               data-image-height="410"
+               data-gap="10"
+               data-lerp="0.11"
+               data-drag-sensitivity="1">
+
+            <!-- ROW 1: Auto-drift Left to Right (Images 1-10) -->
+            <div class="parallax-row-wrapper" id="parallaxRowWrap1">
+              <div class="parallax-track-viewport" id="parallaxViewport1">
+                <div class="parallax-track" id="parallaxTrack1">
+                  <!-- Rendered dynamically by JavaScript with admin store sync -->
+                </div>
+              </div>
+            </div>
+
+            <!-- ROW 2: Auto-drift Right to Left (Images 11-20) -->
+            <div class="parallax-row-wrapper" id="parallaxRowWrap2">
+              <div class="parallax-track-viewport" id="parallaxViewport2">
+                <div class="parallax-track" id="parallaxTrack2">
+                  <!-- Rendered dynamically by JavaScript with admin store sync -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Hint & Global Interaction Bar -->
+            <div class="parallax-carousel-footer">
+              <div class="parallax-drag-hint">
+                <i class="fa-solid fa-hand-pointer pulse-icon"></i>
+                <span>Drag horizontally with mouse or touch &bull; Hover to pause auto-play &bull; Click to open high-res lightbox</span>
+              </div>
+              <div class="parallax-carousel-actions">
+                <button class="parallax-toggle-btn" id="parallaxPlayPauseBtn" title="Toggle Auto-flow">
+                  <i class="fa-solid fa-pause"></i>
+                  <span id="parallaxPlayPauseText">Pause Flow</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- END PARALLAX CAROUSEL -->
+
+      </div>
+    </section>
+
+    <!-- SECTION 5: ROOTS, FAMILY & LOVE -->
+    <section class="section-wrapper roots-love-section" id="roots-love">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-tag uiverse-badge">
+            <i class="fa-solid fa-heart"></i>
+            <span>The Heart & Anchor</span>
+          </div>
+          <h2 class="section-title">Roots, Family & <span class="gradient-text">Eternal Love</span></h2>
+          <p class="section-subtitle">
+            Beyond the work, beyond the titles — the foundation of everything: devotion to his beloved Baba, the
+            companionship of his wife, and the warmth of his home roots.
+          </p>
+        </div>
+
+        <!-- SPECIAL TRIBUTE TO BABA (FATHER) -->
+        <div class="baba-tribute-card glass-card">
+          <div class="tribute-badge">
+            <i class="fa-solid fa-shield-heart"></i>
+            <span>My Father, My Anchor</span>
+          </div>
+
+          <div class="baba-tribute-grid">
+            <div class="baba-image-showcase">
+              <div class="baba-primary-img-wrapper"
+                onclick="openLightbox('./Asist/Family/f.3.jpg', 'Fahad and his father standing affectionately side-by-side on the beach')">
+                <img src="./Asist/Family/f.3.jpg" alt="Fahad with his Baba on the Beach" class="baba-primary-img">
+                <div class="baba-tag-badge">
+                  <span>বাবা ও আমি</span>
+                </div>
+              </div>
+
+              <!-- Father photo row -->
+              <div class="baba-thumb-row">
+                <div class="baba-thumb"
+                  onclick="openLightbox('./Asist/Family/f.1.jpg', 'Father portrait at the sea shore in formal suit')">
+                  <img src="./Asist/Family/f.1.jpg" alt="Baba Portrait">
+                  <span>মর্যাদাবান বাবা</span>
+                </div>
+                <div class="baba-thumb"
+                  onclick="openLightbox('./Asist/Family/f.2.jpg', 'Fahad traveling on an airplane with his father')">
+                  <img src="./Asist/Family/f.2.jpg" alt="Airplane Journey with Baba">
+                  <span>আকাশপথে সফর</span>
+                </div>
+                <div class="baba-thumb"
+                  onclick="openLightbox('./Asist/Family/f.5.jpg', 'Father and son in the lush greenery of their village home')">
+                  <img src="./Asist/Family/f.5.jpg" alt="Homestead with Baba">
+                  <span>গ্রামের ভিটেমাটি</span>
+                </div>
+                <div class="baba-thumb"
+                  onclick="openLightbox('./Asist/Family/f.4.jpg', 'Elevator mirror selfie with Baba')">
+                  <img src="./Asist/Family/f.4.jpg" alt="Elevator with Baba">
+                  <span>স্মৃতির পাতা</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="baba-tribute-text">
+              <span class="quote-symbol">❝</span>
+              <h3 class="baba-title bengali-font">বাবার ছায়া: যেখানে সব ঝড় শান্ত হয়ে যায়</h3>
+
+              <p class="baba-body bengali-font">
+                পৃথিবীর বহু দেশ ঘুরলাম, কত রথী-মহারথীর সান্নিধ্য দেখলাম— কিন্তু বাবার কাঁধে হাত রেখে দাঁড়ানোর যে তৃপ্তি
+                ও শক্তি, তা আর কোথাও নেই।
+              </p>
+
+              <div class="tribute-quote-callout bengali-font">
+                "বিপদ যখন মাথার ওপর আসে, তখন মানুষ হাত তুলে প্রভুর কাছে কাঁদে। কিন্তু বিপদ কেটে গেলে মানুষ আবার সব ভুলে
+                যায়... বাবা আমাকে শিখিয়েছেন সব অবস্থায় কৃতজ্ঞ থাকতে, মাটিকে ভালোবাসতে, আর আল্লাহকে জীবনে সবার প্রথমে
+                রাখতে।"
+              </div>
+
+              <p class="baba-body bengali-font">
+                প্লেনের সিটে পাশে বসা বাবার মুখে যখন শান্তির হাসি দেখি, কিংবা সমুদ্রের তীরে বাবার পাশে দাঁড়িয়ে বলি—
+                "বাবা, আমি আছি তো"— সেটাই আমার জীবনের সেরা অর্জন।
+              </p>
+
+              <div class="baba-traits">
+                <div class="trait-pill"><i class="fa-solid fa-hands-praying"></i> দোয়ার স্তম্ভ</div>
+                <div class="trait-pill"><i class="fa-solid fa-compass"></i> নৈতিক দিশা</div>
+                <div class="trait-pill"><i class="fa-solid fa-tree"></i> বটবৃক্ষের ছায়া</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LOVE & COMPANIONSHIP (WITH HIS WIFE) -->
+        <div class="love-showcase-card glass-card">
+          <div class="love-header">
+            <div class="section-tag uiverse-badge">
+              <i class="fa-solid fa-gem"></i>
+              <span>Life Partner</span>
+            </div>
+            <h3 class="love-title">Two Souls, One Endless Horizon</h3>
+            <p class="love-subtitle">
+              From the historic palaces of the Silk Road to mountain lakes and the green courtyard of home.
+            </p>
+          </div>
+
+          <div class="love-gallery-grid">
+
+            <!-- Photo 1: Royal Uzbekistan couple -->
+            <div class="love-card uiverse-tilt"
+              onclick="openLightbox('./Asist/Love/l.1.jpg', 'Fahad and his wife in royal traditional Uzbek robes in Samarkand')">
+              <div class="love-img-box">
+                <img src="./Asist/Love/l.1.jpg" alt="Royal Attire Uzbekistan" loading="lazy">
+                <div class="love-overlay">
+                  <span class="love-pill"><i class="fa-solid fa-crown"></i> Samarkand Fairytale</span>
+                  <p class="love-quote">"Living our own historic tale in the heart of Central Asia."</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Photo 2: Nepal Boat lake -->
+            <div class="love-card uiverse-tilt"
+              onclick="openLightbox('./Asist/Love/l.3.jpg', 'Fahad and his wife resting serenely on a blue wooden boat on Phewa Lake, Pokhara')">
+              <div class="love-img-box">
+                <img src="./Asist/Love/l.3.jpg" alt="Nepal Lake Boat Ride" loading="lazy">
+                <div class="love-overlay">
+                  <span class="love-pill"><i class="fa-solid fa-ship"></i> Phewa Lake, Pokhara</span>
+                  <p class="love-quote">"Drifting across calm mountain waters, surrounded by peace."</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Photo 3: Traditional Village Love -->
+            <div class="love-card uiverse-tilt"
+              onclick="openLightbox('./Asist/Love/l.4.jpg', 'Fahad and his wife in traditional Bengali outfit in the village trees')">
+              <div class="love-img-box">
+                <img src="./Asist/Love/l.4.jpg" alt="Village Home Bengal" loading="lazy">
+                <div class="love-overlay">
+                  <span class="love-pill"><i class="fa-solid fa-leaf"></i> Rooted in Bengal</span>
+                  <p class="love-quote">"Nothing compares to the sweet simplicity of home."</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- REACT BITS PRO: 3D ROTATING CARDS COMPONENT -->
+          <div class="reactbits-rotating-cards-wrapper">
+            
+            <div class="rotating-cards-divider">
+              <span class="divider-line"></span>
+              <span class="divider-heart"><i class="fa-solid fa-heart pulse-heart"></i> 3D Romantic Carousel</span>
+              <span class="divider-line"></span>
+            </div>
+
+            <div class="rotating-cards-header">
+              <div class="love-mini-badge">
+                <i class="fa-solid fa-sparkles text-rose"></i>
+                <span>React Bits Pro 3D Carousel</span>
+              </div>
+              <h4 class="rotating-cards-title bengali-font">
+                ভালোবাসার মিষ্টি অধ্যায় — <span class="gradient-love-text">১০টি স্মৃতির সফর</span>
+              </h4>
+              <p class="rotating-cards-subtitle">
+                A 3D circular carousel with draggable rotating cards. Drag smoothly in 3D space, pause on hover, or click any card to explore the memory.
+              </p>
+            </div>
+
+            <!-- 3D Scene Viewport -->
+            <div class="rotating-cards-container" id="rotatingCardsContainer"
+                 data-radius="300"
+                 data-duration="30"
+                 data-card-width="190"
+                 data-card-height="250">
+              
+              <div class="rotating-cards-scene" id="rotatingCardsScene">
+                <div class="rotating-cards-ring" id="rotatingCardsRing">
+
+                  <!-- Card 1 -->
+                  <div class="rc-card" data-index="0" onclick="handleCardClick(0)">
+                    <div class="rc-card-inner">
+                      <img src="./Asist/card/1.jpeg" alt="৯০-এর নস্টালজিক রূপকথা" loading="lazy">
+                      <div class="rc-card-overlay">
+                        <span class="rc-card-tag"><i class="fa-solid fa-heart"></i> Vintage 90s</span>
+                        <h5 class="rc-card-caption bengali-font">৯০-এর নস্টালজিক রূপকথা</h5>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Card 2 -->
+                  <div class="rc-card" data-index="1" onclick="handleCardClick(1)">
+                    <div class="rc-card-inner">
+                      <img src="./Asist/card/2.jpg" alt="সাগরের কোলে একমুঠো প্রেম" loading="lazy">
+                      <div class="rc-card-overlay">
+                        <span class="rc-card-tag"><i class="fa-solid fa-water"></i> Beachside</span>
+                        <h5 class="rc-card-caption bengali-font">সাগরের কোলে একমুঠো প্রেম</h5>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Card 3 -->
+                  <div class="rc-card" data-index="2" onclick="handleCardClick(2)">
+                    <div class="rc-card-inner">
+                      <img src="./Asist/card/3.jpg" alt="সিরিয়াস মুখ, মায়াবী হাসি" loading="lazy">
+                      <div class="rc-card-overlay">
+                        <span class="rc-card-tag"><i class="fa-solid fa-masks-theater"></i> Opposites</span>
+                        <h5 class="rc-card-caption bengali-font">সিরিয়াস মুখ, মায়াবী হাসি</h5>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Card 4 -->
+                  <div class="rc-card" data-index="3" onclick="handleCardClick(3)">
+                    <div class="rc-card-inner">
+                      <img src="./Asist/card/4.jpg" alt="শহুরে আলো আর রাতের গল্প" loading="lazy">
+                      <div class="rc-card-overlay">
+                        <span class="rc-card-tag"><i class="fa-solid fa-city"></i> Midnight City</span>
+                        <h5 class="rc-card-caption bengali-font">শহুরে আলো আর রাতের গল্প</h5>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Card 5 -->
+                  <div class="rc-card" data-index="4" onclick="handleCardClick(4)">
+                    <div class="rc-card-inner">
+                      <img src="./Asist/card/5.jpg" alt="চলন্ত ক্যাবের খুনসুটি" loading="lazy">
+                      <div class="rc-card-overlay">
+                        <span class="rc-card-tag"><i class="fa-solid fa-taxi"></i> Cozy Cab Ride</span>
+                        <h5 class="rc-card-caption bengali-font">চলন্ত ক্যাবের খুনসুটি</h5>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Card 6 -->
+                  <div class="rc-card" data-index="5" onclick="handleCardClick(5)">
+                    <div class="rc-card-inner">
+                      <img src="./Asist/card/6.jpg" alt="এয়ারপোর্টের আজন্ম সহযাত্রী" loading="lazy">
+                      <div class="rc-card-overlay">
+                        <span class="rc-card-tag"><i class="fa-solid fa-plane-departure"></i> Travel Partners</span>
+                        <h5 class="rc-card-caption bengali-font">এয়ারপোর্টের আজন্ম সহযাত্রী</h5>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Card 7 -->
+                  <div class="rc-card" data-index="6" onclick="handleCardClick(6)">
+                    <div class="rc-card-inner">
+                      <img src="./Asist/card/7.jpg" alt="পাহাড়ের রাজা-রানী" loading="lazy">
+                      <div class="rc-card-overlay">
+                        <span class="rc-card-tag"><i class="fa-solid fa-mountain"></i> Mountain Ride</span>
+                        <h5 class="rc-card-caption bengali-font">পাহাড়ের রাজা-রানী</h5>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Card 8 -->
+                  <div class="rc-card" data-index="7" onclick="handleCardClick(7)">
+                    <div class="rc-card-inner">
+                      <img src="./Asist/card/8.jpg" alt="গরম নুডলস ও মিষ্টি খুনসুটি" loading="lazy">
+                      <div class="rc-card-overlay">
+                        <span class="rc-card-tag"><i class="fa-solid fa-bowl-food"></i> Ramen Date</span>
+                        <h5 class="rc-card-caption bengali-font">গরম নুডলস ও মিষ্টি খুনসুটি</h5>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Card 9 -->
+                  <div class="rc-card" data-index="8" onclick="handleCardClick(8)">
+                    <div class="rc-card-inner">
+                      <img src="./Asist/card/9.jpg" alt="কাঁধে শান্তির নিরাপদ ঘুম" loading="lazy">
+                      <div class="rc-card-overlay">
+                        <span class="rc-card-tag"><i class="fa-solid fa-shield-heart"></i> Safe In Arms</span>
+                        <h5 class="rc-card-caption bengali-font">কাঁধে শান্তির নিরাপদ ঘুম</h5>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Card 10 -->
+                  <div class="rc-card" data-index="9" onclick="handleCardClick(9)">
+                    <div class="rc-card-inner">
+                      <img src="./Asist/card/10.jpg" alt="সমারখন্দের সুলতান ও রানী" loading="lazy">
+                      <div class="rc-card-overlay">
+                        <span class="rc-card-tag"><i class="fa-solid fa-crown"></i> Silk Road Royal</span>
+                        <h5 class="rc-card-caption bengali-font">সমারখন্দের সুলতান ও রানী</h5>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Interactive Floating Drag Hint -->
+              <div class="carousel-hint-pill">
+                <i class="fa-solid fa-arrows-left-right"></i>
+                <span>Drag left / right to spin 3D circle &bull; Mouse wheel to rotate</span>
+              </div>
+            </div>
+
+            <!-- Modern Control Deck -->
+            <div class="rotating-carousel-controls">
+              <button class="carousel-action-btn" id="rcPrevBtn" aria-label="Rotate Left" title="Previous Memory">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <button class="carousel-action-btn play-pause-btn" id="rcPlayPauseBtn" aria-label="Toggle Rotation" title="Pause / Resume Rotation">
+                <i class="fa-solid fa-pause"></i>
+              </button>
+              <button class="carousel-action-btn" id="rcNextBtn" aria-label="Rotate Right" title="Next Memory">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+
+            <!-- Interactive Scrubber Dots -->
+            <div class="rotating-cards-dots" id="rotatingCardsDots" aria-label="Select memory card"></div>
+
+            <!-- Spotlight Active Memory Card -->
+            <div class="rotating-active-card-spotlight" id="rcSpotlight">
+              <div class="spotlight-heart-icon">
+                <i class="fa-solid fa-heart pulse-heart"></i>
+              </div>
+              <div class="spotlight-content">
+                <div class="spotlight-meta">
+                  <span class="spotlight-counter" id="rcSpotlightCounter">Memory 01 / 10</span>
+                  <span class="spotlight-tag" id="rcSpotlightTag">Vintage Romance</span>
+                </div>
+                <h4 class="spotlight-title bengali-font" id="rcSpotlightTitle">৯০-এর নস্টালজিক রূপকথা</h4>
+                <p class="spotlight-quote bengali-font" id="rcSpotlightDesc">
+                  "পুরোনো দিনের সেই রঙিন ফ্যাশন আর সারল্যে ভরা চিরন্তন ভালোবাসার মিষ্টি অনুভূতি।"
+                </p>
+              </div>
+              <button class="spotlight-zoom-btn" id="rcSpotlightZoomBtn" title="View Full Memory" onclick="handleActiveSpotlightClick()">
+                <i class="fa-solid fa-expand"></i>
+                <span>View Photo</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 5.5: GLOBAL GUESTBOOK & COMMUNITY VOICES -->
+    <section class="section-wrapper guestbook-section" id="guestbook">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-tag uiverse-badge">
+            <i class="fa-solid fa-comments"></i>
+            <span>Global Community Wall</span>
+          </div>
+          <h2 class="section-title">Community Voices — <span class="gradient-text">Words & Prayers</span></h2>
+          <p class="section-subtitle">
+            A digital sanctuary where friends, fellow digital nomads, students, and 12,000+ followers share their warm
+            prayers, reflections, and genuine thoughts for Fahad Bin Husne Ali.
+          </p>
+        </div>
+
+        <div class="guestbook-container">
+
+          <!-- Interactive Note Submission Card -->
+          <div class="guestbook-form-card glass-card uiverse-tilt">
+            <div class="form-header">
+              <div class="form-icon-pill">
+                <i class="fa-solid fa-feather-pointed"></i>
+              </div>
+              <h3>Leave a Note in the Guestbook</h3>
+              <p>Share your words, memories, or prayers. Your note will be immediately pinned to this community wall.
+              </p>
+            </div>
+
+            <form id="tributeForm" onsubmit="handleTributeSubmit(event)">
+              <div class="form-group">
+                <label for="guestName">Your Full Name *</label>
+                <input type="text" id="guestName" class="uiverse-input"
+                  placeholder="e.g. Alex van den Berg / Tanvir Ahmed" required>
+              </div>
+
+              <div class="form-group">
+                <label for="guestRole">Affiliation, City, or Country</label>
+                <input type="text" id="guestRole" class="uiverse-input"
+                  placeholder="e.g. Tech Lead, Amsterdam / 12K Community">
+              </div>
+
+              <div class="form-group">
+                <label>Category / Note Type</label>
+                <div class="tag-selector-row">
+                  <label class="tag-radio-label active" onclick="selectTag(this)">
+                    <input type="radio" name="messageTag" value="Prayers & Blessings" checked>
+                    <span>🤲 Prayers & Blessings</span>
+                  </label>
+                  <label class="tag-radio-label" onclick="selectTag(this)">
+                    <input type="radio" name="messageTag" value="Inspiration">
+                    <span>💡 Inspiration</span>
+                  </label>
+                  <label class="tag-radio-label" onclick="selectTag(this)">
+                    <input type="radio" name="messageTag" value="Love & Respect">
+                    <span>❤️ Love & Respect</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="guestMsg">Your Message *</label>
+                <textarea id="guestMsg" class="uiverse-textarea" rows="4"
+                  placeholder="Write your heartfelt message, reflections, or prayers for Fahad..." required></textarea>
+              </div>
+
+              <button type="submit" class="uiverse-btn-glow full-width">
+                <span class="btn-glow-content">
+                  <i class="fa-solid fa-paper-plane"></i>
+                  <span>Post Note to Guestbook</span>
+                </span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Wall of Notes Live Display -->
+          <div class="guestbook-wall-wrapper">
+            <div class="wall-header-stats">
+              <span class="wall-title"><i class="fa-solid fa-comments text-gold"></i> Live Community Notes</span>
+              <span class="wall-count" id="blessingCountDisplay">5 Notes</span>
+            </div>
+
+            <div class="blessings-masonry-grid" id="blessingsGrid">
+              <!-- Dynamically populated from JS + LocalStorage -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 6: LET'S CONNECT / PR GUY -->
+    <section class="section-wrapper connect-section" id="connect">
+      <div class="container">
+
+        <div class="connect-card glass-card">
+          <div class="connect-glow"></div>
+
+          <div class="connect-header">
+            <div class="section-tag uiverse-badge">
+              <i class="fa-solid fa-bullhorn"></i>
+              <span>PR Guy & Networker</span>
+            </div>
+            <h2 class="section-title">Let’s Create <span class="gradient-text">Meaningful Synergy</span></h2>
+            <p class="section-subtitle">
+              Whether you need strategic PR advice, virtual executive leadership, digital ecosystem collaboration, or
+              simply want to say Assalamu Alaikum — my door is always open.
+            </p>
+          </div>
+
+          <div class="connect-grid">
+
+            <!-- Facebook Community Box -->
+            <div class="connect-box fb-community-box glass-card">
+              <div class="fb-icon-ring">
+                <i class="fa-brands fa-facebook-messenger"></i>
+              </div>
+              <h3>Join the 12,000+ Community</h3>
+              <p>
+                Connect directly with Fahad on Facebook. Follow along for daily thoughts, real-life stories, tech
+                experiments, and travel memories.
+              </p>
+
+              <div class="follower-badge-live">
+                <span class="live-dot"></span>
+                <span>12,000+ Active Followers & Growing</span>
+              </div>
+
+              <a href="https://www.facebook.com/fahadbinhusneali1" target="_blank" rel="noopener noreferrer"
+                class="uiverse-btn-facebook">
+                <i class="fa-brands fa-facebook"></i>
+                <span>Visit Facebook Profile</span>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+
+            <!-- Quick Inquiry / Contact Details -->
+            <div class="connect-box direct-contact-box glass-card">
+              <h3>Direct Channels</h3>
+              <p>Looking for a Virtual Assistant, Website Manager, or PR Collaborator?</p>
+
+              <div class="contact-links-list">
+                <div class="contact-item">
+                  <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                  <div class="contact-info">
+                    <span class="contact-label">Send an Email</span>
+                    <a href="mailto:fahadbinhusneali@gmail.com" class="contact-val">fahadbinhusneali@gmail.com</a>
+                  </div>
+                  <button class="copy-btn" onclick="copyText('fahadbinhusneali@gmail.com', this)" title="Copy Email">
+                    <i class="fa-regular fa-copy"></i>
+                  </button>
+                </div>
+
+                <div class="contact-item">
+                  <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                  <div class="contact-info">
+                    <span class="contact-label">Current Base</span>
+                    <span class="contact-val">Bangladesh • Global Ready</span>
+                  </div>
+                </div>
+
+                <div class="contact-item">
+                  <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
+                  <div class="contact-info">
+                    <span class="contact-label">Work Protocol</span>
+                    <span class="contact-val">Asynchronous • High Integrity</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="action-buttons-flex">
+                <button class="uiverse-btn-secondary" onclick="openShareModal()">
+                  <i class="fa-solid fa-share-nodes"></i>
+                  <span>Share Portfolio</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer-wrapper">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <span class="brand-monogram">FBH</span>
+        <span class="footer-name">Fahad Bin Husne Ali</span>
+      </div>
+      <p class="footer-creed">
+        God First | Online Professional | Traveler | Writer | PR Guy | Family Man
+      </p>
+      <div class="footer-bottom">
+        <p>© 2026 Fahad Bin Husne Ali. Official Portfolio. <a href="admin.html" class="footer-admin-link" title="Admin Portal" style="color: rgba(255,255,255,0.18); font-size: 0.72rem; text-decoration: none; margin-left: 0.4rem;"><i class="fa-solid fa-lock"></i></a></p>
+        <a href="#hero" class="back-to-top" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX MODAL FOR IMAGES -->
+  <div class="lightbox-modal" id="lightboxModal" aria-hidden="true">
+    <div class="lightbox-backdrop" onclick="closeLightbox()"></div>
+    <div class="lightbox-container">
+      <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close image">&times;</button>
+      <div class="lightbox-content">
+        <img src="" alt="" id="lightboxImg">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY READER MODAL (FULL BENGALI ESSAYS) -->
+  <div class="story-modal" id="storyModal" aria-hidden="true">
+    <div class="story-backdrop" onclick="closeStoryModal()"></div>
+    <div class="story-dialog glass-card">
+      <button class="story-close-btn" onclick="closeStoryModal()" aria-label="Close Story">&times;</button>
+      <div class="story-modal-body" id="storyModalBody">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- SHARE PORTFOLIO MODAL -->
+  <div class="share-modal" id="shareModal" aria-hidden="true">
+    <div class="share-backdrop" onclick="closeShareModal()"></div>
+    <div class="share-dialog glass-card">
+      <button class="story-close-btn" onclick="closeShareModal()" aria-label="Close Share Modal">&times;</button>
+      <div class="share-modal-header">
+        <div class="share-icon-badge">🔗</div>
+        <h3 class="share-modal-title">Share Fahad's Official Portfolio</h3>
+        <p class="share-subtitle">Spread inspiration, stories, and innovative work to friends & network.</p>
+      </div>
+
+      <div class="share-buttons-grid">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://fahadbinhusneali.vercel.app" target="_blank"
+          rel="noopener noreferrer" class="share-btn share-facebook">
+          <i class="fa-brands fa-facebook"></i>
+          <span>Facebook</span>
+        </a>
+        <a href="https://api.whatsapp.com/send?text=Check%20out%20the%20official%20portfolio%20of%20Fahad%20Bin%20Husne%20Ali:%20https://fahadbinhusneali.vercel.app"
+          target="_blank" rel="noopener noreferrer" class="share-btn share-whatsapp">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>WhatsApp</span>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://fahadbinhusneali.vercel.app"
+          target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin">
+          <i class="fa-brands fa-linkedin-in"></i>
+          <span>LinkedIn</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Fahad%20Bin%20Husne%20Ali%20—%20God%20First,%20Explorer,%20Writer%20%26%20Digital%20Nomad&url=https://fahadbinhusneali.vercel.app"
+          target="_blank" rel="noopener noreferrer" class="share-btn share-twitter">
+          <i class="fa-brands fa-x-twitter"></i>
+          <span>Twitter / X</span>
+        </a>
+      </div>
+
+      <div class="share-copy-box">
+        <input type="text" readonly value="https://fahadbinhusneali.vercel.app" id="shareUrlInput"
+          class="uiverse-input">
+        <button class="uiverse-btn-primary" onclick="copyShareUrl()">
+          <i class="fa-regular fa-copy"></i>
+          <span>Copy Link</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING QUICK DOCK (BOTTOM DOCK) -->
+  <aside class="floating-dock glass-card" id="floatingDock">
+    <button class="dock-item" onclick="openShareModal()" title="Share Portfolio">
+      <i class="fa-solid fa-share-nodes"></i>
+      <span class="dock-tooltip">Share</span>
+    </button>
+    <div class="dock-separator"></div>
+    <a href="https://www.facebook.com/fahadbinhusneali1" target="_blank" rel="noopener noreferrer" class="dock-item" title="Facebook 12K Community">
+      <i class="fa-brands fa-facebook text-gold"></i>
+      <span class="dock-tooltip">Facebook</span>
+    </a>
+    <div class="dock-separator"></div>
+    <a href="#hero" class="dock-item" title="Back to Top">
+      <i class="fa-solid fa-arrow-up"></i>
+      <span class="dock-tooltip">Top</span>
+    </a>
+  </aside>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-notification" id="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toastMsg">Copied to clipboard!</span>
+  </div>
+
+
+  <!-- FULL-PAGE INTERACTIVE ARTICLE & VENTURE DETAILS VIEWER -->
+  <div class="details-page-overlay" id="detailsPageView" aria-hidden="true">
+    <div class="details-page-container">
+
+      <!-- Top Action Bar -->
+      <div class="details-top-bar glass-card">
+        <button class="back-pill-btn" onclick="closeDetailView()">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>পোর্টফোলিওতে ফিরে যান (Back to Portfolio)</span>
+        </button>
+
+        <div class="details-top-actions">
+          <button class="details-action-btn" onclick="shareCurrentDetail()" title="Share Article">
+            <i class="fa-solid fa-share-nodes"></i>
+            <span>Share</span>
+          </button>
+          <button class="details-action-btn edit-this-item-btn" id="editCurrentItemBtn"
+            onclick="editCurrentDetailItem()" title="Edit in Admin CMS">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <span>Edit in CMS</span>
+          </button>
+          <button class="details-close-btn" onclick="closeDetailView()" aria-label="Close View">&times;</button>
+        </div>
+      </div>
+
+      <!-- Article Header & Cover Hero -->
+      <article class="details-article-content glass-card" id="detailArticleContent">
+        <!-- Injected dynamically via JavaScript -->
+      </article>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

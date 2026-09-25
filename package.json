@@ -1,0 +1,21 @@
+{
+  "name": "fahad-bin-husne-ali-portfolio",
+  "version": "1.0.0",
+  "description": "Fahad Bin Husne Ali — Luxury Tribute Portfolio",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve . -l 3000",
+    "dev": "serve . -l 3000",
+    "preview": "serve . -l 3000",
+    "serve": "serve . -l 3000"
+  },
+  "keywords": [
+    "portfolio",
+    "fahad-bin-husne-ali"
+  ],
+  "author": "Fahad Bin Husne Ali",
+  "license": "MIT",
+  "dependencies": {
+    "serve": "^14.2.4"
+  }
+}
