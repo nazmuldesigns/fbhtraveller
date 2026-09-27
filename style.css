@@ -1026,6 +1026,28 @@ body {
   transition: var(--transition-smooth);
 }
 
+.bento-thumb-wrap {
+  width: 100%;
+  height: 190px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.bento-thumb-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.bento-card:hover .bento-thumb-wrap img {
+  transform: scale(1.05);
+}
+
 .card-border-glow {
   position: absolute;
   top: 0;

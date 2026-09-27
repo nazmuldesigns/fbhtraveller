@@ -789,11 +789,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const displayArticles = isShowingAllArticles ? articles : articles.slice(0, INITIAL_LIMIT);
 
     grid.innerHTML = displayArticles.map(art => {
-      const cover = art.coverImg || './Asist/Personal/profile1.jpg';
+      const thumb = art.thumbnail || art.coverImg || './Asist/Personal/profile1.jpg';
       return `
         <article class="story-card glass-card uiverse-tilt" onclick="openDetailView('article', '${art.id}')">
           <div class="story-card-cover-wrap">
-            <img src="${cover}" alt="${art.title}" class="story-card-cover" onerror="this.src='./Asist/Personal/profile1.jpg'">
+            <img src="${thumb}" alt="${art.title}" class="story-card-cover" onerror="this.src='./Asist/Personal/profile1.jpg'">
             <div class="story-tag-chip">${art.category || 'লেখা'}</div>
           </div>
           <div class="story-content">
@@ -826,11 +826,108 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // ==========================================
+  // RENDER THE LAB VENTURES (#bentoVenturesGrid)
+  // Dynamic rendering with thumbnail support
+  // ==========================================
+  function renderVenturesGrid() {
+    const grid = document.getElementById('bentoVenturesGrid');
+    if (!grid) return;
+
+    const ventures = PortfolioStore.getVentures();
+    if (!ventures || !ventures.length) return;
+
+    grid.innerHTML = ventures.map((v, index) => {
+      let spanClass = '';
+      if (index === 0) spanClass = 'bento-feature';
+      else if (index === 4) spanClass = 'bento-wide';
+
+      let badgeClass = 'tech-badge';
+      let badgeIcon = 'fa-vr-cardboard';
+      const cat = (v.category || '').toLowerCase();
+      const id = (v.id || '').toLowerCase();
+
+      if (id === 'seats2meet' || cat.includes('social') || cat.includes('coworking') || cat.includes('community')) {
+        badgeClass = 'community-badge';
+        badgeIcon = 'fa-handshake';
+      } else if (id === 'ssp' || cat.includes('enterprise') || cat.includes('corporate') || cat.includes('operations')) {
+        badgeClass = 'corporate-badge';
+        badgeIcon = 'fa-briefcase';
+      } else if (id === 'dujm' || cat.includes('web') || cat.includes('digital media') || cat.includes('portal')) {
+        badgeClass = 'web-badge';
+        badgeIcon = 'fa-globe';
+      } else if (id === 'mentorship' || cat.includes('mentor') || cat.includes('youth') || cat.includes('gen-z')) {
+        badgeClass = 'mentor-badge';
+        badgeIcon = 'fa-graduation-cap';
+      }
+
+      const thumbImg = v.thumbnail || v.coverImg || '';
+      const thumbHtml = thumbImg ? `
+        <div class="bento-thumb-wrap">
+          <img src="${thumbImg}" alt="${v.title}" loading="lazy" onerror="this.src='./Asist/GenZ/start.1.jpg'">
+        </div>
+      ` : '';
+
+      return `
+        <div class="bento-card ${spanClass} glass-card uiverse-tilt" onclick="openDetailView('venture', '${v.id}')">
+          <div class="card-border-glow"></div>
+          <div class="bento-header">
+            <div class="venture-badge ${badgeClass}">
+              <i class="fa-solid ${badgeIcon}"></i>
+              <span>${v.category || 'Initiative'}</span>
+            </div>
+            <span class="venture-role">${v.role || 'Initiator'}</span>
+          </div>
+
+          ${thumbHtml}
+
+          <div class="bento-content-body">
+            <h3 class="venture-title">${v.title}</h3>
+            <p class="venture-desc">${v.snippet || v.description || ''}</p>
+
+            <div class="venture-card-footer">
+              <button class="view-detail-pill" onclick="event.stopPropagation(); openDetailView('venture', '${v.id}')">
+                <span>সম্পূর্ণ বিস্তারিত ও কভার পড়ুন</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
   renderArticlesGrid();
+  renderVenturesGrid();
   window.renderArticles = renderArticlesGrid;
-  window.renderVentures = window.renderVentures || function () {};
+  window.renderVentures = renderVenturesGrid;
   window.renderTravels = window.renderTravels || function () {};
   window.renderGenz = window.renderGenz || function () {};
+
+  // Cross-tab and local sync listener
+  try {
+    const syncChannel = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel('fahad_portfolio_sync_v2') : null;
+    if (syncChannel) {
+      syncChannel.onmessage = function (e) {
+        if (e && e.data && e.data.type === 'PORTFOLIO_UPDATE') {
+          PortfolioStore.init();
+          renderArticlesGrid();
+          renderVenturesGrid();
+          if (window.renderHeroFacebookCard) window.renderHeroFacebookCard();
+        }
+      };
+    }
+    window.addEventListener('storage', function (e) {
+      if (e.key === 'fahad_portfolio_data_v2') {
+        PortfolioStore.init();
+        renderArticlesGrid();
+        renderVenturesGrid();
+        if (window.renderHeroFacebookCard) window.renderHeroFacebookCard();
+      }
+    });
+  } catch (err) {
+    console.log('Sync listener initialization:', err);
+  }
 
   // ==========================================
   // FULL-PAGE INTERACTIVE DETAILS VIEWER
@@ -869,8 +966,9 @@ document.addEventListener('DOMContentLoaded', () => {
       editBtn.style.display = type === 'article' ? 'inline-flex' : 'none';
     }
 
-    const coverHtml = item.coverImg ? `
-      <img src="${item.coverImg}" alt="${item.title}" class="details-hero-cover" onerror="this.style.display='none'">
+    const detailBanner = item.coverImg || item.thumbnail;
+    const coverHtml = detailBanner ? `
+      <img src="${detailBanner}" alt="${item.title}" class="details-hero-cover" onerror="this.style.display='none'">
     ` : '';
 
     detailArticleContent.innerHTML = `

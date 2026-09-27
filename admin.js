@@ -74,6 +74,7 @@
       category: "সামাজিক পর্যবেক্ষণ",
       readTime: "৩ মিনিট পাঠ",
       date: "২০২৪",
+      thumbnail: "./Asist/GenZ/start.1.jpg",
       coverImg: "./Asist/GenZ/start.1.jpg",
       excerpt: "সামাজিক মাধ্যমে একটা জোক বহু বছর ধরে ঘোরে— 'নতুন আইফোন এসেছে, একটা কিডনি বেচে দিলে তবেই কেনা সম্ভব!' কিন্তু হাসপাতালের ডায়ালাইসিস করিডোরে দাঁড়ালে বোঝা যায় সুস্থতার আসল মূল্য...",
       snippet: "সামাজিক মাধ্যমে একটা জোক বহু বছর ধরে ঘোরে— 'নতুন আইফোন এসেছে, একটা কিডনি বেচে দিলে তবেই কেনা সম্ভব!' কিন্তু হাসপাতালের ডায়ালাইসিস করিডোরে দাঁড়ালে বোঝা যায় সুস্থতার আসল মূল্য...",
@@ -85,6 +86,7 @@
       category: "মানবিক গল্প",
       readTime: "৪ মিনিট পাঠ",
       date: "২০২৪",
+      thumbnail: "./Asist/Travel/t.1.jpg",
       coverImg: "./Asist/Travel/t.1.jpg",
       excerpt: "সূর্য ওঠার আগেই হালকা কুয়াশা ভেদ করে শত শত সাইকেলের টুংটাং শব্দে মুখরিত হয়ে ওঠে রাস্তা। নীলফামারীর ইপিজেডের এই মেহনতি মানুষেরাই দেশের অর্থনীতির আসল কারিগর...",
       snippet: "সূর্য ওঠার আগেই হালকা কুয়াশা ভেদ করে শত শত সাইকেলের টুংটাং শব্দে মুখরিত হয়ে ওঠে রাস্তা। নীলফামারীর ইপিজেডের এই মেহনতি মানুষেরাই দেশের অর্থনীতির আসল কারিগর...",
@@ -96,6 +98,7 @@
       category: "নাগরিক অসঙ্গতি",
       readTime: "৩ মিনিট পাঠ",
       date: "২০২৩",
+      thumbnail: "./Asist/GenZ/nazmul.jpg",
       coverImg: "./Asist/GenZ/nazmul.jpg",
       excerpt: "সকাল এগারোটায় ব্যাংকের শাখাগুলোতে ঢুকলে মনে হয় এক ভিন্ন গ্রহের সমাবেশ। কাঁচের ওপারে টাই-স্যুট পরা অফিসার, আর কাঁচের এপারে টোকেন হাতে ঘণ্টার পর ঘণ্টা দাঁড়িয়ে থাকা সাধারণ আমজনতা...",
       snippet: "সকাল এগারোটায় ব্যাংকের শাখাগুলোতে ঢুকলে মনে হয় এক ভিন্ন গ্রহের সমাবেশ। কাঁচের ওপারে টাই-স্যুট পরা অফিসার, আর কাঁচের এপারে টোকেন হাতে ঘণ্টার পর ঘণ্টা দাঁড়িয়ে থাকা সাধারণ আমজনতা...",
@@ -107,6 +110,7 @@
       category: "আধ্যাত্মিক উপলব্ধি",
       readTime: "৪ মিনিট পাঠ",
       date: "২০২৪",
+      thumbnail: "./Asist/Personal/1.jpg",
       coverImg: "./Asist/Personal/1.jpg",
       excerpt: "শব্দদূষণে ভরা এই পৃথিবীতে সবাই শুধু বলতে চায়, কেউ শুনতে চায় না। এক বাকপ্রতিবন্ধী যুবকের চোখের আলোতে যে শিক্ষা পেয়েছিলাম, তা হাজারও বক্তব্যের চেয়ে শক্তিশালী...",
       snippet: "শব্দদূষণে ভরা এই পৃথিবীতে সবাই শুধু বলতে চায়, কেউ শুনতে চায় না। এক বাকপ্রতিবন্ধী যুবকের চোখের আলোতে যে শিক্ষা পেয়েছিলাম, তা হাজারও বক্তব্যের চেয়ে শক্তিশালী...",
@@ -120,6 +124,7 @@
       title: "Permanent Future Lab (PFLab)",
       category: "Open Innovation & Shared Tech",
       role: "Initiator & Grassroots Pioneer",
+      thumbnail: "./Asist/GenZ/start.1.jpg",
       coverImg: "./Asist/GenZ/start.1.jpg",
       snippet: "ডাচ কনসেপ্টের আদলে বাংলাদেশে প্রথম স্থায়ী উন্মুক্ত ল্যাব। যেখানে প্রতিটি গ্রামের শিশু-কিশোর ও তরুণ বিনা মূল্যে ভার্চুয়াল রিয়ালিটি (VR), রোবোটিক্স ও এআই প্রযুক্তি সরাসরি স্পর্শ করতে পারে।",
       content: `<p><strong>Permanent Future Lab (PFLab)</strong> এমন একটি আন্দোলন, যা বিশ্বাস করে প্রযুক্তির অভিজ্ঞতা কোনো বিশেষ শ্রেণির একচেটিয়া অধিকার হতে পারে না। নেদারল্যান্ডসের উদ্ভাবনী কনসেপ্টকে অনুপ্রেরণা নিয়ে আমরা বাংলাদেশে এই উদ্যোগ চালু করেছি।</p><p>আমাদের মূল লক্ষ্য— রাজধানী ঢাকার বিলাসবহুল সেমিনারের বাইরে গিয়ে প্রত্যন্ত গ্রাম, চরাঞ্চল ও জেলা শহরের সাধারণ স্কুলগুলোতে আধুনিক প্রযুক্তিকে সাধারণ মানুষের দোরগোড়ায় পৌঁছে দেওয়া।</p>`
@@ -129,6 +134,7 @@
       title: "Seats2meet.com",
       category: "Social Capital & Coworking",
       role: "Social Entrepreneur & Community Architect",
+      thumbnail: "./Asist/GenZ/486066417_672583348651874_1740925206979679803_n.jpg",
       coverImg: "./Asist/GenZ/486066417_672583348651874_1740925206979679803_n.jpg",
       snippet: "সমাজ ও মেধার মিলনমেলা। কেবল চেয়ার-টেবিল নয়, মানুষের জ্ঞান ও অভিজ্ঞতার বিনিময়ে সামাজিক মূলধন (Social Capital) তৈরির আন্তর্জাতিক প্ল্যাটফর্ম।",
       content: `<p><strong>Seats2meet</strong> প্রচলিত কো-ওয়ার্কিং স্পেসের ধারণাকে সম্পূর্ণ বদলে দিয়েছে। এখানে কাজের স্থান কেবল টাকার বিনিময়ে ভাড়া নেওয়া যায় না; এখানে সবচেয়ে বড় মুদ্রা হলো <em>Social Capital</em> বা মেধা ও সহযোগিতার বিনিময়।</p><p>যখন বিভিন্ন পেশার মানুষ একই টেবিলে বসে কফি পান করে এবং একে অপরের সমস্যার সমাধান খুঁজে দেয়, তখন অবচেতনভাবেই এক অনন্য সামাজিক নেটওয়ার্ক ও উদ্ভাবনী সুযোগের সৃষ্টি হয়।</p>`
@@ -138,6 +144,7 @@
       title: "SSP Organization LLC",
       category: "Global Operations & Remote Advisory",
       role: "Virtual Assistant & High-Level Operations",
+      thumbnail: "./Asist/Personal/1.jpg",
       coverImg: "./Asist/Personal/1.jpg",
       snippet: "আন্তর্জাতিক মান বজায় রেখে দূরবর্তী ব্যবস্থাপনার জটিল কাজগুলো নিখুঁতভাবে পরিচালনা। ডিজিটাল নোম্যাড লাইফস্টাইলের আন্তর্জাতিক দৃষ্টান্ত।",
       content: `<p><strong>SSP Organization LLC</strong>-এর সাথে কাজ করার অভিজ্ঞতা আমাকে শিখিয়েছে কীভাবে ভৌগোলিক সীমানা পেরিয়েও শতভাগ নির্ভরযোগ্য ও সুশৃঙ্খল কর্মদক্ষতা নিশ্চিত করা যায়।</p><p>রিমোট ওয়ার্ক মানে কেবল ল্যাপটপ নিয়ে বসা নয়; এটি হলো সময় সচেতনতা, উচ্চমানের পেশাদারিত্ব, গোপনীয়তা রক্ষা এবং আন্তর্জাতিক ক্লায়েন্টের সাথে সুস্পষ্ট যোগাযোগের এক আর্ট।</p>`
@@ -147,6 +154,7 @@
       title: "Dujm Digital Portal",
       category: "Web Architecture & Digital Media",
       role: "Website Manager & Digital Strategist",
+      thumbnail: "./Asist/GenZ/start.1.jpg",
       coverImg: "./Asist/GenZ/start.1.jpg",
       snippet: "আধুনিক ওয়েব স্থাপত্য, তথ্য নিরাপত্তা এবং কমিউনিটি মিডিয়া প্ল্যাটফর্মের মসৃণ পরিচালনা ও ডিজিটাল পাবলিশিং ম্যানেজমেন্ট।",
       content: `<p>ডিজিটাল প্ল্যাটফর্ম পরিচালনায় <strong>Dujm</strong>-এর ওয়েবসাইট ম্যানেজার হিসেবে কাজ করা আমার প্রযুক্তিগত ও কন্টেন্ট ম্যানেজমেন্টের দক্ষতাকে সমৃদ্ধ করেছে।</p><p>ওয়েবসাইটের ইউজার এক্সপেরিয়েন্স (UX), কনটেন্ট পাবলিশিং শিডিউল এবং ট্রাফিকের গতিপ্রকৃতি বিশ্লেষণ করে কমিউনিটির কাছে সঠিক বার্তা সঠিক সময়ে পৌঁছে দেওয়াই ছিল মূল দায়িত্ব।</p>`
@@ -156,6 +164,7 @@
       title: "Gen-Z Digital Mentorship & Youth Power",
       category: "Youth Empowerment & Remote Careers",
       role: "Mentor & Youth Catalyst",
+      thumbnail: "./Asist/GenZ/nazmul.jpg",
       coverImg: "./Asist/GenZ/nazmul.jpg",
       snippet: "বাংলাদেশের ১,৫০০+ তরুণকে ক্যারিয়ার গাইডেন্স, রিমোট কাজের সঠিক দিকনির্দেশনা এবং আত্মবিশ্বাসী জীবনের অনুপ্রেরণা দেওয়া।",
       content: `<p>তরুণদের চোখে যে স্বপ্ন থাকে, অনেক সময় সঠিক পথের অভাবে তা হারিয়ে যায়। আমাদের মেন্টরশিপ প্রোগ্রামের লক্ষ্য— শিক্ষার্থীদের হতাশা থেকে বের করে আন্তর্জাতিক রিমোট ক্যারিয়ার ও ফ্রিল্যান্সিংয়ে পথ দেখানো।</p>`
@@ -189,8 +198,12 @@
             this.data.articles.forEach(a => {
               const defaultA = DEFAULT_ARTICLES.find(da => da.id === a.id);
               if (defaultA) {
+                if (!a.thumbnail && (defaultA.thumbnail || defaultA.coverImg)) { a.thumbnail = defaultA.thumbnail || defaultA.coverImg; modified = true; }
                 if (!a.coverImg && defaultA.coverImg) { a.coverImg = defaultA.coverImg; modified = true; }
                 if (!a.snippet && (defaultA.snippet || defaultA.excerpt)) { a.snippet = defaultA.snippet || defaultA.excerpt; modified = true; }
+              } else {
+                if (!a.thumbnail && a.coverImg) { a.thumbnail = a.coverImg; modified = true; }
+                if (!a.coverImg && a.thumbnail) { a.coverImg = a.thumbnail; modified = true; }
               }
             });
           }
@@ -201,9 +214,13 @@
             this.data.ventures.forEach(v => {
               const defaultV = DEFAULT_VENTURES.find(dv => dv.id === v.id);
               if (defaultV) {
+                if (!v.thumbnail && (defaultV.thumbnail || defaultV.coverImg)) { v.thumbnail = defaultV.thumbnail || defaultV.coverImg; modified = true; }
                 if (!v.coverImg && defaultV.coverImg) { v.coverImg = defaultV.coverImg; modified = true; }
                 if (!v.snippet && (defaultV.snippet || defaultV.description)) { v.snippet = defaultV.snippet || defaultV.description; modified = true; }
                 if (!v.content && defaultV.content) { v.content = defaultV.content; modified = true; }
+              } else {
+                if (!v.thumbnail && v.coverImg) { v.thumbnail = v.coverImg; modified = true; }
+                if (!v.coverImg && v.thumbnail) { v.coverImg = v.thumbnail; modified = true; }
               }
             });
           }
@@ -867,12 +884,12 @@
     }
 
     list.innerHTML = articles.map(art => {
-      const cover = art.coverImg || './Asist/GenZ/start.1.jpg';
+      const thumb = art.thumbnail || art.coverImg || './Asist/Personal/profile1.jpg';
       return `
         <div class="admin-item-card">
           <div class="card-thumb-wrap">
             <span class="card-row-tag">${escapeHtml(art.category || 'Article')} &bull; ${escapeHtml(art.readTime || '৫ মিনিট')}</span>
-            <img src="${cover}" alt="${escapeHtml(art.title)}" loading="lazy" onerror="this.src='./Asist/Personal/profile1.jpg'">
+            <img src="${thumb}" alt="${escapeHtml(art.title)}" loading="lazy" onerror="this.src='./Asist/Personal/profile1.jpg'">
           </div>
           <div class="card-body-wrap">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
@@ -894,6 +911,22 @@
       `;
     }).join('');
   }
+
+  window.onArticleThumbnailUrlInput = function (val) {
+    val = (val || '').trim();
+    const pImg = document.getElementById('articleThumbnailPreviewImg');
+    const pPh = document.getElementById('articleThumbnailPreviewPlaceholder');
+    if (pImg && pPh) {
+      if (val) {
+        pImg.src = val;
+        pImg.style.display = 'block';
+        pPh.style.display = 'none';
+      } else {
+        pImg.style.display = 'none';
+        pPh.style.display = 'flex';
+      }
+    }
+  };
 
   window.onArticleCoverUrlInput = function (val) {
     val = (val || '').trim();
@@ -920,6 +953,16 @@
     document.getElementById('articleEditId').value = '';
     document.getElementById('articleModalTitle').textContent = 'নতুন আর্টিকেল লিখুন ও প্রকাশ করুন';
     
+    // Reset thumbnail
+    const tImg = document.getElementById('articleThumbnailPreviewImg');
+    const tPh = document.getElementById('articleThumbnailPreviewPlaceholder');
+    if (tImg && tPh) {
+      tImg.src = '';
+      tImg.style.display = 'none';
+      tPh.style.display = 'flex';
+    }
+
+    // Reset cover
     const pImg = document.getElementById('articleCoverPreviewImg');
     const pPh = document.getElementById('articleCoverPreviewPlaceholder');
     if (pImg && pPh) {
@@ -944,15 +987,33 @@
     document.getElementById('articleCategoryInput').value = art.category || '';
     document.getElementById('articleReadTimeInput').value = art.readTime || '';
     document.getElementById('articleDateInput').value = art.date || '';
-    document.getElementById('articleCoverUrlInput').value = art.coverImg || '';
-    document.getElementById('articleExcerptInput').value = art.snippet || art.excerpt || '';
-    document.getElementById('articleContentInput').value = art.content || '';
+    
+    // Thumbnail field & preview
+    const thumbUrl = art.thumbnail || art.coverImg || '';
+    const thumbInput = document.getElementById('articleThumbnailUrlInput');
+    if (thumbInput) thumbInput.value = thumbUrl;
+    const tImg = document.getElementById('articleThumbnailPreviewImg');
+    const tPh = document.getElementById('articleThumbnailPreviewPlaceholder');
+    if (tImg && tPh) {
+      if (thumbUrl) {
+        tImg.src = thumbUrl;
+        tImg.style.display = 'block';
+        tPh.style.display = 'none';
+      } else {
+        tImg.style.display = 'none';
+        tPh.style.display = 'flex';
+      }
+    }
 
+    // Cover field & preview
+    const coverUrl = art.coverImg || art.thumbnail || '';
+    const coverInput = document.getElementById('articleCoverUrlInput');
+    if (coverInput) coverInput.value = coverUrl;
     const pImg = document.getElementById('articleCoverPreviewImg');
     const pPh = document.getElementById('articleCoverPreviewPlaceholder');
     if (pImg && pPh) {
-      if (art.coverImg) {
-        pImg.src = art.coverImg;
+      if (coverUrl) {
+        pImg.src = coverUrl;
         pImg.style.display = 'block';
         pPh.style.display = 'none';
       } else {
@@ -960,6 +1021,9 @@
         pPh.style.display = 'flex';
       }
     }
+
+    document.getElementById('articleExcerptInput').value = art.snippet || art.excerpt || '';
+    document.getElementById('articleContentInput').value = art.content || '';
 
     modal.classList.add('active');
   };
@@ -976,7 +1040,16 @@
     const category = document.getElementById('articleCategoryInput').value.trim() || 'জীবনবোধ';
     const readTime = document.getElementById('articleReadTimeInput').value.trim() || '৫ মিনিট পাঠ';
     const date = document.getElementById('articleDateInput').value.trim() || '২০২৬';
-    const coverImg = document.getElementById('articleCoverUrlInput').value.trim() || './Asist/GenZ/start.1.jpg';
+    
+    let thumbnail = (document.getElementById('articleThumbnailUrlInput')?.value || '').trim();
+    let coverImg = (document.getElementById('articleCoverUrlInput')?.value || '').trim();
+
+    // Graceful fallbacks
+    if (!thumbnail && coverImg) thumbnail = coverImg;
+    if (!coverImg && thumbnail) coverImg = thumbnail;
+    if (!thumbnail) thumbnail = './Asist/GenZ/start.1.jpg';
+    if (!coverImg) coverImg = './Asist/GenZ/start.1.jpg';
+
     const excerpt = document.getElementById('articleExcerptInput').value.trim();
     const content = document.getElementById('articleContentInput').value.trim();
 
@@ -992,7 +1065,9 @@
       if (idx >= 0) {
         AdminStore.data.articles[idx] = {
           ...AdminStore.data.articles[idx],
-          title, category, readTime, date, coverImg,
+          title, category, readTime, date,
+          thumbnail,
+          coverImg,
           snippet: excerpt,
           excerpt,
           content
@@ -1002,7 +1077,9 @@
       const newId = 'art_' + Date.now();
       AdminStore.data.articles.unshift({
         id: newId,
-        title, category, readTime, date, coverImg,
+        title, category, readTime, date,
+        thumbnail,
+        coverImg,
         snippet: excerpt,
         excerpt,
         content
@@ -1040,12 +1117,12 @@
     }
 
     list.innerHTML = ventures.map(v => {
-      const cover = v.coverImg || './Asist/GenZ/start.1.jpg';
+      const thumb = v.thumbnail || v.coverImg || './Asist/GenZ/start.1.jpg';
       return `
         <div class="admin-item-card">
           <div class="card-thumb-wrap">
             <span class="card-row-tag">${escapeHtml(v.role || v.category || 'Initiative')}</span>
-            <img src="${cover}" alt="${escapeHtml(v.title)}" loading="lazy" onerror="this.src='./Asist/Personal/profile1.jpg'">
+            <img src="${thumb}" alt="${escapeHtml(v.title)}" loading="lazy" onerror="this.src='./Asist/Personal/profile1.jpg'">
           </div>
           <div class="card-body-wrap">
             <span class="card-item-subtitle">${escapeHtml(v.category || 'Open Innovation')}</span>
@@ -1064,6 +1141,22 @@
       `;
     }).join('');
   }
+
+  window.onVentureThumbnailUrlInput = function (val) {
+    val = (val || '').trim();
+    const pImg = document.getElementById('ventureThumbnailPreviewImg');
+    const pPh = document.getElementById('ventureThumbnailPreviewPlaceholder');
+    if (pImg && pPh) {
+      if (val) {
+        pImg.src = val;
+        pImg.style.display = 'block';
+        pPh.style.display = 'none';
+      } else {
+        pImg.style.display = 'none';
+        pPh.style.display = 'flex';
+      }
+    }
+  };
 
   window.onVentureCoverUrlInput = function (val) {
     val = (val || '').trim();
@@ -1090,6 +1183,16 @@
     document.getElementById('ventureEditId').value = '';
     document.getElementById('ventureModalTitle').textContent = 'নতুন ভেঞ্চার যোগ করুন';
 
+    // Reset thumbnail preview
+    const tImg = document.getElementById('ventureThumbnailPreviewImg');
+    const tPh = document.getElementById('ventureThumbnailPreviewPlaceholder');
+    if (tImg && tPh) {
+      tImg.src = '';
+      tImg.style.display = 'none';
+      tPh.style.display = 'flex';
+    }
+
+    // Reset cover preview
     const pImg = document.getElementById('ventureCoverPreviewImg');
     const pPh = document.getElementById('ventureCoverPreviewPlaceholder');
     if (pImg && pPh) {
@@ -1113,15 +1216,33 @@
     document.getElementById('ventureTitleInput').value = v.title || '';
     document.getElementById('ventureCategoryInput').value = v.category || '';
     document.getElementById('ventureRoleInput').value = v.role || '';
-    document.getElementById('ventureCoverUrlInput').value = v.coverImg || '';
-    document.getElementById('ventureSnippetInput').value = v.snippet || v.description || '';
-    document.getElementById('ventureContentInput').value = v.content || '';
+    
+    // Thumbnail field & preview
+    const thumbUrl = v.thumbnail || v.coverImg || '';
+    const thumbInput = document.getElementById('ventureThumbnailUrlInput');
+    if (thumbInput) thumbInput.value = thumbUrl;
+    const tImg = document.getElementById('ventureThumbnailPreviewImg');
+    const tPh = document.getElementById('ventureThumbnailPreviewPlaceholder');
+    if (tImg && tPh) {
+      if (thumbUrl) {
+        tImg.src = thumbUrl;
+        tImg.style.display = 'block';
+        tPh.style.display = 'none';
+      } else {
+        tImg.style.display = 'none';
+        tPh.style.display = 'flex';
+      }
+    }
 
+    // Cover field & preview
+    const coverUrl = v.coverImg || v.thumbnail || '';
+    const coverInput = document.getElementById('ventureCoverUrlInput');
+    if (coverInput) coverInput.value = coverUrl;
     const pImg = document.getElementById('ventureCoverPreviewImg');
     const pPh = document.getElementById('ventureCoverPreviewPlaceholder');
     if (pImg && pPh) {
-      if (v.coverImg) {
-        pImg.src = v.coverImg;
+      if (coverUrl) {
+        pImg.src = coverUrl;
         pImg.style.display = 'block';
         pPh.style.display = 'none';
       } else {
@@ -1129,6 +1250,9 @@
         pPh.style.display = 'flex';
       }
     }
+
+    document.getElementById('ventureSnippetInput').value = v.snippet || v.description || '';
+    document.getElementById('ventureContentInput').value = v.content || '';
 
     modal.classList.add('active');
   };
@@ -1144,7 +1268,16 @@
     const title = document.getElementById('ventureTitleInput').value.trim();
     const category = document.getElementById('ventureCategoryInput').value.trim() || 'Open Innovation';
     const role = document.getElementById('ventureRoleInput').value.trim() || 'Initiator & Pioneer';
-    const coverImg = document.getElementById('ventureCoverUrlInput').value.trim() || './Asist/GenZ/start.1.jpg';
+    
+    let thumbnail = (document.getElementById('ventureThumbnailUrlInput')?.value || '').trim();
+    let coverImg = (document.getElementById('ventureCoverUrlInput')?.value || '').trim();
+
+    // Graceful fallbacks
+    if (!thumbnail && coverImg) thumbnail = coverImg;
+    if (!coverImg && thumbnail) coverImg = thumbnail;
+    if (!thumbnail) thumbnail = './Asist/GenZ/start.1.jpg';
+    if (!coverImg) coverImg = './Asist/GenZ/start.1.jpg';
+
     const snippet = document.getElementById('ventureSnippetInput').value.trim();
     const content = document.getElementById('ventureContentInput').value.trim();
 
@@ -1160,7 +1293,9 @@
       if (idx >= 0) {
         AdminStore.data.ventures[idx] = {
           ...AdminStore.data.ventures[idx],
-          title, category, role, coverImg,
+          title, category, role,
+          thumbnail,
+          coverImg,
           snippet,
           description: snippet,
           content
@@ -1170,7 +1305,9 @@
       const newId = 'venture_' + Date.now();
       AdminStore.data.ventures.unshift({
         id: newId,
-        title, category, role, coverImg,
+        title, category, role,
+        thumbnail,
+        coverImg,
         snippet,
         description: snippet,
         content

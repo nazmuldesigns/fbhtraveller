@@ -385,7 +385,8 @@
               </div>
 
               <div class="form-group" style="margin-bottom: 1.25rem;">
-                <label class="form-label">পোস্টের ছবি (Photo / Image)</label>
+                <label class="form-label"><i class="fa-solid fa-image text-gold"></i> হোমপেজ হিরো পোস্ট থাম্বনেইল / ছবি (Homepage Hero Card Thumbnail) *</label>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem;">পোর্টফোলিওর হোম পেজে Hero সেকশনের লাইভ ফেসবুক কার্ডে এই ছবিটি শো হবে।</p>
                 <div class="img-picker-container">
                   <div class="img-preview-box" onclick="document.getElementById('fbAdminFileInput').click()">
                     <div class="placeholder-text" id="fbAdminPreviewPlaceholder">
@@ -488,7 +489,8 @@
 
         <!-- Image Selection / Upload -->
         <div class="form-group">
-          <label class="form-label" for="photoUrlInput">ছবি আপলোড বা নির্বাচন (Image Source) *</label>
+          <label class="form-label" for="photoUrlInput"><i class="fa-solid fa-image text-gold"></i> হোমপেজ ক্যারাউসেল থাম্বনেইল ছবি (Homepage Carousel Thumbnail) *</label>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem;">পোর্টফোলিওর হোম পেজের ডাবল-ফ্লো প্যারালাক্স ট্রাভেল ক্যারাউসেলে এই থাম্বনেইলটি শো হবে।</p>
           <div class="img-picker-container">
             <div class="img-preview-box" onclick="document.getElementById('photoFileInput').click()">
               <div class="placeholder-text" id="photoPreviewPlaceholder">
@@ -552,7 +554,8 @@
 
         <!-- Image Selection / Upload -->
         <div class="form-group">
-          <label class="form-label" for="loveUrlInput">ছবি আপলোড বা লিঙ্ক (Image) *</label>
+          <label class="form-label" for="loveUrlInput"><i class="fa-solid fa-image text-gold"></i> হোমপেজ ৩ডি কার্ড থাম্বনেইল ছবি (Homepage 3D Card Thumbnail) *</label>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem;">পোর্টফোলিওর হোম পেজের ৩ডি রোটেটিং মেমোরি কার্ডে এই থাম্বনেইলটি শো হবে।</p>
           <div class="img-picker-container">
             <div class="img-preview-box" onclick="document.getElementById('loveFileInput').click()">
               <div class="placeholder-text" id="lovePreviewPlaceholder">
@@ -617,14 +620,46 @@
           <input type="text" id="articleDateInput" class="form-input" placeholder="যেমন: ১৫ মে ২০২৬">
         </div>
 
-        <!-- Article Cover Image Selection / Upload -->
+        <!-- 1. Homepage Thumbnail Image Selection / Upload -->
         <div class="form-group">
-          <label class="form-label" for="articleCoverUrlInput">আর্টিকেলের কভার ছবি (Cover Photo / Image)</label>
+          <label class="form-label" for="articleThumbnailUrlInput">
+            <i class="fa-solid fa-image text-gold"></i> হোমপেজ কার্ড থাম্বনেইল ছবি (Homepage Card Thumbnail) *
+          </label>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem;">
+            পোর্টফোলিওর হোমপেজে "লেখালেখি ও ব্লগ" সেকশনের কার্ডে প্রিভিউ হিসেবে এই থাম্বনেইলটি শো হবে।
+          </p>
+          <div class="img-picker-container">
+            <div class="img-preview-box" onclick="document.getElementById('articleThumbnailFileInput').click()">
+              <div class="placeholder-text" id="articleThumbnailPreviewPlaceholder">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <span>কম্পিউটার থেকে থাম্বনেইল ছবি আপলোড করতে ক্লিক করুন</span>
+                <small style="color: var(--text-dim);">(JPG, PNG, WebP supported)</small>
+              </div>
+              <img id="articleThumbnailPreviewImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="Preview" style="display: none;">
+            </div>
+            <input type="file" id="articleThumbnailFileInput" class="file-input-hidden" accept="image/*"
+              onchange="handleImageUpload('articleThumbnailFileInput', 'articleThumbnailUrlInput', 'articleThumbnailPreviewImg', 'articleThumbnailPreviewPlaceholder')">
+
+            <div class="img-options-divider">অথবা সরাসরি থাম্বনেইলের লিঙ্ক / পাথ দিন</div>
+            <input type="text" id="articleThumbnailUrlInput" class="form-input"
+              placeholder="./Asist/GenZ/start.1.jpg বা https://..."
+              oninput="onArticleThumbnailUrlInput(this.value)">
+          </div>
+        </div>
+
+        <!-- 2. Detail Cover Banner Selection / Upload -->
+        <div class="form-group">
+          <label class="form-label" for="articleCoverUrlInput">
+            <i class="fa-solid fa-panorama text-cyan"></i> বিস্তারিত লেখার কভার / ব্যানার ছবি (Article Detail Banner)
+          </label>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem;">
+            আর্টিকেলের সম্পূর্ণ পড়ার পেজে এই ব্যানারটি ওপরে বড় আকারে শো হবে (ফাঁকা রাখলে থাম্বনেইলটিই স্বয়ংক্রিয়ভাবে ব্যবহৃত হবে)।
+          </p>
           <div class="img-picker-container">
             <div class="img-preview-box" onclick="document.getElementById('articleCoverFileInput').click()">
               <div class="placeholder-text" id="articleCoverPreviewPlaceholder">
                 <i class="fa-solid fa-cloud-arrow-up"></i>
-                <span>কম্পিউটার থেকে কভার ছবি বেছে নিতে ক্লিক করুন</span>
+                <span>কম্পিউটার থেকে ব্যানার ছবি আপলোড করতে ক্লিক করুন</span>
                 <small style="color: var(--text-dim);">(JPG, PNG, WebP supported)</small>
               </div>
               <img id="articleCoverPreviewImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="Preview" style="display: none;">
@@ -632,7 +667,7 @@
             <input type="file" id="articleCoverFileInput" class="file-input-hidden" accept="image/*"
               onchange="handleImageUpload('articleCoverFileInput', 'articleCoverUrlInput', 'articleCoverPreviewImg', 'articleCoverPreviewPlaceholder')">
 
-            <div class="img-options-divider">অথবা সরাসরি ছবির লিঙ্ক / পাথ দিন</div>
+            <div class="img-options-divider">অথবা সরাসরি ব্যানারের লিঙ্ক / পাথ দিন</div>
             <input type="text" id="articleCoverUrlInput" class="form-input"
               placeholder="./Asist/GenZ/start.1.jpg বা https://..."
               oninput="onArticleCoverUrlInput(this.value)">
@@ -689,14 +724,46 @@
           </div>
         </div>
 
-        <!-- Cover Image Selection / Upload -->
+        <!-- 1. Homepage Venture Thumbnail Selection / Upload -->
         <div class="form-group">
-          <label class="form-label" for="ventureCoverUrlInput">কভার ছবি (Cover Photo / Image)</label>
+          <label class="form-label" for="ventureThumbnailUrlInput">
+            <i class="fa-solid fa-image text-gold"></i> হোমপেজ কার্ড থাম্বনেইল ছবি (Homepage Card Thumbnail) *
+          </label>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem;">
+            পোর্টফোলিওর হোমপেজে The Lab সেকশনে ভেঞ্চার কার্ডে থাম্বনেইল হিসেবে এই ছবিটি শো হবে।
+          </p>
+          <div class="img-picker-container">
+            <div class="img-preview-box" onclick="document.getElementById('ventureThumbnailFileInput').click()">
+              <div class="placeholder-text" id="ventureThumbnailPreviewPlaceholder">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <span>কম্পিউটার থেকে থাম্বনেইল ছবি আপলোড করতে ক্লিক করুন</span>
+                <small style="color: var(--text-dim);">(JPG, PNG, WebP supported)</small>
+              </div>
+              <img id="ventureThumbnailPreviewImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="Preview" style="display: none;">
+            </div>
+            <input type="file" id="ventureThumbnailFileInput" class="file-input-hidden" accept="image/*"
+              onchange="handleImageUpload('ventureThumbnailFileInput', 'ventureThumbnailUrlInput', 'ventureThumbnailPreviewImg', 'ventureThumbnailPreviewPlaceholder')">
+
+            <div class="img-options-divider">অথবা সরাসরি থাম্বনেইলের লিঙ্ক / পাথ দিন</div>
+            <input type="text" id="ventureThumbnailUrlInput" class="form-input"
+              placeholder="./Asist/GenZ/start.1.jpg বা https://..."
+              oninput="onVentureThumbnailUrlInput(this.value)">
+          </div>
+        </div>
+
+        <!-- 2. Venture Detail Banner Selection / Upload -->
+        <div class="form-group">
+          <label class="form-label" for="ventureCoverUrlInput">
+            <i class="fa-solid fa-panorama text-cyan"></i> বিস্তারিত কভার / ব্যানার ছবি (Venture Detail Banner)
+          </label>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem;">
+            ভেঞ্চারের সম্পূর্ণ পেজ ওপেন করলে ওপরে ব্যানার হিসেবে শো হবে (ফাঁকা রাখলে থাম্বনেইলটিই স্বয়ংক্রিয়ভাবে ব্যবহৃত হবে)।
+          </p>
           <div class="img-picker-container">
             <div class="img-preview-box" onclick="document.getElementById('ventureCoverFileInput').click()">
               <div class="placeholder-text" id="ventureCoverPreviewPlaceholder">
                 <i class="fa-solid fa-cloud-arrow-up"></i>
-                <span>কম্পিউটার থেকে ছবি বেছে নিতে ক্লিক করুন</span>
+                <span>কম্পিউটার থেকে ব্যানার ছবি আপলোড করতে ক্লিক করুন</span>
                 <small style="color: var(--text-dim);">(JPG, PNG, WebP supported)</small>
               </div>
               <img id="ventureCoverPreviewImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="Preview" style="display: none;">
@@ -704,7 +771,7 @@
             <input type="file" id="ventureCoverFileInput" class="file-input-hidden" accept="image/*"
               onchange="handleImageUpload('ventureCoverFileInput', 'ventureCoverUrlInput', 'ventureCoverPreviewImg', 'ventureCoverPreviewPlaceholder')">
 
-            <div class="img-options-divider">অথবা ছবির পাথ / লিঙ্ক দিন</div>
+            <div class="img-options-divider">অথবা সরাসরি ব্যানারের লিঙ্ক / পাথ দিন</div>
             <input type="text" id="ventureCoverUrlInput" class="form-input"
               placeholder="./Asist/GenZ/start.1.jpg বা https://..."
               oninput="onVentureCoverUrlInput(this.value)">
@@ -739,7 +806,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
   <script src="firebase-init.js"></script>
 
-  <script src="admin.js?v=2.5"></script>
+  <script src="admin.js?v=2.6"></script>
 </body>
 
 </html>
