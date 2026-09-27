@@ -151,9 +151,166 @@ document.addEventListener('DOMContentLoaded', () => {
     prDesc: "যেকোনো পিআর কোলাবোরেশন, মিডিয়া এনগেজমেন্ট, প্রফেশনাল ভার্চুয়াল অ্যাসিস্ট্যান্স বা পার্টনারশিপের জন্য সরাসরি জিমেইলে যোগাযোগ করুন।"
   };
 
+  const DEFAULT_QUOTES = [
+    {
+      id: 'quote_1',
+      textBn: 'বিপদ কেটে গেলে মানুষ আল্লাহরেই মনে রাখে না, আর আমি তো মানুষ।',
+      authorBn: '— ফাহাদ বিন হুসনে আলী (বাবার সাথে গরিবানা দিনের স্মৃতি)',
+      tagBn: 'মূল জীবনদর্শন • God First',
+      textEn: 'When the storm passes, people often forget God, and after all, I am only human.',
+      authorEn: '— Fahad Bin Husne Ali (Memories of hardship shared with Baba)',
+      tagEn: 'Core Philosophy • God First'
+    },
+    {
+      id: 'quote_2',
+      textBn: 'আল্লাহরে ভুলে গেলে আল্লাহ রাগ করে না, তাহলে মানুষকে মনে না রাখলে আমি রাগ করব কেন?',
+      authorBn: '— ফাহাদ বিন হুসনে আলীর বাবা',
+      tagBn: 'বাবার অমৃত বাণী • ক্ষমা ও সহনশীলতা',
+      textEn: 'If God does not get angry when humans forget Him, why should I be angry when people forget me?',
+      authorEn: '— Father of Fahad Bin Husne Ali',
+      tagEn: "Baba's Wisdom • Forgiveness & Grace"
+    },
+    {
+      id: 'quote_3',
+      textBn: 'তুই বড় হয়ে সবাইরে আগলায়ে রাখিস।',
+      authorBn: '— বাবার শেষ উপদেশ',
+      tagBn: 'পারিবারিক বন্ধন • শেষ উপদেশ',
+      textEn: 'When you grow up, keep everyone sheltered and united in love.',
+      authorEn: "— Baba's Final Advice",
+      tagEn: 'Family Bond • Last Guidance'
+    },
+    {
+      id: 'quote_4',
+      textBn: 'বাবার ডায়ালাইসিস হতো গণস্বাস্থ্যে, অল্প টাকায় অনেক ভালোবাসা পেতাম।',
+      authorBn: '— ফাহাদ বিন হুসনে আলী (বাবাকে নিয়ে কৃতজ্ঞতা)',
+      tagBn: 'বাবার স্মৃতি • আজন্ম কৃতজ্ঞতা',
+      textEn: 'Baba had his dialysis at Gonoshasthaya; with very little money, we received an abundance of genuine love.',
+      authorEn: '— Fahad Bin Husne Ali (Gratitude for Baba)',
+      tagEn: 'Memories of Baba • Eternal Gratitude'
+    },
+    {
+      id: 'quote_5',
+      textBn: 'বিপদ কেটে গেলে মানুষ আল্লাহরেই মনে রাখে না, আর আমি তো মানুষ।',
+      authorBn: '— ফাহাদ বিন হুসনে আলীর বাবা (গরিবানা দিনে ছেলেকে দেওয়া উত্তর)',
+      tagBn: 'বাবার মুখের কথা • বিনয় ও উপলব্ধি',
+      textEn: 'When the storm passes, people forget even God, so what am I? I am just a human.',
+      authorEn: '— Father of Fahad Bin Husne Ali (Words spoken during days of poverty)',
+      tagEn: "Baba's Words • Humility & Reflection"
+    },
+    {
+      id: 'quote_6',
+      textBn: 'আল্লাহরে মনে না রাখলে কী আল্লাহ রাগ করে? তাইলে আমার রাগ হয়েই বা লাভ কি? তুই বড় হয়ে সবাইরে আগলায়ে রাখিস।',
+      authorBn: '— ফাহাদ বিন হুসনে আলীর বাবা (জীবনের সবচেয়ে সহজ হিসাব)',
+      tagBn: 'জীবনের সহজ হিসাব • পরম মমতা',
+      textEn: 'Does God rage when humans forget Him? What good then is my anger? Grow up and hold everyone close with love.',
+      authorEn: "— Father of Fahad Bin Husne Ali (Life's Simplest Equation)",
+      tagEn: "Life's Equation • Pure Compassion"
+    },
+    {
+      id: 'quote_7',
+      textBn: 'পাসপোর্টে আমি ফাহাদ, কল্পনায় আমি শাহরুখ খান। স্বপ্ন দেখতে তো টাকা লাগে না।',
+      authorBn: '— ফাহাদ বিন হুসনে আলী (স্বপ্ন নিয়ে)',
+      tagBn: 'স্বপ্নের বিস্তার • অসীম কল্পনা',
+      textEn: 'On my passport, I am Fahad Bin Husne Ali. In my imagination, I am Shahrukh Khan. Dreaming costs nothing.',
+      authorEn: '— Fahad Bin Husne Ali (On Dreams)',
+      tagEn: 'Boundless Dreams • Pure Imagination'
+    },
+    {
+      id: 'quote_8',
+      textBn: 'যাদের স্বপ্ন গড়পড়তা, তাদের জন্য আমার মায়া হয়।',
+      authorBn: '— ফাহাদ বিন হুসনে আলী',
+      tagBn: 'উচ্চাকাঙ্ক্ষা • ভিন্ন চিন্তা',
+      textEn: 'I feel pity for the people whose dreams are average.',
+      authorEn: '— Fahad Bin Husne Ali',
+      tagEn: 'High Ambition • Thinking Beyond'
+    },
+    {
+      id: 'quote_9',
+      textBn: 'ঘরের পাশে এত ইতিহাস রেখে আমি ইউরোপে গিয়ে কী শিখব?',
+      authorBn: '— ফাহাদ বিন হুসনে আলী (ভ্রমণ দর্শন)',
+      tagBn: 'ভ্রমণ দর্শন • প্রাচ্যের ঐতিহ্য',
+      textEn: 'With so much rich history right next door, what will I go learn in Europe?',
+      authorEn: '— Fahad Bin Husne Ali (Travel Philosophy)',
+      tagEn: 'Travel Philosophy • Heritage of the East'
+    },
+    {
+      id: 'quote_10',
+      textBn: 'নেপালের এক গ্রামে এক পরিবারের সাথে একদিন থাকলে যা শিখবে, প্যারিস তোমাকে তা শেখাতে পারবে না।',
+      authorBn: '— ফাহাদ বিন হুসনে আলী',
+      tagBn: 'জীবনবোধ • মাটির মানুষ',
+      textEn: 'Spending one day with a family in a rural Nepali village will teach you what Paris never could.',
+      authorEn: '— Fahad Bin Husne Ali',
+      tagEn: 'Life Lessons • People of the Soil'
+    },
+    {
+      id: 'quote_11',
+      textBn: 'কিডনি ফ্রি তে পেয়েছো, আইফোন না। যেটা ফ্রি পেয়েছো সেটার যত্ন নাও।',
+      authorBn: '— ফাহাদ বিন হুসনে আলী',
+      tagBn: 'স্বাস্থ্য ও শুকরিয়া • অমূল্য উপহার',
+      textEn: 'You got your kidneys for free from God, not an iPhone. Take care of what you received for free.',
+      authorEn: '— Fahad Bin Husne Ali',
+      tagEn: 'Health & Gratitude • Priceless Gift'
+    },
+    {
+      id: 'quote_12',
+      textBn: '১০০ মানুষের ভিড়েও আমি একা বোধ করি, কারণ আমি জানি আমি অন্য কিছুর জন্য জন্মেছি।',
+      authorBn: '— ফাহাদ বিন হুসনে আলী',
+      tagBn: 'আত্ম-অনুসন্ধান • উচ্চতর উদ্দেশ্য',
+      textEn: 'I feel lonely even in a crowd of 100 people, because I know I was born for something greater.',
+      authorEn: '— Fahad Bin Husne Ali',
+      tagEn: 'Soul Search • Higher Purpose'
+    },
+    {
+      id: 'quote_13',
+      textBn: "বোবা মানুষটা শুধু দু'দণ্ড বিশ্রামের জন্য ফুটপাতে বসেছিল, তারপর সে একটা সংখ্যা হয়ে গেল।",
+      authorBn: '— ফাহাদ বিন হুসনে আলী (নীলফামারীর শ্রমিকের গল্প থেকে)',
+      tagBn: 'মানবিক বেদনা • নীরব বাস্তবতা',
+      textEn: 'The mute laborer sat on the pavement just for a moment of rest, and then he simply became a statistic.',
+      authorEn: '— Fahad Bin Husne Ali (From the Stories of Marginalized Workers)',
+      tagEn: 'Human Empathy • Silent Reality'
+    },
+    {
+      id: 'quote_14',
+      textBn: 'ব্যাংকে ২ ঘণ্টা লাইনে দাঁড়িয়ে বুঝলাম, এদেশে টাকার চেয়ে ধৈর্যের দাম বেশি।',
+      authorBn: '— ফাহাদ বিন হুসনে আলী',
+      tagBn: 'নাগরিক অভিজ্ঞতা • বাস্তব উপলব্ধি',
+      textEn: 'Standing in a bank queue for 2 hours made me realize: in this country, patience is far costlier than money.',
+      authorEn: '— Fahad Bin Husne Ali',
+      tagEn: 'Citizen Observation • Real Life'
+    },
+    {
+      id: 'quote_15',
+      textBn: 'God First, তারপর বাকি সব।',
+      authorBn: '— ফাহাদ বিন হুসনে আলী',
+      tagBn: 'ঈমান ও বিশ্বাস • অটল নীতি',
+      textEn: 'God First, and then everything else follows.',
+      authorEn: '— Fahad Bin Husne Ali',
+      tagEn: 'Faith & Devotion • Core Creed'
+    },
+    {
+      id: 'quote_16',
+      textBn: 'কল্পনা করতে যখন পয়সা লাগে না, তখন ছোট ভাবব কেন? বড় স্বপ্ন দেখুন, এতে কোনো খরচ নেই...',
+      authorBn: '— ফাহাদ বিন হুসনে আলী (স্বপ্ন নিয়ে)',
+      tagBn: 'অনুপ্রেরণা • স্বপ্নের শক্তি',
+      textEn: "Why should we imagine less when it's free? Dream big, it costs you nothing...",
+      authorEn: '— Fahad Bin Husne Ali (On Dreams)',
+      tagEn: 'Inspiration • The Power of Dreams'
+    },
+    {
+      id: 'quote_17',
+      textBn: 'কিডনি এক অমূল্য নেয়ামত। এই পরিস্থিতির মুখোমুখি না হলে বুঝবেন না। সৃষ্টিকর্তা যা বিনামূল্যে দিয়েছেন তার মর্যাদা দিন।',
+      authorBn: '— ফাহাদ বিন হুসনে আলী (কিডনি পেশেন্ট হিসেবে)',
+      tagBn: 'জীবন ও সুস্থতা • আত্মোপলব্ধি',
+      textEn: "Your kidneys are precious. You don't know if you've never been in this situation. Pls respect what God gave you for free.",
+      authorEn: '— Fahad Bin Husne Ali (Reflections of a Fighter)',
+      tagEn: 'Life & Wellness • Deep Reflection'
+    }
+  ];
+
   const DEFAULT_PORTFOLIO_DATA = {
     hero: DEFAULT_HERO,
     social: DEFAULT_SOCIAL,
+    quotes: DEFAULT_QUOTES,
     articles: [
       {
         id: 'kidney',
@@ -575,7 +732,8 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 'tg_20', img: './Asist/Travel Gallery/20.jpg', location: 'Cameron Highlands, Malaysia', title: 'ক্যামেরন হাইল্যান্ডসের সবুজ চা বাগান', desc: 'সবুজের গালিচায় মোড়ানো কুয়াশাচ্ছন্ন শীতল শৈলশহর।' }
   ];
 
-  
+
+
   const DEFAULT_LOVE_CARDS = [
     { id: 'love_1', img: './Asist/card/1.jpeg', tag: 'Vintage 90s Romance', title: '৯০-এর নস্টালজিক রূপকথা', desc: 'পুরোনো দিনের রঙিন ফ্যাশন আর সারল্যে ভরা চিরন্তন ভালোবাসার মিষ্টি অনুভূতি।' },
     { id: 'love_2', img: './Asist/card/2.jpg', tag: 'Beachside Breeze', title: 'সাগরের কোলে একমুঠো প্রেম', desc: 'নীল জলরাশির মৃদু হাওয়ায় হাত ধরে হারিয়ে যাওয়া, ঢেউয়ের তালে হৃদয়ের কথকতা।' },
@@ -604,8 +762,8 @@ document.addEventListener('DOMContentLoaded', () => {
           if (!this.data.hero) { this.data.hero = JSON.parse(JSON.stringify(DEFAULT_HERO)); needsSave = true; }
           if (!this.data.social) { this.data.social = JSON.parse(JSON.stringify(DEFAULT_SOCIAL)); needsSave = true; }
           if (this.data.heroFbPost) { delete this.data.heroFbPost; needsSave = true; }
-          if (!this.data.travelGallery || !this.data.travelGallery.length) { this.data.travelGallery = DEFAULT_TRAVEL_GALLERY;
-          this.data.loveCards = DEFAULT_LOVE_CARDS; needsSave = true; }
+          if (!this.data.quotes || !this.data.quotes.length) { this.data.quotes = JSON.parse(JSON.stringify(DEFAULT_QUOTES)); needsSave = true; }
+          if (!this.data.travelGallery || !this.data.travelGallery.length) { this.data.travelGallery = DEFAULT_TRAVEL_GALLERY; needsSave = true; }
           if (!this.data.loveCards || !this.data.loveCards.length) { this.data.loveCards = DEFAULT_LOVE_CARDS; needsSave = true; }
           if (!this.data.articles || !this.data.articles.length) { this.data.articles = DEFAULT_PORTFOLIO_DATA.articles; needsSave = true; }
           if (!this.data.ventures || !this.data.ventures.length) { this.data.ventures = DEFAULT_PORTFOLIO_DATA.ventures; needsSave = true; }
@@ -617,12 +775,14 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           this.data = JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO_DATA));
           this.data.travelGallery = DEFAULT_TRAVEL_GALLERY;
+          this.data.quotes = JSON.parse(JSON.stringify(DEFAULT_QUOTES));
           this.save();
         }
       } catch (e) {
         console.warn('PortfolioStore: Fallback to defaults', e);
         this.data = JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO_DATA));
         this.data.travelGallery = DEFAULT_TRAVEL_GALLERY;
+        this.data.quotes = JSON.parse(JSON.stringify(DEFAULT_QUOTES));
       }
     },
 
@@ -632,6 +792,33 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (e) {
         console.error('Failed to save to localStorage:', e);
       }
+    },
+
+    getQuotes() {
+      return (this.data && this.data.quotes && this.data.quotes.length)
+        ? this.data.quotes
+        : DEFAULT_QUOTES;
+    },
+
+    getQuote(id) {
+      return (this.getQuotes() || []).find(q => q.id === id);
+    },
+
+    saveQuote(quoteObj) {
+      if (!this.data.quotes) this.data.quotes = JSON.parse(JSON.stringify(DEFAULT_QUOTES));
+      const idx = this.data.quotes.findIndex(q => q.id === quoteObj.id);
+      if (idx >= 0) {
+        this.data.quotes[idx] = quoteObj;
+      } else {
+        this.data.quotes.unshift(quoteObj);
+      }
+      this.save();
+    },
+
+    deleteQuote(id) {
+      if (!this.data.quotes) this.data.quotes = JSON.parse(JSON.stringify(DEFAULT_QUOTES));
+      this.data.quotes = this.data.quotes.filter(q => q.id !== id);
+      this.save();
     },
 
     getArticles() { return this.data.articles || []; },
@@ -727,6 +914,7 @@ document.addEventListener('DOMContentLoaded', () => {
       renderArticles();
       if (window.renderParallaxCarouselTracks) window.renderParallaxCarouselTracks();
       if (window.renderRotatingCards) window.renderRotatingCards();
+      if (window.renderQuotes) window.renderQuotes();
       renderVentures();
       renderTravels();
       renderGenz();
@@ -745,6 +933,7 @@ document.addEventListener('DOMContentLoaded', () => {
       renderArticles();
       if (window.renderParallaxCarouselTracks) window.renderParallaxCarouselTracks();
       if (window.renderRotatingCards) window.renderRotatingCards();
+      if (window.renderQuotes) window.renderQuotes();
       renderVentures();
       renderTravels();
       renderGenz();
@@ -786,6 +975,140 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.showDriveHelp = function() {
     alert("গুগল ড্রাইভ ইমেজ ব্যবহারের নিয়ম:\n\n১. ড্রাইভে ছবিটি আপলোড করুন।\n২. Share -> 'Anyone with the link can view' নির্বাচন করুন।\n৩. Copy Link করে এখানে পেস্ট করুন।\n\nসিস্টেম স্বয়ংক্রিয়ভাবে সরাসরি ছবিতে রূপান্তর করে নেবে!");
+  };
+
+  // ==========================================
+  // AUTO-ROTATING QUOTE SLIDER (17 BILINGUAL QUOTES)
+  // ==========================================
+  let currentQuoteIndex = 0;
+  let quoteAutoTimer = null;
+  const QUOTE_INTERVAL = 5500; // 5.5 seconds per quote
+
+  function renderQuoteContent(animate = true) {
+    const quoteBox = document.getElementById('quoteEditorialBox');
+    const quoteWrapper = document.getElementById('quoteContentWrapper');
+    const quoteTextEl = document.getElementById('editorialQuoteText');
+    const quoteAuthorEl = document.getElementById('editorialQuoteAuthor');
+    const quoteTagEl = document.getElementById('editorialQuoteTag');
+    const indicatorsContainer = document.getElementById('quoteIndicators');
+
+    if (!quoteBox || !quoteWrapper || !quoteTextEl) return;
+
+    const quotes = PortfolioStore.getQuotes();
+    if (!quotes || !quotes.length) return;
+
+    if (currentQuoteIndex >= quotes.length) {
+      currentQuoteIndex = 0;
+    } else if (currentQuoteIndex < 0) {
+      currentQuoteIndex = quotes.length - 1;
+    }
+
+    const currentQuote = quotes[currentQuoteIndex];
+    const isBn = (document.documentElement.lang === 'bn' || (localStorage.getItem('fahad_portfolio_lang') || 'en') === 'bn');
+
+    const text = isBn ? (currentQuote.textBn || currentQuote.textEn) : (currentQuote.textEn || currentQuote.textBn);
+    const author = isBn ? (currentQuote.authorBn || currentQuote.authorEn) : (currentQuote.authorEn || currentQuote.authorBn);
+    const tag = isBn ? (currentQuote.tagBn || currentQuote.tagEn) : (currentQuote.tagEn || currentQuote.tagBn);
+
+    const updateDom = () => {
+      quoteTextEl.textContent = `"${(text || '').replace(/^["“”']|["“”']$/g, '').trim()}"`;
+      if (quoteAuthorEl) quoteAuthorEl.textContent = author || '';
+      if (quoteTagEl) quoteTagEl.textContent = tag || '';
+
+      if (indicatorsContainer) {
+        const dots = indicatorsContainer.querySelectorAll('.quote-dot');
+        dots.forEach((dot, idx) => {
+          if (idx === currentQuoteIndex) {
+            dot.classList.add('active');
+            dot.setAttribute('aria-current', 'true');
+          } else {
+            dot.classList.remove('active');
+            dot.removeAttribute('aria-current');
+          }
+        });
+      }
+    };
+
+    if (animate) {
+      quoteWrapper.classList.add('quote-animating-out');
+      quoteWrapper.classList.remove('quote-animating-in');
+      setTimeout(() => {
+        updateDom();
+        quoteWrapper.classList.remove('quote-animating-out');
+        quoteWrapper.classList.add('quote-animating-in');
+      }, 300);
+    } else {
+      updateDom();
+    }
+  }
+
+  function renderQuoteIndicators() {
+    const indicatorsContainer = document.getElementById('quoteIndicators');
+    if (!indicatorsContainer) return;
+
+    const quotes = PortfolioStore.getQuotes();
+    if (!quotes || !quotes.length) {
+      indicatorsContainer.innerHTML = '';
+      return;
+    }
+
+    indicatorsContainer.innerHTML = quotes.map((_, idx) => `
+      <button class="quote-dot ${idx === currentQuoteIndex ? 'active' : ''}" 
+              data-quote-index="${idx}" 
+              aria-label="Quote ${idx + 1}" 
+              title="Quote ${idx + 1}"></button>
+    `).join('');
+
+    indicatorsContainer.querySelectorAll('.quote-dot').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const targetIdx = parseInt(btn.getAttribute('data-quote-index'), 10);
+        if (!isNaN(targetIdx) && targetIdx !== currentQuoteIndex) {
+          currentQuoteIndex = targetIdx;
+          renderQuoteContent(true);
+          restartQuoteTimer();
+        }
+      });
+    });
+  }
+
+  function startQuoteTimer() {
+    stopQuoteTimer();
+    quoteAutoTimer = setInterval(() => {
+      const quotes = PortfolioStore.getQuotes();
+      if (!quotes || quotes.length <= 1) return;
+      currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+      renderQuoteContent(true);
+    }, QUOTE_INTERVAL);
+  }
+
+  function stopQuoteTimer() {
+    if (quoteAutoTimer) {
+      clearInterval(quoteAutoTimer);
+      quoteAutoTimer = null;
+    }
+  }
+
+  function restartQuoteTimer() {
+    stopQuoteTimer();
+    startQuoteTimer();
+  }
+
+  function initQuoteSlider() {
+    const quoteBox = document.getElementById('quoteEditorialBox');
+    if (!quoteBox) return;
+
+    renderQuoteIndicators();
+    renderQuoteContent(false);
+    startQuoteTimer();
+
+    quoteBox.addEventListener('mouseenter', stopQuoteTimer);
+    quoteBox.addEventListener('mouseleave', startQuoteTimer);
+  }
+
+  window.renderQuotes = function () {
+    renderQuoteIndicators();
+    renderQuoteContent(false);
   };
 
   // ==========================================
@@ -3192,6 +3515,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.renderHeroSection();
     window.renderFooterSocialLinks();
+    initQuoteSlider();
 
   });
 

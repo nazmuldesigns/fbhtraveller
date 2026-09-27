@@ -196,6 +196,162 @@
     prDesc: "যেকোনো পিআর কোলাবোরেশন, মিডিয়া এনগেজমেন্ট, প্রফেশনাল ভার্চুয়াল অ্যাসিস্ট্যান্স বা পার্টনারশিপের জন্য সরাসরি জিমেইলে যোগাযোগ করুন।"
   };
 
+  const DEFAULT_QUOTES = [
+    {
+      id: 'quote_1',
+      textBn: 'বিপদ কেটে গেলে মানুষ আল্লাহরেই মনে রাখে না, আর আমি তো মানুষ।',
+      authorBn: '— ফাহাদ বিন হুসনে আলী (বাবার সাথে গরিবানা দিনের স্মৃতি)',
+      tagBn: 'মূল জীবনদর্শন • God First',
+      textEn: 'When the storm passes, people often forget God, and after all, I am only human.',
+      authorEn: '— Fahad Bin Husne Ali (Memories of hardship shared with Baba)',
+      tagEn: 'Core Philosophy • God First'
+    },
+    {
+      id: 'quote_2',
+      textBn: 'আল্লাহরে ভুলে গেলে আল্লাহ রাগ করে না, তাহলে মানুষকে মনে না রাখলে আমি রাগ করব কেন?',
+      authorBn: '— ফাহাদ বিন হুসনে আলীর বাবা',
+      tagBn: 'বাবার অমৃত বাণী • ক্ষমা ও সহনশীলতা',
+      textEn: 'If God does not get angry when humans forget Him, why should I be angry when people forget me?',
+      authorEn: '— Father of Fahad Bin Husne Ali',
+      tagEn: "Baba's Wisdom • Forgiveness & Grace"
+    },
+    {
+      id: 'quote_3',
+      textBn: 'তুই বড় হয়ে সবাইরে আগলায়ে রাখিস।',
+      authorBn: '— বাবার শেষ উপদেশ',
+      tagBn: 'পারিবারিক বন্ধন • শেষ উপদেশ',
+      textEn: 'When you grow up, keep everyone sheltered and united in love.',
+      authorEn: "— Baba's Final Advice",
+      tagEn: 'Family Bond • Last Guidance'
+    },
+    {
+      id: 'quote_4',
+      textBn: 'বাবার ডায়ালাইসিস হতো গণস্বাস্থ্যে, অল্প টাকায় অনেক ভালোবাসা পেতাম।',
+      authorBn: '— ফাহাদ বিন হুসনে আলী (বাবাকে নিয়ে কৃতজ্ঞতা)',
+      tagBn: 'বাবার স্মৃতি • আজন্ম কৃতজ্ঞতা',
+      textEn: 'Baba had his dialysis at Gonoshasthaya; with very little money, we received an abundance of genuine love.',
+      authorEn: '— Fahad Bin Husne Ali (Gratitude for Baba)',
+      tagEn: 'Memories of Baba • Eternal Gratitude'
+    },
+    {
+      id: 'quote_5',
+      textBn: 'বিপদ কেটে গেলে মানুষ আল্লাহরেই মনে রাখে না, আর আমি তো মানুষ।',
+      authorBn: '— ফাহাদ বিন হুসনে আলীর বাবা (গরিবানা দিনে ছেলেকে দেওয়া উত্তর)',
+      tagBn: 'বাবার মুখের কথা • বিনয় ও উপলব্ধি',
+      textEn: 'When the storm passes, people forget even God, so what am I? I am just a human.',
+      authorEn: '— Father of Fahad Bin Husne Ali (Words spoken during days of poverty)',
+      tagEn: "Baba's Words • Humility & Reflection"
+    },
+    {
+      id: 'quote_6',
+      textBn: 'আল্লাহরে মনে না রাখলে কী আল্লাহ রাগ করে? তাইলে আমার রাগ হয়েই বা লাভ কি? তুই বড় হয়ে সবাইরে আগলায়ে রাখিস।',
+      authorBn: '— ফাহাদ বিন হুসনে আলীর বাবা (জীবনের সবচেয়ে সহজ হিসাব)',
+      tagBn: 'জীবনের সহজ হিসাব • পরম মমতা',
+      textEn: 'Does God rage when humans forget Him? What good then is my anger? Grow up and hold everyone close with love.',
+      authorEn: "— Father of Fahad Bin Husne Ali (Life's Simplest Equation)",
+      tagEn: "Life's Equation • Pure Compassion"
+    },
+    {
+      id: 'quote_7',
+      textBn: 'পাসপোর্টে আমি ফাহাদ, কল্পনায় আমি শাহরুখ খান। স্বপ্ন দেখতে তো টাকা লাগে না।',
+      authorBn: '— ফাহাদ বিন হুসনে আলী (স্বপ্ন নিয়ে)',
+      tagBn: 'স্বপ্নের বিস্তার • অসীম কল্পনা',
+      textEn: 'On my passport, I am Fahad Bin Husne Ali. In my imagination, I am Shahrukh Khan. Dreaming costs nothing.',
+      authorEn: '— Fahad Bin Husne Ali (On Dreams)',
+      tagEn: 'Boundless Dreams • Pure Imagination'
+    },
+    {
+      id: 'quote_8',
+      textBn: 'যাদের স্বপ্ন গড়পড়তা, তাদের জন্য আমার মায়া হয়।',
+      authorBn: '— ফাহাদ বিন হুসনে আলী',
+      tagBn: 'উচ্চাকাঙ্ক্ষা • ভিন্ন চিন্তা',
+      textEn: 'I feel pity for the people whose dreams are average.',
+      authorEn: '— Fahad Bin Husne Ali',
+      tagEn: 'High Ambition • Thinking Beyond'
+    },
+    {
+      id: 'quote_9',
+      textBn: 'ঘরের পাশে এত ইতিহাস রেখে আমি ইউরোপে গিয়ে কী শিখব?',
+      authorBn: '— ফাহাদ বিন হুসনে আলী (ভ্রমণ দর্শন)',
+      tagBn: 'ভ্রমণ দর্শন • প্রাচ্যের ঐতিহ্য',
+      textEn: 'With so much rich history right next door, what will I go learn in Europe?',
+      authorEn: '— Fahad Bin Husne Ali (Travel Philosophy)',
+      tagEn: 'Travel Philosophy • Heritage of the East'
+    },
+    {
+      id: 'quote_10',
+      textBn: 'নেপালের এক গ্রামে এক পরিবারের সাথে একদিন থাকলে যা শিখবে, প্যারিস তোমাকে তা শেখাতে পারবে না।',
+      authorBn: '— ফাহাদ বিন হুসনে আলী',
+      tagBn: 'জীবনবোধ • মাটির মানুষ',
+      textEn: 'Spending one day with a family in a rural Nepali village will teach you what Paris never could.',
+      authorEn: '— Fahad Bin Husne Ali',
+      tagEn: 'Life Lessons • People of the Soil'
+    },
+    {
+      id: 'quote_11',
+      textBn: 'কিডনি ফ্রি তে পেয়েছো, আইফোন না। যেটা ফ্রি পেয়েছো সেটার যত্ন নাও।',
+      authorBn: '— ফাহাদ বিন হুসনে আলী',
+      tagBn: 'স্বাস্থ্য ও শুকরিয়া • অমূল্য উপহার',
+      textEn: 'You got your kidneys for free from God, not an iPhone. Take care of what you received for free.',
+      authorEn: '— Fahad Bin Husne Ali',
+      tagEn: 'Health & Gratitude • Priceless Gift'
+    },
+    {
+      id: 'quote_12',
+      textBn: '১০০ মানুষের ভিড়েও আমি একা বোধ করি, কারণ আমি জানি আমি অন্য কিছুর জন্য জন্মেছি।',
+      authorBn: '— ফাহাদ বিন হুসনে আলী',
+      tagBn: 'আত্ম-অনুসন্ধান • উচ্চতর উদ্দেশ্য',
+      textEn: 'I feel lonely even in a crowd of 100 people, because I know I was born for something greater.',
+      authorEn: '— Fahad Bin Husne Ali',
+      tagEn: 'Soul Search • Higher Purpose'
+    },
+    {
+      id: 'quote_13',
+      textBn: "বোবা মানুষটা শুধু দু'দণ্ড বিশ্রামের জন্য ফুটপাতে বসেছিল, তারপর সে একটা সংখ্যা হয়ে গেল।",
+      authorBn: '— ফাহাদ বিন হুসনে আলী (নীলফামারীর শ্রমিকের গল্প থেকে)',
+      tagBn: 'মানবিক বেদনা • নীরব বাস্তবতা',
+      textEn: 'The mute laborer sat on the pavement just for a moment of rest, and then he simply became a statistic.',
+      authorEn: '— Fahad Bin Husne Ali (From the Stories of Marginalized Workers)',
+      tagEn: 'Human Empathy • Silent Reality'
+    },
+    {
+      id: 'quote_14',
+      textBn: 'ব্যাংকে ২ ঘণ্টা লাইনে দাঁড়িয়ে বুঝলাম, এদেশে টাকার চেয়ে ধৈর্যের দাম বেশি।',
+      authorBn: '— ফাহাদ বিন হুসনে আলী',
+      tagBn: 'নাগরিক অভিজ্ঞতা • বাস্তব উপলব্ধি',
+      textEn: 'Standing in a bank queue for 2 hours made me realize: in this country, patience is far costlier than money.',
+      authorEn: '— Fahad Bin Husne Ali',
+      tagEn: 'Citizen Observation • Real Life'
+    },
+    {
+      id: 'quote_15',
+      textBn: 'God First, তারপর বাকি সব।',
+      authorBn: '— ফাহাদ বিন হুসনে আলী',
+      tagBn: 'ঈমান ও বিশ্বাস • অটল নীতি',
+      textEn: 'God First, and then everything else follows.',
+      authorEn: '— Fahad Bin Husne Ali',
+      tagEn: 'Faith & Devotion • Core Creed'
+    },
+    {
+      id: 'quote_16',
+      textBn: 'কল্পনা করতে যখন পয়সা লাগে না, তখন ছোট ভাবব কেন? বড় স্বপ্ন দেখুন, এতে কোনো খরচ নেই...',
+      authorBn: '— ফাহাদ বিন হুসনে আলী (স্বপ্ন নিয়ে)',
+      tagBn: 'অনুপ্রেরণা • স্বপ্নের শক্তি',
+      textEn: "Why should we imagine less when it's free? Dream big, it costs you nothing...",
+      authorEn: '— Fahad Bin Husne Ali (On Dreams)',
+      tagEn: 'Inspiration • The Power of Dreams'
+    },
+    {
+      id: 'quote_17',
+      textBn: 'কিডনি এক অমূল্য নেয়ামত। এই পরিস্থিতির মুখোমুখি না হলে বুঝবেন না। সৃষ্টিকর্তা যা বিনামূল্যে দিয়েছেন তার মর্যাদা দিন।',
+      authorBn: '— ফাহাদ বিন হুসনে আলী (কিডনি পেশেন্ট হিসেবে)',
+      tagBn: 'জীবন ও সুস্থতা • আত্মোপলব্ধি',
+      textEn: "Your kidneys are precious. You don't know if you've never been in this situation. Pls respect what God gave you for free.",
+      authorEn: '— Fahad Bin Husne Ali (Reflections of a Fighter)',
+      tagEn: 'Life & Wellness • Deep Reflection'
+    }
+  ];
+
   // ==========================================
   // ADMIN DATA STORE
   // ==========================================
@@ -214,6 +370,10 @@
           }
           if (!this.data.social) {
             this.data.social = JSON.parse(JSON.stringify(DEFAULT_SOCIAL));
+            modified = true;
+          }
+          if (!this.data.quotes || !this.data.quotes.length) {
+            this.data.quotes = JSON.parse(JSON.stringify(DEFAULT_QUOTES));
             modified = true;
           }
           if (this.data.heroFbPost) {
@@ -295,6 +455,7 @@
       this.data = {
         hero: JSON.parse(JSON.stringify(DEFAULT_HERO)),
         social: JSON.parse(JSON.stringify(DEFAULT_SOCIAL)),
+        quotes: JSON.parse(JSON.stringify(DEFAULT_QUOTES)),
         travelGallery: [...DEFAULT_TRAVEL_GALLERY],
         loveCards: [...DEFAULT_LOVE_CARDS],
         articles: JSON.parse(JSON.stringify(DEFAULT_ARTICLES)),
@@ -388,6 +549,7 @@
     const titles = {
       'overview': 'ড্যাশবোর্ড ও সার্বিক পরিসংখ্যান',
       'hero-section': 'হিরো সেকশন ও প্রোফাইল কন্ট্রোল',
+      'quotes': 'উক্তি ও জীবনদর্শন ব্যবস্থাপনা (Quotes & Philosophy)',
       'travel-gallery': 'প্যারালাক্স ট্রাভেল গ্যালারি (Carousel)',
       'love-cards': 'লাভ ও ফ্যামিলি মেমোরিজ (3D Cards)',
       'articles': 'লেখালেখি ও ব্লগ (Articles)',
@@ -400,6 +562,7 @@
     // Render tab specifics
     if (tabId === 'overview') renderDashboard();
     else if (tabId === 'hero-section') renderHeroSection();
+    else if (tabId === 'quotes') renderQuotes();
     else if (tabId === 'travel-gallery') renderTravelGallery();
     else if (tabId === 'love-cards') renderLoveCards();
     else if (tabId === 'articles') renderArticles();
@@ -432,12 +595,16 @@
   // ==========================================
   function renderDashboard() {
     const photos = AdminStore.data.travelGallery || [];
+    const quotes = AdminStore.data.quotes || [];
     const loveCards = AdminStore.data.loveCards || [];
     const articles = AdminStore.data.articles || [];
     const ventures = AdminStore.data.ventures || [];
 
     const pCountEl = document.getElementById('statCountPhotos');
     if (pCountEl) pCountEl.textContent = photos.length;
+
+    const qCountEl = document.getElementById('statCountQuotes');
+    if (qCountEl) qCountEl.textContent = quotes.length;
 
     const lCountEl = document.getElementById('statCountLove');
     if (lCountEl) lCountEl.textContent = loveCards.length;
@@ -451,6 +618,8 @@
     // Badges in sidebar
     const bPhotos = document.getElementById('badgePhotos');
     if (bPhotos) bPhotos.textContent = photos.length;
+    const bQuotes = document.getElementById('badgeQuotes');
+    if (bQuotes) bQuotes.textContent = quotes.length;
     const bLove = document.getElementById('badgeLove');
     if (bLove) bLove.textContent = loveCards.length;
     const bArticles = document.getElementById('badgeArticles');
@@ -1552,6 +1721,181 @@
       AdminStore.resetToDefaults();
       renderDashboard();
       showToast('সব কনটেন্ট ফ্যাক্টরি ডিফল্টে রিসেট করা হয়েছে। 🔄');
+    }
+  };
+
+  // ==========================================
+  // QUOTES & PHILOSOPHY CMS (SECTION 1.5)
+  // ==========================================
+  window.renderQuotes = function (filterText = '') {
+    const grid = document.getElementById('quotesAdminGrid');
+    if (!grid) return;
+
+    let quotes = AdminStore.data.quotes || [];
+    if (filterText && filterText.trim()) {
+      const q = filterText.toLowerCase().trim();
+      quotes = quotes.filter(item =>
+        (item.textBn && item.textBn.toLowerCase().includes(q)) ||
+        (item.authorBn && item.authorBn.toLowerCase().includes(q)) ||
+        (item.textEn && item.textEn.toLowerCase().includes(q)) ||
+        (item.authorEn && item.authorEn.toLowerCase().includes(q)) ||
+        (item.tagBn && item.tagBn.toLowerCase().includes(q)) ||
+        (item.tagEn && item.tagEn.toLowerCase().includes(q))
+      );
+    }
+
+    if (quotes.length === 0) {
+      grid.innerHTML = `<div class="empty-state" style="grid-column: 1 / -1; padding: 2.5rem; text-align: center; color: var(--text-muted);">
+        <i class="fa-solid fa-quote-left" style="font-size: 2rem; margin-bottom: 0.75rem; opacity: 0.5;"></i>
+        <p>কোনো উক্তি পাওয়া যায়নি। "নতুন উক্তি যোগ করুন" বাটনে ক্লিক করুন।</p>
+      </div>`;
+      return;
+    }
+
+    grid.innerHTML = quotes.map((item, index) => {
+      return `
+        <div class="admin-item-card" style="display: flex; flex-direction: column; justify-content: space-between; border-left: 4px solid #f59e0b;">
+          <div class="card-body-wrap" style="padding: 1.25rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+              <span class="card-row-tag" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); font-weight: 700; border-radius: 6px; padding: 0.2rem 0.6rem; font-size: 0.75rem;">
+                #${index + 1} &bull; ${escapeHtml(item.tagBn || 'উক্তি')}
+              </span>
+              <span style="font-size: 0.72rem; color: var(--text-muted); font-family: monospace;">${escapeHtml(item.id || '')}</span>
+            </div>
+            
+            <div style="margin-bottom: 0.85rem;">
+              <p class="bengali-font" style="font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin-bottom: 0.4rem; line-height: 1.5;">
+                "${escapeHtml(item.textBn || '')}"
+              </p>
+              <p class="bengali-font" style="font-size: 0.8rem; color: #fbbf24; font-style: italic;">
+                ${escapeHtml(item.authorBn || '')}
+              </p>
+            </div>
+
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 0.65rem; margin-bottom: 0.75rem;">
+              <div style="display: flex; align-items: center; gap: 0.35rem; color: #38bdf8; font-size: 0.72rem; font-weight: 600; margin-bottom: 0.25rem;">
+                <i class="fa-solid fa-globe"></i> English Version:
+              </div>
+              <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 0.25rem;">
+                "${escapeHtml(item.textEn || '')}"
+              </p>
+              <p style="font-size: 0.75rem; color: #94a3b8; font-style: italic;">
+                ${escapeHtml(item.authorEn || '')}
+              </p>
+            </div>
+          </div>
+
+          <div class="card-actions-bar" style="padding: 0.75rem 1.25rem; border-top: 1px solid var(--border-color); background: rgba(0,0,0,0.1); display: flex; gap: 0.5rem; justify-content: flex-end;">
+            <button type="button" class="btn-secondary" onclick="openEditQuoteModal('${escapeHtml(item.id)}')" style="padding: 0.35rem 0.75rem; font-size: 0.8rem;">
+              <i class="fa-solid fa-pen-to-square"></i> <span>এডিট</span>
+            </button>
+            <button type="button" class="btn-danger" onclick="deleteQuote('${escapeHtml(item.id)}')" style="padding: 0.35rem 0.75rem; font-size: 0.8rem;">
+              <i class="fa-solid fa-trash-can"></i> <span>মুছুন</span>
+            </button>
+          </div>
+        </div>
+      `;
+    }).join('');
+  };
+
+  window.openAddQuoteModal = function () {
+    const modal = document.getElementById('quoteEditModal');
+    const titleEl = document.getElementById('quoteModalTitle');
+    const form = document.getElementById('quoteEditForm');
+    if (!modal || !form) return;
+
+    if (titleEl) titleEl.textContent = 'নতুন উক্তি যোগ করুন (Add New Quote)';
+    form.reset();
+    document.getElementById('quoteEditId').value = '';
+    modal.classList.add('active');
+  };
+
+  window.openEditQuoteModal = function (id) {
+    const quote = (AdminStore.data.quotes || []).find(q => q.id === id);
+    if (!quote) return;
+
+    const modal = document.getElementById('quoteEditModal');
+    const titleEl = document.getElementById('quoteModalTitle');
+    if (!modal) return;
+
+    if (titleEl) titleEl.textContent = 'উক্তি সম্পাদনা করুন (Edit Quote)';
+    document.getElementById('quoteEditId').value = quote.id || '';
+    document.getElementById('quoteTextBnInput').value = quote.textBn || '';
+    document.getElementById('quoteAuthorBnInput').value = quote.authorBn || '';
+    document.getElementById('quoteTagBnInput').value = quote.tagBn || '';
+    document.getElementById('quoteTextEnInput').value = quote.textEn || '';
+    document.getElementById('quoteAuthorEnInput').value = quote.authorEn || '';
+    document.getElementById('quoteTagEnInput').value = quote.tagEn || '';
+
+    modal.classList.add('active');
+  };
+
+  window.closeQuoteModal = function () {
+    const modal = document.getElementById('quoteEditModal');
+    if (modal) modal.classList.remove('active');
+  };
+
+  window.handleQuoteFormSubmit = function (e) {
+    if (e) e.preventDefault();
+    const id = document.getElementById('quoteEditId').value.trim();
+    const textBn = document.getElementById('quoteTextBnInput').value.trim();
+    const authorBn = document.getElementById('quoteAuthorBnInput').value.trim();
+    const tagBn = document.getElementById('quoteTagBnInput').value.trim();
+    const textEn = document.getElementById('quoteTextEnInput').value.trim();
+    const authorEn = document.getElementById('quoteAuthorEnInput').value.trim();
+    const tagEn = document.getElementById('quoteTagEnInput').value.trim();
+
+    if (!textBn || !authorBn || !textEn || !authorEn) {
+      alert('অনুগ্রহ করে বাংলা ও ইংরেজি উভয় ভার্সনের উক্তি ও বক্তার নাম লিখুন!');
+      return;
+    }
+
+    if (!AdminStore.data.quotes) AdminStore.data.quotes = [];
+
+    if (id) {
+      // Edit existing
+      const idx = AdminStore.data.quotes.findIndex(q => q.id === id);
+      if (idx !== -1) {
+        AdminStore.data.quotes[idx] = {
+          id,
+          textBn,
+          authorBn,
+          tagBn: tagBn || 'মূল দর্শন',
+          textEn,
+          authorEn,
+          tagEn: tagEn || 'Core Philosophy'
+        };
+        showToast('উক্তি সফলভাবে আপডেট করা হয়েছে! ✨');
+      }
+    } else {
+      // Add new
+      const newId = 'quote_' + Date.now();
+      AdminStore.data.quotes.push({
+        id: newId,
+        textBn,
+        authorBn,
+        tagBn: tagBn || 'মূল দর্শন',
+        textEn,
+        authorEn,
+        tagEn: tagEn || 'Core Philosophy'
+      });
+      showToast('নতুন উক্তি সফলভাবে যুক্ত করা হয়েছে! 💬');
+    }
+
+    AdminStore.save('quotes');
+    closeQuoteModal();
+    renderQuotes();
+    renderDashboard();
+  };
+
+  window.deleteQuote = function (id) {
+    if (confirm('আপনি কি নিশ্চিত যে এই উক্তিটি মুছে ফেলতে চান?')) {
+      if (!AdminStore.data.quotes) return;
+      AdminStore.data.quotes = AdminStore.data.quotes.filter(q => q.id !== id);
+      AdminStore.save('quotes');
+      renderQuotes();
+      renderDashboard();
+      showToast('উক্তি মুছে ফেলা হয়েছে। 🗑️');
     }
   };
 

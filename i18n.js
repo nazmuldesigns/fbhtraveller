@@ -749,6 +749,7 @@
     if (typeof window.renderVentures === 'function') window.renderVentures();
     if (typeof window.renderParallaxCarouselTracks === 'function') window.renderParallaxCarouselTracks();
     if (typeof window.renderRotatingCards === 'function') window.renderRotatingCards();
+    if (typeof window.renderQuotes === 'function') window.renderQuotes();
   }
 
   window.toggleLanguage = function () {

@@ -55,7 +55,9 @@
   <header class="navbar-wrapper" id="mainHeader">
     <nav class="navbar glass-card">
       <a href="#hero" class="nav-brand">
-        <span class="brand-monogram">FBH</span>
+        <div class="brand-avatar-box">
+          <img src="./Asist/Personal/profile1.jpg" alt="Fahad Bin Husne Ali" class="brand-avatar-img">
+        </div>
         <div class="brand-text">
           <span class="brand-name">Fahad Bin Husne Ali</span>
           <span class="brand-tagline" data-i18n="navTagline">God First • নোম্যাড • বিল্ডার</span>
@@ -296,15 +298,21 @@
           </div>
         </div>
 
-        <!-- Featured Quote Highlight -->
-        <div class="quote-editorial-box glass-card">
+        <!-- Featured Auto-Rotating Quote Highlight -->
+        <div class="quote-editorial-box glass-card" id="quoteEditorialBox">
           <div class="quote-sign"><i class="fa-solid fa-quote-left"></i></div>
-          <blockquote class="editorial-quote bengali-font" id="editorialQuoteText" data-i18n="quoteText">
-            "বিপদ কেটে গেলে মানুষ আর আল্লাহরেই মনে রাখে না..."
-          </blockquote>
-          <p class="editorial-author" id="editorialQuoteAuthor" data-i18n="quoteAuthor">— ফাহাদ বিন হুসনে আলী (বাবার সাথে জীবনের গভীর উপলব্ধির
-            স্মৃতি)</p>
-          <div class="editorial-tag-pill" data-i18n="quoteTag">মূল জীবনদর্শন • God First</div>
+          <div class="quote-content-wrapper" id="quoteContentWrapper">
+            <blockquote class="editorial-quote bengali-font" id="editorialQuoteText">
+              "বিপদ কেটে গেলে মানুষ আর আল্লাহরেই মনে রাখে না..."
+            </blockquote>
+            <p class="editorial-author" id="editorialQuoteAuthor">
+              — ফাহাদ বিন হুসনে আলী (বাবার সাথে জীবনের গভীর উপলব্ধির স্মৃতি)
+            </p>
+            <div class="editorial-tag-pill" id="editorialQuoteTag">
+              মূল জীবনদর্শন • God First
+            </div>
+          </div>
+          <div class="quote-indicators" id="quoteIndicators" aria-label="Quote Selector"></div>
         </div>
 
         <!-- Dynamic Articles Grid (2 Columns, 3 Rows initially, Compact Thumbnails) -->
@@ -1565,7 +1573,9 @@
   <footer class="footer-wrapper">
     <div class="container footer-container">
       <div class="footer-brand">
-        <span class="brand-monogram">FBH</span>
+        <div class="brand-avatar-box">
+          <img src="./Asist/Personal/profile1.jpg" alt="Fahad Bin Husne Ali" class="brand-avatar-img">
+        </div>
         <span class="footer-name">Fahad Bin Husne Ali</span>
       </div>
       <p class="footer-creed" id="footerCreedText" data-i18n="footerCreed">
