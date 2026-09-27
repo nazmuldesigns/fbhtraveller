@@ -185,10 +185,27 @@
           if (!this.data.articles || !this.data.articles.length) {
             this.data.articles = JSON.parse(JSON.stringify(DEFAULT_ARTICLES));
             modified = true;
+          } else {
+            this.data.articles.forEach(a => {
+              const defaultA = DEFAULT_ARTICLES.find(da => da.id === a.id);
+              if (defaultA) {
+                if (!a.coverImg && defaultA.coverImg) { a.coverImg = defaultA.coverImg; modified = true; }
+                if (!a.snippet && (defaultA.snippet || defaultA.excerpt)) { a.snippet = defaultA.snippet || defaultA.excerpt; modified = true; }
+              }
+            });
           }
           if (!this.data.ventures || !this.data.ventures.length) {
             this.data.ventures = JSON.parse(JSON.stringify(DEFAULT_VENTURES));
             modified = true;
+          } else {
+            this.data.ventures.forEach(v => {
+              const defaultV = DEFAULT_VENTURES.find(dv => dv.id === v.id);
+              if (defaultV) {
+                if (!v.coverImg && defaultV.coverImg) { v.coverImg = defaultV.coverImg; modified = true; }
+                if (!v.snippet && (defaultV.snippet || defaultV.description)) { v.snippet = defaultV.snippet || defaultV.description; modified = true; }
+                if (!v.content && defaultV.content) { v.content = defaultV.content; modified = true; }
+              }
+            });
           }
           if (!this.data.settings) {
             this.data.settings = { passcode: '2026' };
