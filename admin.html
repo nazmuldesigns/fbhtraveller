@@ -90,9 +90,14 @@
           <span>প্যারালাক্স গ্যালারি</span>
           <span class="sidebar-badge" id="badgePhotos">20</span>
         </button>
+        <button class="sidebar-btn" data-tab="roots-love" onclick="switchTab('roots-love')">
+          <i class="fa-solid fa-shield-heart" style="color: #f43f5e;"></i>
+          <span>শিকড় ও পরিবার (Roots)</span>
+          <span class="sidebar-badge" style="background: rgba(244,63,94,0.2); color: #f43f5e;">Roots</span>
+        </button>
         <button class="sidebar-btn" data-tab="love-cards" onclick="switchTab('love-cards')">
           <i class="fa-solid fa-heart"></i>
-          <span>লাভ ও ৩ডি কার্ডস</span>
+          <span>৩ডি রোটেটিং লাভ কার্ডস</span>
           <span class="sidebar-badge" id="badgeLove">10</span>
         </button>
 
@@ -260,6 +265,173 @@
 
         <div class="admin-grid" id="travelGalleryGrid">
           <!-- Rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- TAB: ROOTS & FAMILY -->
+      <section class="admin-tab-content" id="tab-roots-love">
+        <div class="section-controls-bar">
+          <div>
+            <h2 class="bengali-font">শিকড়, পরিবার ও চিরন্তন ভালোবাসা (Roots & Family CMS)</h2>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">বাবার প্রতি শ্রদ্ধাঞ্জলি (Baba Tribute), পারিবারিক অ্যালবাম এবং ভালোবাসার শোকেস ছবি ম্যানেজ করুন</p>
+          </div>
+        </div>
+
+        <!-- 1. BABA TRIBUTE SECTION -->
+        <div class="admin-card" style="margin-bottom: 2rem;">
+          <div class="admin-card-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(245, 158, 11, 0.15); display: flex; align-items: center; justify-content: center; color: #f59e0b; font-size: 1.1rem;">
+                <i class="fa-solid fa-shield-heart"></i>
+              </div>
+              <div>
+                <h3 style="margin: 0; font-size: 1.15rem;" class="bengali-font">আমার বাবা, আমার বাতিঘর (Special Tribute to Baba)</h3>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">বাবার মূল ছবি, অ্যালবাম থাম্বনেইলস ও স্মৃতিকথা সম্পাদনা</span>
+              </div>
+            </div>
+            <button class="btn-primary" onclick="saveBabaTribute(event)">
+              <i class="fa-solid fa-floppy-disk"></i> বাবার তথ্য সেভ করুন
+            </button>
+          </div>
+
+          <form id="babaTributeForm" onsubmit="saveBabaTribute(event)">
+            <!-- Primary Baba Photo -->
+            <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem; margin-bottom: 1.5rem;">
+              <h4 style="margin-top: 0; margin-bottom: 0.75rem; color: #f59e0b; font-size: 0.95rem;">
+                <i class="fa-solid fa-camera"></i> বাবার মূল প্রধান ছবি (Primary Showcase Image)
+              </h4>
+              <div class="form-row" style="align-items: flex-start;">
+                <div style="width: 140px; flex-shrink: 0;">
+                  <div class="img-preview-box" style="height: 140px; margin: 0; cursor: pointer;" onclick="document.getElementById('babaPrimaryFileInput').click()">
+                    <img id="babaPrimaryPreviewImg" src="./Asist/Family/f.3.jpg" alt="Baba Preview" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                  </div>
+                  <input type="file" id="babaPrimaryFileInput" class="file-input-hidden" accept="image/*"
+                    onchange="handleImageUpload('babaPrimaryFileInput', 'babaPrimaryImgInput', 'babaPrimaryPreviewImg')">
+                </div>
+                <div style="flex: 1;">
+                  <div class="form-group" style="margin-bottom: 0.75rem;">
+                    <label class="form-label" for="babaPrimaryImgInput">ছবির পাথ বা Cloud URL</label>
+                    <input type="text" id="babaPrimaryImgInput" class="form-input" placeholder="./Asist/Family/f.3.jpg"
+                      oninput="document.getElementById('babaPrimaryPreviewImg').src = this.value">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label" for="babaImgTagInput">ছবির ট্যাগ / ক্যাপশন ব্যাজ</label>
+                    <input type="text" id="babaImgTagInput" class="form-input bengali-font" placeholder="বাবা ও আমি">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Baba Thumbnails Gallery -->
+            <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem; margin-bottom: 1.5rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h4 style="margin: 0; color: #f59e0b; font-size: 0.95rem;">
+                  <i class="fa-solid fa-images"></i> বাবার স্মৃতির অ্যালবাম ছবিসমূহ (Baba Thumbnails)
+                </h4>
+                <button type="button" class="btn-primary" style="padding: 0.4rem 0.8rem; font-size: 0.82rem;" onclick="openAddBabaThumbModal()">
+                  <i class="fa-solid fa-plus"></i> নতুন বাবার ছবি যোগ করুন
+                </button>
+              </div>
+              <div class="admin-grid" id="babaThumbsGrid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+
+            <!-- Tribute Texts -->
+            <div class="form-group">
+              <label class="form-label" for="babaBadgeInput">বাবার ব্যাজ (Badge)</label>
+              <input type="text" id="babaBadgeInput" class="form-input bengali-font" placeholder="আমার বাবা, আমার বাতিঘর">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="babaTitleInput">বাবার ট্রিবিউট শিরোনাম (Title)</label>
+              <input type="text" id="babaTitleInput" class="form-input bengali-font" placeholder="বাবার ছায়া: যেখানে সব ঝড় শান্ত হয়ে যায়">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="babaBody1Input">প্রথম অনুচ্ছেদ (Body Paragraph 1)</label>
+              <textarea id="babaBody1Input" class="form-textarea bengali-font" rows="3" placeholder="পৃথিবীর বহু দেশ ঘুরলাম..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="babaQuoteInput">বাবার মূল উপদেশ / উক্তি (Special Quote Callout)</label>
+              <textarea id="babaQuoteInput" class="form-textarea bengali-font" rows="3" placeholder="বিপদ যখন মাথার ওপর আসে..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="babaBody2Input">দ্বিতীয় অনুচ্ছেদ (Body Paragraph 2)</label>
+              <textarea id="babaBody2Input" class="form-textarea bengali-font" rows="3" placeholder="প্লেনের সিটে পাশে বসা বাবার মুখে যখন..."></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="babaTrait1Input">গুণ ১ (Trait 1)</label>
+                <input type="text" id="babaTrait1Input" class="form-input bengali-font" placeholder="দোয়ার স্তম্ভ">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="babaTrait2Input">গুণ ২ (Trait 2)</label>
+                <input type="text" id="babaTrait2Input" class="form-input bengali-font" placeholder="নৈতিক দিশা">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="babaTrait3Input">গুণ ৩ (Trait 3)</label>
+                <input type="text" id="babaTrait3Input" class="form-input bengali-font" placeholder="বটবৃক্ষের ছায়া">
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; margin-top: 1rem;">
+              <button type="submit" class="btn-primary">
+                <i class="fa-solid fa-floppy-disk"></i> বাবার তথ্য সংরক্ষণ করুন (Save Tribute)
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- 2. WIFE & LOVE SHOWCASE SECTION -->
+        <div class="admin-card">
+          <div class="admin-card-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(244, 63, 94, 0.15); display: flex; align-items: center; justify-content: center; color: #f43f5e; font-size: 1.1rem;">
+                <i class="fa-solid fa-gem"></i>
+              </div>
+              <div>
+                <h3 style="margin: 0; font-size: 1.15rem;" class="bengali-font">সহধর্মিণী ও ভালোবাসা শোকেস (Love Showcase)</h3>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">৩টি বড় শোকেস ছবি ও শিরোনাম ম্যানেজ করুন</span>
+              </div>
+            </div>
+            <button class="btn-primary" onclick="saveLoveHeader(event)">
+              <i class="fa-solid fa-floppy-disk"></i> শোকেস হেডার সেভ করুন
+            </button>
+          </div>
+
+          <form id="loveHeaderForm" onsubmit="saveLoveHeader(event)" style="margin-bottom: 1.5rem;">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="loveBadgeInput">সেকশন ব্যাজ (Badge)</label>
+                <input type="text" id="loveBadgeInput" class="form-input bengali-font" placeholder="চিরন্তন সহযাত্রী">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="loveTitleInput2">সেকশন শিরোনাম (Title)</label>
+                <input type="text" id="loveTitleInput2" class="form-input bengali-font" placeholder="দুটি প্রাণ, এক অনন্ত দিগন্ত">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="loveSubtitleInput">সাবটাইটেল / ক্যাপশন (Subtitle)</label>
+              <input type="text" id="loveSubtitleInput" class="form-input bengali-font" placeholder="সিল্ক রোডের রাজকীয় স্থাপত্য থেকে পাহাড়ি হ্রদ...">
+            </div>
+          </form>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h4 style="margin: 0; color: #f43f5e; font-size: 0.95rem;">
+              <i class="fa-solid fa-images"></i> শোকেস ছবিসমূহ (Love Showcase Cards)
+            </h4>
+            <button type="button" class="btn-primary" style="padding: 0.4rem 0.8rem; font-size: 0.82rem;" onclick="openAddLoveShowcaseModal()">
+              <i class="fa-solid fa-plus"></i> নতুন শোকেস ছবি যোগ করুন
+            </button>
+          </div>
+
+          <div class="admin-grid" id="loveShowcaseGrid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;">
+            <!-- Rendered dynamically -->
+          </div>
         </div>
       </section>
 
@@ -671,6 +843,123 @@
 
         <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1rem;">
           <button type="button" class="btn-secondary" onclick="closeLoveModal()">বাতিল</button>
+          <button type="submit" class="btn-primary">
+            <i class="fa-solid fa-floppy-disk"></i> সংরক্ষণ করুন (Save)
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL 2B: BABA THUMBNAIL ADD / EDIT
+       ========================================== -->
+  <div class="admin-modal" id="babaThumbModal">
+    <div class="admin-modal-backdrop" onclick="closeBabaThumbModal()"></div>
+    <div class="admin-modal-card">
+      <div class="modal-header">
+        <h3 id="babaThumbModalTitle">বাবার স্মৃতি অ্যালবাম ছবি যোগ / এডিট</h3>
+        <button class="modal-close-btn" onclick="closeBabaThumbModal()" type="button">&times;</button>
+      </div>
+
+      <form class="modal-form" id="babaThumbForm" onsubmit="handleBabaThumbFormSubmit(event)">
+        <input type="hidden" id="babaThumbEditId">
+
+        <div class="form-group">
+          <label class="form-label" for="babaThumbCaptionInput">ছবির ক্যাপশন / নাম *</label>
+          <input type="text" id="babaThumbCaptionInput" class="form-input bengali-font" placeholder="যেমন: মর্যাদাবান বাবা / আকাশপথে সফর" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="babaThumbDescInput">ছবির বর্ণনা (Lightbox Description)</label>
+          <input type="text" id="babaThumbDescInput" class="form-input" placeholder="যেমন: Father portrait at the sea shore in formal suit">
+        </div>
+
+        <!-- Image Selection / Upload -->
+        <div class="form-group">
+          <label class="form-label" for="babaThumbUrlInput"><i class="fa-solid fa-image text-gold"></i> বাবার ছবি (Image File / Cloud URL) *</label>
+          <div class="img-picker-container">
+            <div class="img-preview-box" onclick="document.getElementById('babaThumbFileInput').click()">
+              <div class="placeholder-text" id="babaThumbPreviewPlaceholder">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <span>কম্পিউটার থেকে ছবি আপলোড করতে ক্লিক করুন</span>
+              </div>
+              <img id="babaThumbPreviewImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="Preview" style="display: none;">
+            </div>
+            <input type="file" id="babaThumbFileInput" class="file-input-hidden" accept="image/*"
+              onchange="handleImageUpload('babaThumbFileInput', 'babaThumbUrlInput', 'babaThumbPreviewImg', 'babaThumbPreviewPlaceholder')">
+
+            <div class="img-options-divider">অথবা ছবির সরাসরি পাথ / URL দিন</div>
+
+            <input type="text" id="babaThumbUrlInput" class="form-input"
+              placeholder="./Asist/Family/f.1.jpg বা https://..."
+              oninput="onBabaThumbUrlInput(this.value)" required>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1rem;">
+          <button type="button" class="btn-secondary" onclick="closeBabaThumbModal()">বাতিল</button>
+          <button type="submit" class="btn-primary">
+            <i class="fa-solid fa-floppy-disk"></i> সংরক্ষণ করুন (Save)
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL 2C: LOVE SHOWCASE ADD / EDIT
+       ========================================== -->
+  <div class="admin-modal" id="loveShowcaseModal">
+    <div class="admin-modal-backdrop" onclick="closeLoveShowcaseModal()"></div>
+    <div class="admin-modal-card">
+      <div class="modal-header">
+        <h3 id="loveShowcaseModalTitle">ভালোবাসার শোকেস কার্ড যোগ / এডিট</h3>
+        <button class="modal-close-btn" onclick="closeLoveShowcaseModal()" type="button">&times;</button>
+      </div>
+
+      <form class="modal-form" id="loveShowcaseForm" onsubmit="handleLoveShowcaseFormSubmit(event)">
+        <input type="hidden" id="loveShowcaseEditId">
+
+        <div class="form-group">
+          <label class="form-label" for="loveShowcaseTagInput">পিল ট্যাগ / শিরোনাম *</label>
+          <input type="text" id="loveShowcaseTagInput" class="form-input" placeholder="যেমন: Samarkand Fairytale" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="loveShowcaseIconInput">ট্যাগ আইকন ক্লাস (FontAwesome)</label>
+          <input type="text" id="loveShowcaseIconInput" class="form-input" placeholder="fa-solid fa-crown বা fa-solid fa-ship">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="loveShowcaseQuoteInput">ভালোবাসার কোট / ক্যাপশন *</label>
+          <textarea id="loveShowcaseQuoteInput" class="form-textarea" rows="2" placeholder='যেমন: "Living our own historic tale in the heart of Central Asia."' required></textarea>
+        </div>
+
+        <!-- Image Selection / Upload -->
+        <div class="form-group">
+          <label class="form-label" for="loveShowcaseUrlInput"><i class="fa-solid fa-image text-gold"></i> শোকেস ছবি (Image File / Cloud URL) *</label>
+          <div class="img-picker-container">
+            <div class="img-preview-box" onclick="document.getElementById('loveShowcaseFileInput').click()">
+              <div class="placeholder-text" id="loveShowcasePreviewPlaceholder">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <span>কম্পিউটার থেকে ছবি বেছে নিতে ক্লিক করুন</span>
+              </div>
+              <img id="loveShowcasePreviewImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="Preview" style="display: none;">
+            </div>
+            <input type="file" id="loveShowcaseFileInput" class="file-input-hidden" accept="image/*"
+              onchange="handleImageUpload('loveShowcaseFileInput', 'loveShowcaseUrlInput', 'loveShowcasePreviewImg', 'loveShowcasePreviewPlaceholder')">
+
+            <div class="img-options-divider">অথবা ছবির পাথ / লিঙ্ক দিন</div>
+
+            <input type="text" id="loveShowcaseUrlInput" class="form-input"
+              placeholder="./Asist/Love/l.1.jpg বা https://..."
+              oninput="onLoveShowcaseUrlInput(this.value)" required>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1rem;">
+          <button type="button" class="btn-secondary" onclick="closeLoveShowcaseModal()">বাতিল</button>
           <button type="submit" class="btn-primary">
             <i class="fa-solid fa-floppy-disk"></i> সংরক্ষণ করুন (Save)
           </button>

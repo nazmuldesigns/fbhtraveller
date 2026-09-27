@@ -747,6 +747,36 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 'love_10', img: './Asist/card/10.jpg', tag: 'Silk Road Fairytale', title: 'সমারখন্দের সুলতান ও রানী', desc: 'ঐতিহাসিক সিল্ক রোডের স্থাপত্যে যুগল রূপকথা— রাজকীয় ঐতিহ্যে এক অবিস্মরণীয় ভালোবাসার স্মারক।' }
   ];
 
+  const DEFAULT_ROOTS = {
+    // Baba (Father) Tribute
+    babaBadge: 'আমার বাবা, আমার বাতিঘর',
+    babaPrimaryImg: './Asist/Family/f.3.jpg',
+    babaImgTag: 'বাবা ও আমি',
+    babaPrimaryDesc: 'Fahad and his father standing affectionately side-by-side on the beach',
+    babaTitle: 'বাবার ছায়া: যেখানে সব ঝড় শান্ত হয়ে যায়',
+    babaBody1: 'পৃথিবীর বহু দেশ ঘুরলাম, কত রথী-মহারথীর সান্নিধ্য দেখলাম— কিন্তু বাবার কাঁধে হাত রেখে দাঁড়ানোর যে তৃপ্তি ও শক্তি, তা আর কোথাও নেই।',
+    babaQuote: 'বিপদ যখন মাথার ওপর আসে, তখন মানুষ হাত তুলে প্রভুর কাছে কাঁদে। কিন্তু বিপদ কেটে গেলে মানুষ আবার সব ভুলে যায়... বাবা আমাকে শিখিয়েছেন সব অবস্থায় কৃতজ্ঞ থাকতে, মাটিকে ভালোবাসতে, আর আল্লাহকে জীবনে সবার প্রথমে রাখতে।',
+    babaBody2: 'প্লেনের সিটে পাশে বসা বাবার মুখে যখন শান্তির হাসি দেখি, কিংবা সমুদ্রের তীরে বাবার পাশে দাঁড়িয়ে বলি— "বাবা, আমি আছি তো"— সেটাই আমার জীবনের সেরা অর্জন।',
+    trait1: 'দোয়ার স্তম্ভ',
+    trait2: 'নৈতিক দিশা',
+    trait3: 'বটবৃক্ষের ছায়া',
+    babaThumbs: [
+      { id: 'bt_1', img: './Asist/Family/f.1.jpg', caption: 'মর্যাদাবান বাবা', lightboxDesc: 'Father portrait at the sea shore in formal suit' },
+      { id: 'bt_2', img: './Asist/Family/f.2.jpg', caption: 'আকাশপথে সফর', lightboxDesc: 'Fahad traveling on an airplane with his father' },
+      { id: 'bt_3', img: './Asist/Family/f.5.jpg', caption: 'গ্রামের ভিটেমাটি', lightboxDesc: 'Father and son in the lush greenery of their village home' },
+      { id: 'bt_4', img: './Asist/Family/f.4.jpg', caption: 'স্মৃতির পাতা', lightboxDesc: 'Elevator mirror selfie with Baba' }
+    ],
+    // Wife & Love Showcase
+    loveBadge: 'চিরন্তন সহযাত্রী',
+    loveTitle: 'দুটি প্রাণ, এক অনন্ত দিগন্ত',
+    loveSubtitle: 'সিল্ক রোডের রাজকীয় স্থাপত্য থেকে পাহাড়ি হ্রদ আর গ্রামের সবুজ আঙিনা।',
+    loveShowcases: [
+      { id: 'ls_1', img: './Asist/Love/l.1.jpg', pillIcon: 'fa-solid fa-crown', pillText: 'Samarkand Fairytale', quote: '"Living our own historic tale in the heart of Central Asia."', lightboxDesc: 'Fahad and his wife in royal traditional Uzbek robes in Samarkand' },
+      { id: 'ls_2', img: './Asist/Love/l.3.jpg', pillIcon: 'fa-solid fa-ship', pillText: 'Phewa Lake, Pokhara', quote: '"Drifting across calm mountain waters, surrounded by peace."', lightboxDesc: 'Fahad and his wife resting serenely on a blue wooden boat on Phewa Lake, Pokhara' },
+      { id: 'ls_3', img: './Asist/Love/l.4.jpg', pillIcon: 'fa-solid fa-leaf', pillText: 'Rooted in Bengal', quote: '"Nothing compares to the sweet simplicity of home."', lightboxDesc: 'Fahad and his wife in traditional Bengali outfit in the village trees' }
+    ]
+  };
+
   const STORAGE_KEY = 'fahad_portfolio_data_v2';
 
   const PortfolioStore = {
@@ -758,13 +788,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (stored) {
           this.data = JSON.parse(stored);
           let needsSave = false;
-          // Ensure new fields exist
+          // Ensure all fields exist
           if (!this.data.hero) { this.data.hero = JSON.parse(JSON.stringify(DEFAULT_HERO)); needsSave = true; }
           if (!this.data.social) { this.data.social = JSON.parse(JSON.stringify(DEFAULT_SOCIAL)); needsSave = true; }
           if (this.data.heroFbPost) { delete this.data.heroFbPost; needsSave = true; }
           if (!this.data.quotes || !this.data.quotes.length) { this.data.quotes = JSON.parse(JSON.stringify(DEFAULT_QUOTES)); needsSave = true; }
           if (!this.data.travelGallery || !this.data.travelGallery.length) { this.data.travelGallery = DEFAULT_TRAVEL_GALLERY; needsSave = true; }
           if (!this.data.loveCards || !this.data.loveCards.length) { this.data.loveCards = DEFAULT_LOVE_CARDS; needsSave = true; }
+          if (!this.data.roots) { this.data.roots = JSON.parse(JSON.stringify(DEFAULT_ROOTS)); needsSave = true; }
           if (!this.data.articles || !this.data.articles.length) { this.data.articles = DEFAULT_PORTFOLIO_DATA.articles; needsSave = true; }
           if (!this.data.ventures || !this.data.ventures.length) { this.data.ventures = DEFAULT_PORTFOLIO_DATA.ventures; needsSave = true; }
           if (!this.data.travels || !this.data.travels.length) { this.data.travels = DEFAULT_PORTFOLIO_DATA.travels; needsSave = true; }
@@ -775,6 +806,8 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           this.data = JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO_DATA));
           this.data.travelGallery = DEFAULT_TRAVEL_GALLERY;
+          this.data.loveCards = DEFAULT_LOVE_CARDS;
+          this.data.roots = JSON.parse(JSON.stringify(DEFAULT_ROOTS));
           this.data.quotes = JSON.parse(JSON.stringify(DEFAULT_QUOTES));
           this.save();
         }
@@ -782,13 +815,69 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('PortfolioStore: Fallback to defaults', e);
         this.data = JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO_DATA));
         this.data.travelGallery = DEFAULT_TRAVEL_GALLERY;
+        this.data.loveCards = DEFAULT_LOVE_CARDS;
+        this.data.roots = JSON.parse(JSON.stringify(DEFAULT_ROOTS));
         this.data.quotes = JSON.parse(JSON.stringify(DEFAULT_QUOTES));
+      }
+
+      // Initialize Cloud Firestore Sync if available
+      this.initFirestoreSync();
+    },
+
+    initFirestoreSync() {
+      const firestoreDb = (typeof window !== 'undefined' && window.db) ? window.db : (typeof db !== 'undefined' ? db : null);
+      if (firestoreDb && firestoreDb.collection) {
+        try {
+          // 1. Initial cloud fetch
+          firestoreDb.collection('portfolio').doc('main').get().then(doc => {
+            if (doc.exists) {
+              const cloudData = doc.data();
+              if (cloudData && typeof cloudData === 'object') {
+                console.log('🔥 Cloud Firestore data hydrated successfully');
+                PortfolioStore.data = Object.assign({}, PortfolioStore.data, cloudData);
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(PortfolioStore.data));
+                if (typeof window.refreshAllLiveComponents === 'function') {
+                  window.refreshAllLiveComponents();
+                }
+              }
+            }
+          }).catch(err => {
+            console.warn('Firestore initial fetch notice:', err);
+          });
+
+          // 2. Real-time live listener for immediate cross-device updates
+          firestoreDb.collection('portfolio').doc('main').onSnapshot(doc => {
+            if (doc.exists) {
+              const cloudData = doc.data();
+              if (cloudData && typeof cloudData === 'object') {
+                console.log('🔥 Real-time cloud update received from Firestore');
+                PortfolioStore.data = Object.assign({}, PortfolioStore.data, cloudData);
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(PortfolioStore.data));
+                if (typeof window.refreshAllLiveComponents === 'function') {
+                  window.refreshAllLiveComponents();
+                }
+              }
+            }
+          }, err => {
+            console.warn('Firestore real-time listener notice:', err);
+          });
+        } catch (fe) {
+          console.warn('Firestore sync setup notice:', fe);
+        }
       }
     },
 
     save() {
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(this.data));
+        
+        // Push to Cloud Firestore if connected
+        const firestoreDb = (typeof window !== 'undefined' && window.db) ? window.db : (typeof db !== 'undefined' ? db : null);
+        if (firestoreDb && firestoreDb.collection) {
+          firestoreDb.collection('portfolio').doc('main').set(this.data, { merge: true })
+            .then(() => console.log('🔥 Saved to Cloud Firestore'))
+            .catch(err => console.warn('Cloud Firestore save warning:', err));
+        }
       } catch (e) {
         console.error('Failed to save to localStorage:', e);
       }
@@ -833,7 +922,15 @@ document.addEventListener('DOMContentLoaded', () => {
     getGenzList() { return this.data.genz || []; },
     getGenz(id) { return (this.data.genz || []).find(g => g.id === id); },
 
-    
+    getRootsData() {
+      return (this.data && this.data.roots) ? this.data.roots : DEFAULT_ROOTS;
+    },
+
+    saveRootsData(rootsObj) {
+      this.data.roots = Object.assign({}, DEFAULT_ROOTS, rootsObj);
+      this.save();
+    },
+
     getLoveCards() {
       return (this.data && this.data.loveCards && this.data.loveCards.length)
         ? this.data.loveCards
@@ -858,7 +955,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
 
     getTravelGallery() { 
-      return (this.data.travelGallery && this.data.travelGallery.length) 
+      return (this.data && this.data.travelGallery && this.data.travelGallery.length) 
         ? this.data.travelGallery 
         : DEFAULT_TRAVEL_GALLERY; 
     },
@@ -898,12 +995,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     resetDefaults() {
       this.data = JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO_DATA));
+      this.data.roots = JSON.parse(JSON.stringify(DEFAULT_ROOTS));
       this.save();
     }
   };
 
-  
   PortfolioStore.init();
+
+  // Central master refresh for all live components
+  window.refreshAllLiveComponents = function () {
+    if (typeof renderArticles === 'function') renderArticles();
+    if (typeof window.renderParallaxCarouselTracks === 'function') window.renderParallaxCarouselTracks();
+    if (typeof window.renderRootsAndLoveSection === 'function') window.renderRootsAndLoveSection();
+    if (typeof window.renderRotatingCards === 'function') window.renderRotatingCards();
+    if (typeof window.renderQuotes === 'function') window.renderQuotes();
+    if (typeof renderVentures === 'function') renderVentures();
+    if (typeof renderTravels === 'function') renderTravels();
+    if (typeof renderGenz === 'function') renderGenz();
+    if (typeof window.renderHeroSection === 'function') window.renderHeroSection();
+    if (typeof window.renderFooterSocialLinks === 'function') window.renderFooterSocialLinks();
+    if (typeof renderBlessings === 'function') renderBlessings();
+  };
 
   // Cross-Tab Live Synchronization with dedicated Admin Portal (admin.html)
   const portfolioSyncChannel = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel('fahad_portfolio_sync') : null;
@@ -911,15 +1023,7 @@ document.addEventListener('DOMContentLoaded', () => {
     portfolioSyncChannel.onmessage = function (event) {
       console.log('🔄 Live sync update received from Admin Portal:', event.data);
       PortfolioStore.init();
-      renderArticles();
-      if (window.renderParallaxCarouselTracks) window.renderParallaxCarouselTracks();
-      if (window.renderRotatingCards) window.renderRotatingCards();
-      if (window.renderQuotes) window.renderQuotes();
-      renderVentures();
-      renderTravels();
-      renderGenz();
-      if (window.renderHeroSection) window.renderHeroSection();
-      if (window.renderFooterSocialLinks) window.renderFooterSocialLinks();
+      window.refreshAllLiveComponents();
       if (typeof showToast === 'function') {
         showToast('এডমিন আপডেট লাইভ সিঙ্ক হয়েছে! ✨');
       }
@@ -930,15 +1034,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === STORAGE_KEY || e.key === 'fahad_portfolio_guestbook') {
       console.log('🔄 LocalStorage sync triggered from another tab');
       PortfolioStore.init();
-      renderArticles();
-      if (window.renderParallaxCarouselTracks) window.renderParallaxCarouselTracks();
-      if (window.renderRotatingCards) window.renderRotatingCards();
-      if (window.renderQuotes) window.renderQuotes();
-      renderVentures();
-      renderTravels();
-      renderGenz();
-      if (window.renderHeroSection) window.renderHeroSection();
-      if (window.renderFooterSocialLinks) window.renderFooterSocialLinks();
+      window.refreshAllLiveComponents();
     }
   });
 
@@ -3154,8 +3250,12 @@ document.addEventListener('DOMContentLoaded', () => {
       window.renderParallaxCarouselTracks = function() {
         const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'en') === 'en';
         const allPhotos = PortfolioStore.getTravelGallery();
-        const row1Photos = allPhotos.slice(0, 10);
-        const row2Photos = allPhotos.slice(10, 20);
+        
+        // Dynamically balance photos across 2 rows
+        const total = allPhotos.length;
+        const mid = Math.ceil(total / 2);
+        const row1Photos = allPhotos.slice(0, mid);
+        const row2Photos = allPhotos.slice(mid);
 
         function generateCardHtml(item) {
           let title = item.title;
@@ -3181,12 +3281,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // We duplicate the list 3 times to create a seamless infinite loop
         function populateTrack(trackEl, photos) {
+          if (!photos || photos.length === 0) photos = allPhotos;
           const singleHtml = photos.map(p => generateCardHtml(p)).join('');
           trackEl.innerHTML = singleHtml + singleHtml + singleHtml;
         }
 
         populateTrack(track1, row1Photos);
-        populateTrack(track2, row2Photos);
+        populateTrack(track2, row2Photos.length > 0 ? row2Photos : row1Photos);
 
         // Re-measure controllers after DOM update
         if (window._row1Controller) window._row1Controller.initMeasurements();
@@ -3513,11 +3614,100 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
+    // ==========================================
+    // ROOTS, FAMILY & ETERNAL LOVE LIVE SYNC
+    // ==========================================
+    window.renderRootsAndLoveSection = function () {
+      if (typeof PortfolioStore === 'undefined' || !PortfolioStore.data) return;
+      const roots = PortfolioStore.getRootsData();
+      const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'en') === 'en';
+
+      // 1. Baba Tribute Primary Image
+      const babaImg = document.getElementById('babaPrimaryImg');
+      const babaWrapper = document.getElementById('babaPrimaryImgWrapper');
+      const babaTag = document.getElementById('babaImgTag');
+      if (babaImg && roots.babaPrimaryImg) {
+        babaImg.src = roots.babaPrimaryImg;
+      }
+      if (babaTag && roots.babaImgTag) {
+        babaTag.textContent = roots.babaImgTag;
+      }
+      if (babaWrapper && roots.babaPrimaryImg) {
+        babaWrapper.onclick = function () {
+          if (typeof openLightbox === 'function') {
+            openLightbox(roots.babaPrimaryImg, roots.babaPrimaryDesc || roots.babaImgTag || 'Fahad with Baba');
+          }
+        };
+      }
+
+      // 2. Baba Thumbnails
+      const babaThumbRow = document.getElementById('babaThumbRow');
+      if (babaThumbRow && roots.babaThumbs && roots.babaThumbs.length) {
+        babaThumbRow.innerHTML = roots.babaThumbs.map((t, idx) => `
+          <div class="baba-thumb" onclick="openLightbox('${t.img}', '${escapeHtml(t.caption || t.lightboxDesc || 'Baba Memory')}')">
+            <img src="${t.img}" alt="${escapeHtml(t.caption || 'Baba Portrait')}" onerror="this.src='./Asist/Family/f.1.jpg'">
+            <span class="${isEn ? '' : 'bengali-font'}">${escapeHtml(t.caption || '')}</span>
+          </div>
+        `).join('');
+      }
+
+      // 3. Baba Tribute Texts
+      const bTitle = document.getElementById('babaTitleText');
+      const bBody1 = document.getElementById('babaBody1Text');
+      const bQuote = document.getElementById('babaQuoteText');
+      const bBody2 = document.getElementById('babaBody2Text');
+      const bBadge = document.getElementById('babaBadgeText');
+
+      if (bBadge && roots.babaBadge) bBadge.textContent = roots.babaBadge;
+      if (bTitle && roots.babaTitle) bTitle.textContent = roots.babaTitle;
+      if (bBody1 && roots.babaBody1) bBody1.textContent = roots.babaBody1;
+      if (bQuote && roots.babaQuote) bQuote.textContent = roots.babaQuote;
+      if (bBody2 && roots.babaBody2) bBody2.textContent = roots.babaBody2;
+
+      // 4. Baba Traits
+      const bTrait1 = document.getElementById('babaTrait1');
+      const bTrait2 = document.getElementById('babaTrait2');
+      const bTrait3 = document.getElementById('babaTrait3');
+      if (bTrait1 && roots.trait1) bTrait1.textContent = roots.trait1;
+      if (bTrait2 && roots.trait2) bTrait2.textContent = roots.trait2;
+      if (bTrait3 && roots.trait3) bTrait3.textContent = roots.trait3;
+
+      // 5. Love Showcase Header & Cards
+      const lBadge = document.getElementById('loveBadgeText');
+      const lTitle = document.getElementById('loveTitleText');
+      const lSub = document.getElementById('loveSubtitleText');
+      if (lBadge && roots.loveBadge) lBadge.textContent = roots.loveBadge;
+      if (lTitle && roots.loveTitle) lTitle.textContent = roots.loveTitle;
+      if (lSub && roots.loveSubtitle) lSub.textContent = roots.loveSubtitle;
+
+      const loveGrid = document.getElementById('loveGalleryGrid');
+      if (loveGrid && roots.loveShowcases && roots.loveShowcases.length) {
+        loveGrid.innerHTML = roots.loveShowcases.map(item => `
+          <div class="love-card uiverse-tilt" onclick="openLightbox('${item.img}', '${escapeHtml(item.pillText || '')} — ${escapeHtml(item.quote || '')}')">
+            <div class="love-img-box">
+              <img src="${item.img}" alt="${escapeHtml(item.pillText || 'Love Story')}" loading="lazy" onerror="this.src='./Asist/Love/l.1.jpg'">
+              <div class="love-overlay">
+                <span class="love-pill"><i class="${item.pillIcon || 'fa-solid fa-heart'}"></i> ${escapeHtml(item.pillText || '')}</span>
+                <p class="love-quote ${isEn ? '' : 'bengali-font'}">${escapeHtml(item.quote || '')}</p>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // 6. 3D Rotating Memories Cards
+      if (typeof window.renderRotatingCards === 'function') {
+        window.renderRotatingCards();
+      }
+    };
+
     window.renderHeroSection();
     window.renderFooterSocialLinks();
+    window.renderRootsAndLoveSection();
     initQuoteSlider();
 
   });
+
 
 
 

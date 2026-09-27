@@ -3,11 +3,9 @@
  * Project: fahad-bin-husne-ali
  */
 
-// Safely decoded configuration
-const _fba = atob('QUl6YVN5Q25LUGZHdEV4UFAwSjIzN0FYUl9waXJYWWhaVC1WYWZZA==');
-
-const firebaseConfig = {
-  apiKey: _fba,
+// Global variables for window & script access
+var firebaseConfig = {
+  apiKey: "AIzaSyCnKPfGtExPP0J237AXR_pirXYhZT-VafY",
   authDomain: "fahad-bin-husne-ali.firebaseapp.com",
   projectId: "fahad-bin-husne-ali",
   storageBucket: "fahad-bin-husne-ali.firebasestorage.app",
@@ -16,12 +14,15 @@ const firebaseConfig = {
   measurementId: "G-GT64YK4G89"
 };
 
-// Initialize Firebase
-let firebaseApp = null;
-let db = null;
-let storage = null;
-let auth = null;
-let analytics = null;
+var firebaseApp = null;
+var db = null;
+var storage = null;
+var auth = null;
+var analytics = null;
+
+if (typeof window !== 'undefined') {
+  window.firebaseConfig = firebaseConfig;
+}
 
 if (typeof firebase !== 'undefined') {
   try {
@@ -37,10 +38,23 @@ if (typeof firebase !== 'undefined') {
       auth = firebase.auth();
     }
     if (firebase.analytics && typeof firebase.analytics === 'function') {
-      analytics = firebase.analytics();
+      try {
+        analytics = firebase.analytics();
+      } catch (ae) {
+        console.warn('Firebase Analytics notice:', ae);
+      }
+    }
+    
+    if (typeof window !== 'undefined') {
+      window.firebaseApp = firebaseApp;
+      window.db = db;
+      window.storage = storage;
+      window.auth = auth;
+      window.analytics = analytics;
     }
     console.log("🔥 Firebase initialized successfully for fahad-bin-husne-ali");
   } catch (error) {
     console.warn("Firebase initialization notice:", error);
   }
 }
+

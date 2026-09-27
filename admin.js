@@ -67,6 +67,36 @@
     { id: 'love_10', img: './Asist/card/10.jpg', tag: 'Silk Road Fairytale', title: 'সমারখন্দের সুলতান ও রানী', desc: 'ঐতিহাসিক সিল্ক রোডের স্থাপত্যে যুগল রূপকথা— রাজকীয় ঐতিহ্যে এক অবিস্মরণীয় ভালোবাসার স্মারক।' }
   ];
 
+  const DEFAULT_ROOTS = {
+    // Baba (Father) Tribute
+    babaBadge: 'আমার বাবা, আমার বাতিঘর',
+    babaPrimaryImg: './Asist/Family/f.3.jpg',
+    babaImgTag: 'বাবা ও আমি',
+    babaPrimaryDesc: 'Fahad and his father standing affectionately side-by-side on the beach',
+    babaTitle: 'বাবার ছায়া: যেখানে সব ঝড় শান্ত হয়ে যায়',
+    babaBody1: 'পৃথিবীর বহু দেশ ঘুরলাম, কত রথী-মহারথীর সান্নিধ্য দেখলাম— কিন্তু বাবার কাঁধে হাত রেখে দাঁড়ানোর যে তৃপ্তি ও শক্তি, তা আর কোথাও নেই।',
+    babaQuote: 'বিপদ যখন মাথার ওপর আসে, তখন মানুষ হাত তুলে প্রভুর কাছে কাঁদে। কিন্তু বিপদ কেটে গেলে মানুষ আবার সব ভুলে যায়... বাবা আমাকে শিখিয়েছেন সব অবস্থায় কৃতজ্ঞ থাকতে, মাটিকে ভালোবাসতে, আর আল্লাহকে জীবনে সবার প্রথমে রাখতে।',
+    babaBody2: 'প্লেনের সিটে পাশে বসা বাবার মুখে যখন শান্তির হাসি দেখি, কিংবা সমুদ্রের তীরে বাবার পাশে দাঁড়িয়ে বলি— "বাবা, আমি আছি তো"— সেটাই আমার জীবনের সেরা অর্জন।',
+    trait1: 'দোয়ার স্তম্ভ',
+    trait2: 'নৈতিক দিশা',
+    trait3: 'বটবৃক্ষের ছায়া',
+    babaThumbs: [
+      { id: 'bt_1', img: './Asist/Family/f.1.jpg', caption: 'মর্যাদাবান বাবা', lightboxDesc: 'Father portrait at the sea shore in formal suit' },
+      { id: 'bt_2', img: './Asist/Family/f.2.jpg', caption: 'আকাশপথে সফর', lightboxDesc: 'Fahad traveling on an airplane with his father' },
+      { id: 'bt_3', img: './Asist/Family/f.5.jpg', caption: 'গ্রামের ভিটেমাটি', lightboxDesc: 'Father and son in the lush greenery of their village home' },
+      { id: 'bt_4', img: './Asist/Family/f.4.jpg', caption: 'স্মৃতির পাতা', lightboxDesc: 'Elevator mirror selfie with Baba' }
+    ],
+    // Wife & Love Showcase
+    loveBadge: 'চিরন্তন সহযাত্রী',
+    loveTitle: 'দুটি প্রাণ, এক অনন্ত দিগন্ত',
+    loveSubtitle: 'সিল্ক রোডের রাজকীয় স্থাপত্য থেকে পাহাড়ি হ্রদ আর গ্রামের সবুজ আঙিনা।',
+    loveShowcases: [
+      { id: 'ls_1', img: './Asist/Love/l.1.jpg', pillIcon: 'fa-solid fa-crown', pillText: 'Samarkand Fairytale', quote: '"Living our own historic tale in the heart of Central Asia."', lightboxDesc: 'Fahad and his wife in royal traditional Uzbek robes in Samarkand' },
+      { id: 'ls_2', img: './Asist/Love/l.3.jpg', pillIcon: 'fa-solid fa-ship', pillText: 'Phewa Lake, Pokhara', quote: '"Drifting across calm mountain waters, surrounded by peace."', lightboxDesc: 'Fahad and his wife resting serenely on a blue wooden boat on Phewa Lake, Pokhara' },
+      { id: 'ls_3', img: './Asist/Love/l.4.jpg', pillIcon: 'fa-solid fa-leaf', pillText: 'Rooted in Bengal', quote: '"Nothing compares to the sweet simplicity of home."', lightboxDesc: 'Fahad and his wife in traditional Bengali outfit in the village trees' }
+    ]
+  };
+
   const DEFAULT_ARTICLES = [
     {
       id: 'kidney',
@@ -388,6 +418,10 @@
             this.data.loveCards = DEFAULT_LOVE_CARDS;
             modified = true;
           }
+          if (!this.data.roots) {
+            this.data.roots = JSON.parse(JSON.stringify(DEFAULT_ROOTS));
+            modified = true;
+          }
           if (!this.data.articles || !this.data.articles.length) {
             this.data.articles = JSON.parse(JSON.stringify(DEFAULT_ARTICLES));
             modified = true;
@@ -437,12 +471,43 @@
         console.error('AdminStore Init Error:', e);
         this.resetToDefaults();
       }
+
+      this.initFirestoreSync();
+    },
+
+    initFirestoreSync() {
+      const firestoreDb = (typeof window !== 'undefined' && window.db) ? window.db : (typeof db !== 'undefined' ? db : null);
+      if (firestoreDb && firestoreDb.collection) {
+        firestoreDb.collection('portfolio').doc('main').get().then(doc => {
+          if (doc.exists) {
+            const cloudData = doc.data();
+            if (cloudData && typeof cloudData === 'object') {
+              console.log('🔥 Admin loaded latest cloud data from Firestore');
+              AdminStore.data = Object.assign({}, AdminStore.data, cloudData);
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(AdminStore.data));
+              renderCurrentActiveTab();
+              renderDashboard();
+            }
+          }
+        }).catch(err => {
+          console.warn('Admin Firestore get notice:', err);
+        });
+      }
     },
 
     save(entityType = 'general') {
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(this.data));
         broadcastChange(entityType);
+
+        // Push to Cloud Firestore
+        const firestoreDb = (typeof window !== 'undefined' && window.db) ? window.db : (typeof db !== 'undefined' ? db : null);
+        if (firestoreDb && firestoreDb.collection) {
+          firestoreDb.collection('portfolio').doc('main').set(this.data, { merge: true })
+            .then(() => console.log('🔥 Admin saved to Cloud Firestore for:', entityType))
+            .catch(err => console.warn('Cloud Firestore save warning:', err));
+        }
+
         return true;
       } catch (e) {
         console.error('Failed to save to localStorage:', e);
@@ -458,6 +523,7 @@
         quotes: JSON.parse(JSON.stringify(DEFAULT_QUOTES)),
         travelGallery: [...DEFAULT_TRAVEL_GALLERY],
         loveCards: [...DEFAULT_LOVE_CARDS],
+        roots: JSON.parse(JSON.stringify(DEFAULT_ROOTS)),
         articles: JSON.parse(JSON.stringify(DEFAULT_ARTICLES)),
         ventures: JSON.parse(JSON.stringify(DEFAULT_VENTURES)),
         travels: [],
@@ -533,6 +599,21 @@
   // ==========================================
   // TAB NAVIGATION
   // ==========================================
+  window.renderCurrentActiveTab = function() {
+    const activeBtn = document.querySelector('.sidebar-btn.active');
+    const tabId = activeBtn ? activeBtn.dataset.tab : 'overview';
+    if (tabId === 'overview') renderDashboard();
+    else if (tabId === 'hero-section') renderHeroSection();
+    else if (tabId === 'quotes') renderQuotes();
+    else if (tabId === 'travel-gallery') renderTravelGallery();
+    else if (tabId === 'roots-love') renderRootsLove();
+    else if (tabId === 'love-cards') renderLoveCards();
+    else if (tabId === 'articles') renderArticles();
+    else if (tabId === 'ventures') renderVentures();
+    else if (tabId === 'guestbook') renderGuestbook();
+    else if (tabId === 'settings') renderSettings();
+  };
+
   window.switchTab = function (tabId) {
     // Buttons
     document.querySelectorAll('.sidebar-btn').forEach(btn => {
@@ -551,7 +632,8 @@
       'hero-section': 'হিরো সেকশন ও প্রোফাইল কন্ট্রোল',
       'quotes': 'উক্তি ও জীবনদর্শন ব্যবস্থাপনা (Quotes & Philosophy)',
       'travel-gallery': 'প্যারালাক্স ট্রাভেল গ্যালারি (Carousel)',
-      'love-cards': 'লাভ ও ফ্যামিলি মেমোরিজ (3D Cards)',
+      'roots-love': 'শিকড়, পরিবার ও চিরন্তন ভালোবাসা (Roots & Family)',
+      'love-cards': 'লাভ ও ৩ডি রোটেটিং মেমোরিজ (3D Cards)',
       'articles': 'লেখালেখি ও ব্লগ (Articles)',
       'ventures': 'দ্য ল্যাব ও ভেঞ্চারস (The Lab)',
       'guestbook': 'গেস্টবুক মেসেজ মডারেশন',
@@ -564,6 +646,7 @@
     else if (tabId === 'hero-section') renderHeroSection();
     else if (tabId === 'quotes') renderQuotes();
     else if (tabId === 'travel-gallery') renderTravelGallery();
+    else if (tabId === 'roots-love') renderRootsLove();
     else if (tabId === 'love-cards') renderLoveCards();
     else if (tabId === 'articles') renderArticles();
     else if (tabId === 'ventures') renderVentures();
@@ -766,10 +849,7 @@
     }
   };
 
-  // 100% FREE CLOUD IMAGE STORAGE (ImgBB API — No Credit Card Required)
-  const DEFAULT_IMGBB_KEY = atob('NWE2NjZlMTE4MDIxOTY2MjcwOTI5Mjg1MDljMmZhOTc='); // Free Image Cloud API Key
-
-  // Image file picker helper (Uploads to 100% Free Cloud Storage with instant CDN link)
+  // Helper to safely resolve Cloud / Firebase Storage
   window.handleImageUpload = async function (fileInputId, textInputId, previewImgId, placeholderId) {
     const fileInput = document.getElementById(fileInputId);
     if (!fileInput || !fileInput.files || !fileInput.files[0]) return;
@@ -777,21 +857,42 @@
     const file = fileInput.files[0];
     const textInput = document.getElementById(textInputId);
     const previewImg = document.getElementById(previewImgId);
-    const placeholder = document.getElementById(placeholderId);
+    const placeholder = placeholderId ? document.getElementById(placeholderId) : null;
 
     // Instant local preview
     const tempUrl = URL.createObjectURL(file);
-    if (previewImg && placeholder) {
+    if (previewImg) {
       previewImg.src = tempUrl;
       previewImg.style.display = 'block';
+    }
+    if (placeholder) {
       placeholder.style.display = 'none';
     }
 
-    showToast('ফ্রি ক্লাউড স্টোরেজে ছবি আপলোড হচ্ছে... ⏳');
+    showToast('ক্লাউড স্টোরেজে ছবি আপলোড হচ্ছে... ⏳');
 
-    // 1. Try Free Cloud Storage (ImgBB)
+    // 1. Try Firebase Cloud Storage
+    const fbStorage = (typeof window !== 'undefined' && window.storage) ? window.storage : (typeof storage !== 'undefined' ? storage : (typeof firebase !== 'undefined' && firebase.storage ? firebase.storage() : null));
+    if (fbStorage && fbStorage.ref) {
+      try {
+        const safeName = Date.now() + '_' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+        const fileRef = fbStorage.ref().child('uploads/' + safeName);
+        const snapshot = await fileRef.put(file);
+        const downloadUrl = await snapshot.ref.getDownloadURL();
+        if (downloadUrl) {
+          if (textInput) textInput.value = downloadUrl;
+          if (previewImg) previewImg.src = downloadUrl;
+          showToast('ছবি Firebase ক্লাউড স্টোরেজে সফলভাবে আপলোড হয়েছে! 🔥☁️');
+          return;
+        }
+      } catch (fbErr) {
+        console.warn('Firebase Storage upload notice (falling back to ImgBB):', fbErr);
+      }
+    }
+
+    // 2. Try Free Cloud Storage (ImgBB)
     try {
-      const apiKey = localStorage.getItem('imgbb_api_key') || DEFAULT_IMGBB_KEY;
+      const apiKey = localStorage.getItem('imgbb_api_key') || '5a666e11802196627092928509c2fa97';
       const formData = new FormData();
       formData.append('image', file);
 
@@ -805,14 +906,14 @@
         const cloudUrl = resData.data.url;
         if (textInput) textInput.value = cloudUrl;
         if (previewImg) previewImg.src = cloudUrl;
-        showToast('ছবি ফ্রি ক্লাউড স্টোরেজে আপলোড সফল! ☁️🎉');
+        showToast('ছবি ক্লাউড স্টোরেজে আপলোড সফল! ☁️🎉');
         return;
       }
     } catch (cloudErr) {
-      console.warn('Free Cloud Storage upload warning, falling back to local encoding:', cloudErr);
+      console.warn('ImgBB upload notice:', cloudErr);
     }
 
-    // 2. Fallback: Base64 Data URL
+    // 3. Fallback: Base64 Data URL
     const reader = new FileReader();
     reader.onload = function (e) {
       const dataUrl = e.target.result;
@@ -852,6 +953,413 @@
         pImg.style.display = 'none';
         pPh.style.display = 'flex';
       }
+    }
+  };
+
+  window.onBabaThumbUrlInput = function (val) {
+    val = (val || '').trim();
+    const pImg = document.getElementById('babaThumbPreviewImg');
+    const pPh = document.getElementById('babaThumbPreviewPlaceholder');
+    if (pImg && pPh) {
+      if (val) {
+        pImg.src = val;
+        pImg.style.display = 'block';
+        pPh.style.display = 'none';
+      } else {
+        pImg.style.display = 'none';
+        pPh.style.display = 'flex';
+      }
+    }
+  };
+
+  window.onLoveShowcaseUrlInput = function (val) {
+    val = (val || '').trim();
+    const pImg = document.getElementById('loveShowcasePreviewImg');
+    const pPh = document.getElementById('loveShowcasePreviewPlaceholder');
+    if (pImg && pPh) {
+      if (val) {
+        pImg.src = val;
+        pImg.style.display = 'block';
+        pPh.style.display = 'none';
+      } else {
+        pImg.style.display = 'none';
+        pPh.style.display = 'flex';
+      }
+    }
+  };
+
+  // ==========================================
+  // ROOTS & FAMILY CMS (BABA TRIBUTE & WIFE LOVE)
+  // ==========================================
+  function renderRootsLove() {
+    if (!AdminStore.data.roots) {
+      AdminStore.data.roots = JSON.parse(JSON.stringify(DEFAULT_ROOTS));
+    }
+    const roots = AdminStore.data.roots;
+
+    // 1. Fill Baba Primary Image & tag
+    const bPrimImg = document.getElementById('babaPrimaryPreviewImg');
+    const bPrimInput = document.getElementById('babaPrimaryImgInput');
+    const bTagInput = document.getElementById('babaImgTagInput');
+    if (bPrimImg && roots.babaPrimaryImg) bPrimImg.src = roots.babaPrimaryImg;
+    if (bPrimInput) bPrimInput.value = roots.babaPrimaryImg || '';
+    if (bTagInput) bTagInput.value = roots.babaImgTag || '';
+
+    // 2. Fill Baba Tribute texts
+    const bBadge = document.getElementById('babaBadgeInput');
+    const bTitle = document.getElementById('babaTitleInput');
+    const bBody1 = document.getElementById('babaBody1Input');
+    const bQuote = document.getElementById('babaQuoteInput');
+    const bBody2 = document.getElementById('babaBody2Input');
+    const bTrait1 = document.getElementById('babaTrait1Input');
+    const bTrait2 = document.getElementById('babaTrait2Input');
+    const bTrait3 = document.getElementById('babaTrait3Input');
+
+    if (bBadge) bBadge.value = roots.babaBadge || '';
+    if (bTitle) bTitle.value = roots.babaTitle || '';
+    if (bBody1) bBody1.value = roots.babaBody1 || '';
+    if (bQuote) bQuote.value = roots.babaQuote || '';
+    if (bBody2) bBody2.value = roots.babaBody2 || '';
+    if (bTrait1) bTrait1.value = roots.trait1 || '';
+    if (bTrait2) bTrait2.value = roots.trait2 || '';
+    if (bTrait3) bTrait3.value = roots.trait3 || '';
+
+    // 3. Render Baba Thumbnails Grid
+    renderBabaThumbsGrid();
+
+    // 4. Fill Love Showcase Header
+    const lBadge = document.getElementById('loveBadgeInput');
+    const lTitle = document.getElementById('loveTitleInput2');
+    const lSub = document.getElementById('loveSubtitleInput');
+    if (lBadge) lBadge.value = roots.loveBadge || '';
+    if (lTitle) lTitle.value = roots.loveTitle || '';
+    if (lSub) lSub.value = roots.loveSubtitle || '';
+
+    // 5. Render Love Showcase Grid
+    renderLoveShowcasesGrid();
+  }
+
+  function renderBabaThumbsGrid() {
+    const grid = document.getElementById('babaThumbsGrid');
+    if (!grid) return;
+    const roots = AdminStore.data.roots || DEFAULT_ROOTS;
+    const thumbs = roots.babaThumbs || [];
+
+    if (thumbs.length === 0) {
+      grid.innerHTML = `<div class="empty-state" style="grid-column: 1/-1;">কোনো বাবার স্মৃতি ছবি নেই। উপরে "নতুন বাবার ছবি যোগ করুন" বাটনে ক্লিক করুন।</div>`;
+      return;
+    }
+
+    grid.innerHTML = thumbs.map(item => `
+      <div class="admin-item-card" style="padding: 0.75rem;">
+        <div class="card-thumb-wrap" style="height: 120px; border-radius: 8px; overflow: hidden; margin-bottom: 0.5rem; position: relative;">
+          <img src="${item.img}" alt="${escapeHtml(item.caption || '')}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='./Asist/Family/f.1.jpg'">
+          <div style="position: absolute; bottom: 4px; left: 4px; right: 4px; background: rgba(0,0,0,0.75); padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; color: #fff; text-align: center; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+            ${escapeHtml(item.caption || 'বাবার ছবি')}
+          </div>
+        </div>
+        <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+          <button type="button" class="admin-action-pill btn-edit" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="openEditBabaThumbModal('${item.id}')">
+            <i class="fa-solid fa-pen-to-square"></i> এডিট
+          </button>
+          <button type="button" class="admin-action-pill btn-delete" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="deleteBabaThumb('${item.id}')">
+            <i class="fa-solid fa-trash"></i> মুছুন
+          </button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderLoveShowcasesGrid() {
+    const grid = document.getElementById('loveShowcaseGrid');
+    if (!grid) return;
+    const roots = AdminStore.data.roots || DEFAULT_ROOTS;
+    const showcases = roots.loveShowcases || [];
+
+    if (showcases.length === 0) {
+      grid.innerHTML = `<div class="empty-state" style="grid-column: 1/-1;">কোনো লাভ শোকেস কার্ড নেই। উপরে "নতুন শোকেস ছবি যোগ করুন" বাটনে ক্লিক করুন।</div>`;
+      return;
+    }
+
+    grid.innerHTML = showcases.map(item => `
+      <div class="admin-item-card" style="padding: 0.85rem;">
+        <div class="card-thumb-wrap" style="height: 160px; border-radius: 8px; overflow: hidden; margin-bottom: 0.6rem; position: relative;">
+          <img src="${item.img}" alt="${escapeHtml(item.pillText || '')}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='./Asist/Love/l.1.jpg'">
+          <div style="position: absolute; top: 6px; left: 6px; background: rgba(244,63,94,0.85); color: #fff; padding: 2px 8px; border-radius: 20px; font-size: 0.72rem; font-weight: 600;">
+            <i class="${item.pillIcon || 'fa-solid fa-heart'}"></i> ${escapeHtml(item.pillText || '')}
+          </div>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted); font-style: italic; margin-bottom: 0.6rem; line-height: 1.3;">
+          ${escapeHtml(item.quote || '')}
+        </p>
+        <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+          <button type="button" class="admin-action-pill btn-edit" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="openEditLoveShowcaseModal('${item.id}')">
+            <i class="fa-solid fa-pen-to-square"></i> এডিট
+          </button>
+          <button type="button" class="admin-action-pill btn-delete" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="deleteLoveShowcase('${item.id}')">
+            <i class="fa-solid fa-trash"></i> মুছুন
+          </button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  window.saveBabaTribute = function (e) {
+    if (e) e.preventDefault();
+    if (!AdminStore.data.roots) AdminStore.data.roots = JSON.parse(JSON.stringify(DEFAULT_ROOTS));
+
+    const bPrimInput = document.getElementById('babaPrimaryImgInput');
+    const bTagInput = document.getElementById('babaImgTagInput');
+    const bBadge = document.getElementById('babaBadgeInput');
+    const bTitle = document.getElementById('babaTitleInput');
+    const bBody1 = document.getElementById('babaBody1Input');
+    const bQuote = document.getElementById('babaQuoteInput');
+    const bBody2 = document.getElementById('babaBody2Input');
+    const bTrait1 = document.getElementById('babaTrait1Input');
+    const bTrait2 = document.getElementById('babaTrait2Input');
+    const bTrait3 = document.getElementById('babaTrait3Input');
+
+    if (bPrimInput && bPrimInput.value) AdminStore.data.roots.babaPrimaryImg = bPrimInput.value.trim();
+    if (bTagInput) AdminStore.data.roots.babaImgTag = bTagInput.value.trim();
+    if (bBadge) AdminStore.data.roots.babaBadge = bBadge.value.trim();
+    if (bTitle) AdminStore.data.roots.babaTitle = bTitle.value.trim();
+    if (bBody1) AdminStore.data.roots.babaBody1 = bBody1.value.trim();
+    if (bQuote) AdminStore.data.roots.babaQuote = bQuote.value.trim();
+    if (bBody2) AdminStore.data.roots.babaBody2 = bBody2.value.trim();
+    if (bTrait1) AdminStore.data.roots.trait1 = bTrait1.value.trim();
+    if (bTrait2) AdminStore.data.roots.trait2 = bTrait2.value.trim();
+    if (bTrait3) AdminStore.data.roots.trait3 = bTrait3.value.trim();
+
+    AdminStore.save('roots-baba');
+    showToast('বাবার ট্রিবিউট ও স্মৃতিকথা সফলভাবে সেভ হয়েছে! মেইন সাইটে তাৎক্ষণিক লাইভ হয়েছে। 👑✨');
+  };
+
+  window.saveLoveHeader = function (e) {
+    if (e) e.preventDefault();
+    if (!AdminStore.data.roots) AdminStore.data.roots = JSON.parse(JSON.stringify(DEFAULT_ROOTS));
+
+    const lBadge = document.getElementById('loveBadgeInput');
+    const lTitle = document.getElementById('loveTitleInput2');
+    const lSub = document.getElementById('loveSubtitleInput');
+
+    if (lBadge) AdminStore.data.roots.loveBadge = lBadge.value.trim();
+    if (lTitle) AdminStore.data.roots.loveTitle = lTitle.value.trim();
+    if (lSub) AdminStore.data.roots.loveSubtitle = lSub.value.trim();
+
+    AdminStore.save('roots-love-header');
+    showToast('সহধর্মিণী ও লাভ শোকেস তথ্য সফলভাবে সেভ হয়েছে! 💖✨');
+  };
+
+  // Baba Thumbnail Modal & CRUD
+  window.openAddBabaThumbModal = function () {
+    const modal = document.getElementById('babaThumbModal');
+    const title = document.getElementById('babaThumbModalTitle');
+    const form = document.getElementById('babaThumbForm');
+    const idInput = document.getElementById('babaThumbEditId');
+    const pImg = document.getElementById('babaThumbPreviewImg');
+    const pPh = document.getElementById('babaThumbPreviewPlaceholder');
+
+    if (form) form.reset();
+    if (idInput) idInput.value = '';
+    if (title) title.textContent = 'নতুন বাবার স্মৃতি ছবি যোগ করুন';
+    if (pImg) { pImg.src = ''; pImg.style.display = 'none'; }
+    if (pPh) pPh.style.display = 'flex';
+    if (modal) modal.classList.add('active');
+  };
+
+  window.openEditBabaThumbModal = function (id) {
+    const modal = document.getElementById('babaThumbModal');
+    const title = document.getElementById('babaThumbModalTitle');
+    const idInput = document.getElementById('babaThumbEditId');
+    const capInput = document.getElementById('babaThumbCaptionInput');
+    const descInput = document.getElementById('babaThumbDescInput');
+    const urlInput = document.getElementById('babaThumbUrlInput');
+    const pImg = document.getElementById('babaThumbPreviewImg');
+    const pPh = document.getElementById('babaThumbPreviewPlaceholder');
+
+    const roots = AdminStore.data.roots || DEFAULT_ROOTS;
+    const thumb = (roots.babaThumbs || []).find(t => t.id == id);
+    if (!thumb) return;
+
+    if (idInput) idInput.value = thumb.id;
+    if (title) title.textContent = 'বাবার স্মৃতি ছবি সম্পাদনা';
+    if (capInput) capInput.value = thumb.caption || '';
+    if (descInput) descInput.value = thumb.lightboxDesc || '';
+    if (urlInput) urlInput.value = thumb.img || '';
+
+    if (pImg && pPh) {
+      if (thumb.img) {
+        pImg.src = thumb.img;
+        pImg.style.display = 'block';
+        pPh.style.display = 'none';
+      } else {
+        pImg.style.display = 'none';
+        pPh.style.display = 'flex';
+      }
+    }
+
+    if (modal) modal.classList.add('active');
+  };
+
+  window.closeBabaThumbModal = function () {
+    const modal = document.getElementById('babaThumbModal');
+    if (modal) modal.classList.remove('active');
+  };
+
+  window.handleBabaThumbFormSubmit = function (e) {
+    if (e) e.preventDefault();
+    const id = document.getElementById('babaThumbEditId').value;
+    const caption = document.getElementById('babaThumbCaptionInput').value.trim();
+    const desc = document.getElementById('babaThumbDescInput').value.trim();
+    const imgUrl = document.getElementById('babaThumbUrlInput').value.trim();
+
+    if (!imgUrl) {
+      alert('অনুগ্রহ করে ছবি নির্বাচন করুন বা URL দিন!');
+      return;
+    }
+
+    if (!AdminStore.data.roots) AdminStore.data.roots = JSON.parse(JSON.stringify(DEFAULT_ROOTS));
+    if (!AdminStore.data.roots.babaThumbs) AdminStore.data.roots.babaThumbs = [];
+
+    if (id) {
+      const idx = AdminStore.data.roots.babaThumbs.findIndex(t => t.id == id);
+      if (idx >= 0) {
+        AdminStore.data.roots.babaThumbs[idx].caption = caption;
+        AdminStore.data.roots.babaThumbs[idx].lightboxDesc = desc;
+        AdminStore.data.roots.babaThumbs[idx].img = imgUrl;
+      }
+    } else {
+      const newId = 'bt_' + Date.now();
+      AdminStore.data.roots.babaThumbs.push({
+        id: newId,
+        caption: caption,
+        lightboxDesc: desc,
+        img: imgUrl
+      });
+    }
+
+    AdminStore.save('roots-baba-thumb');
+    closeBabaThumbModal();
+    renderBabaThumbsGrid();
+    showToast('বাবার ছবি সফলভাবে সেভ হয়েছে! ✨');
+  };
+
+  window.deleteBabaThumb = function (id) {
+    if (confirm('আপনি কি নিশ্চিত যে এই ছবিটি বাবার অ্যালবাম থেকে মুছে ফেলতে চান?')) {
+      if (!AdminStore.data.roots) AdminStore.data.roots = JSON.parse(JSON.stringify(DEFAULT_ROOTS));
+      AdminStore.data.roots.babaThumbs = (AdminStore.data.roots.babaThumbs || []).filter(t => t.id != id);
+      AdminStore.save('roots-baba-thumb');
+      renderBabaThumbsGrid();
+      showToast('ছবিটি মুছে ফেলা হয়েছে! 🗑️');
+    }
+  };
+
+  // Love Showcase Modal & CRUD
+  window.openAddLoveShowcaseModal = function () {
+    const modal = document.getElementById('loveShowcaseModal');
+    const title = document.getElementById('loveShowcaseModalTitle');
+    const form = document.getElementById('loveShowcaseForm');
+    const idInput = document.getElementById('loveShowcaseEditId');
+    const pImg = document.getElementById('loveShowcasePreviewImg');
+    const pPh = document.getElementById('loveShowcasePreviewPlaceholder');
+
+    if (form) form.reset();
+    if (idInput) idInput.value = '';
+    if (title) title.textContent = 'নতুন লাভ শোকেস ছবি যোগ করুন';
+    if (pImg) { pImg.src = ''; pImg.style.display = 'none'; }
+    if (pPh) pPh.style.display = 'flex';
+    if (modal) modal.classList.add('active');
+  };
+
+  window.openEditLoveShowcaseModal = function (id) {
+    const modal = document.getElementById('loveShowcaseModal');
+    const title = document.getElementById('loveShowcaseModalTitle');
+    const idInput = document.getElementById('loveShowcaseEditId');
+    const tagInput = document.getElementById('loveShowcaseTagInput');
+    const iconInput = document.getElementById('loveShowcaseIconInput');
+    const quoteInput = document.getElementById('loveShowcaseQuoteInput');
+    const urlInput = document.getElementById('loveShowcaseUrlInput');
+    const pImg = document.getElementById('loveShowcasePreviewImg');
+    const pPh = document.getElementById('loveShowcasePreviewPlaceholder');
+
+    const roots = AdminStore.data.roots || DEFAULT_ROOTS;
+    const card = (roots.loveShowcases || []).find(c => c.id == id);
+    if (!card) return;
+
+    if (idInput) idInput.value = card.id;
+    if (title) title.textContent = 'লাভ শোকেস কার্ড সম্পাদনা';
+    if (tagInput) tagInput.value = card.pillText || '';
+    if (iconInput) iconInput.value = card.pillIcon || '';
+    if (quoteInput) quoteInput.value = card.quote || '';
+    if (urlInput) urlInput.value = card.img || '';
+
+    if (pImg && pPh) {
+      if (card.img) {
+        pImg.src = card.img;
+        pImg.style.display = 'block';
+        pPh.style.display = 'none';
+      } else {
+        pImg.style.display = 'none';
+        pPh.style.display = 'flex';
+      }
+    }
+
+    if (modal) modal.classList.add('active');
+  };
+
+  window.closeLoveShowcaseModal = function () {
+    const modal = document.getElementById('loveShowcaseModal');
+    if (modal) modal.classList.remove('active');
+  };
+
+  window.handleLoveShowcaseFormSubmit = function (e) {
+    if (e) e.preventDefault();
+    const id = document.getElementById('loveShowcaseEditId').value;
+    const pillText = document.getElementById('loveShowcaseTagInput').value.trim();
+    const pillIcon = document.getElementById('loveShowcaseIconInput').value.trim() || 'fa-solid fa-heart';
+    const quote = document.getElementById('loveShowcaseQuoteInput').value.trim();
+    const imgUrl = document.getElementById('loveShowcaseUrlInput').value.trim();
+
+    if (!imgUrl) {
+      alert('অনুগ্রহ করে ছবি নির্বাচন করুন বা URL দিন!');
+      return;
+    }
+
+    if (!AdminStore.data.roots) AdminStore.data.roots = JSON.parse(JSON.stringify(DEFAULT_ROOTS));
+    if (!AdminStore.data.roots.loveShowcases) AdminStore.data.roots.loveShowcases = [];
+
+    if (id) {
+      const idx = AdminStore.data.roots.loveShowcases.findIndex(c => c.id == id);
+      if (idx >= 0) {
+        AdminStore.data.roots.loveShowcases[idx].pillText = pillText;
+        AdminStore.data.roots.loveShowcases[idx].pillIcon = pillIcon;
+        AdminStore.data.roots.loveShowcases[idx].quote = quote;
+        AdminStore.data.roots.loveShowcases[idx].img = imgUrl;
+      }
+    } else {
+      const newId = 'ls_' + Date.now();
+      AdminStore.data.roots.loveShowcases.push({
+        id: newId,
+        pillText: pillText,
+        pillIcon: pillIcon,
+        quote: quote,
+        img: imgUrl
+      });
+    }
+
+    AdminStore.save('roots-love-showcase');
+    closeLoveShowcaseModal();
+    renderLoveShowcasesGrid();
+    showToast('লাভ শোকেস ছবি সফলভাবে সেভ হয়েছে! 💖✨');
+  };
+
+  window.deleteLoveShowcase = function (id) {
+    if (confirm('আপনি কি নিশ্চিত যে এই শোকেস ছবিটি মুছে ফেলতে চান?')) {
+      if (!AdminStore.data.roots) AdminStore.data.roots = JSON.parse(JSON.stringify(DEFAULT_ROOTS));
+      AdminStore.data.roots.loveShowcases = (AdminStore.data.roots.loveShowcases || []).filter(c => c.id != id);
+      AdminStore.save('roots-love-showcase');
+      renderLoveShowcasesGrid();
+      showToast('শোকেস ছবিটি মুছে ফেলা হয়েছে! 🗑️');
     }
   };
 

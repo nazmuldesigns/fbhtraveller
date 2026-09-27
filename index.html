@@ -1153,21 +1153,21 @@
         <div class="baba-tribute-card glass-card">
           <div class="tribute-badge">
             <i class="fa-solid fa-shield-heart"></i>
-            <span data-i18n="babaBadge">আমার বাবা, আমার বাতিঘর</span>
+            <span data-i18n="babaBadge" id="babaBadgeText">আমার বাবা, আমার বাতিঘর</span>
           </div>
 
           <div class="baba-tribute-grid">
             <div class="baba-image-showcase">
-              <div class="baba-primary-img-wrapper"
+              <div class="baba-primary-img-wrapper" id="babaPrimaryImgWrapper"
                 onclick="openLightbox('./Asist/Family/f.3.jpg', 'Fahad and his father standing affectionately side-by-side on the beach')">
-                <img src="./Asist/Family/f.3.jpg" alt="Fahad with his Baba on the Beach" class="baba-primary-img">
+                <img src="./Asist/Family/f.3.jpg" alt="Fahad with his Baba on the Beach" class="baba-primary-img" id="babaPrimaryImg">
                 <div class="baba-tag-badge">
-                  <span data-i18n="babaImgTag">বাবা ও আমি</span>
+                  <span data-i18n="babaImgTag" id="babaImgTag">বাবা ও আমি</span>
                 </div>
               </div>
 
               <!-- Father photo row -->
-              <div class="baba-thumb-row">
+              <div class="baba-thumb-row" id="babaThumbRow">
                 <div class="baba-thumb"
                   onclick="openLightbox('./Asist/Family/f.1.jpg', 'Father portrait at the sea shore in formal suit')">
                   <img src="./Asist/Family/f.1.jpg" alt="Baba Portrait">
@@ -1193,30 +1193,30 @@
 
             <div class="baba-tribute-text">
               <span class="quote-symbol">❝</span>
-              <h3 class="baba-title bengali-font" data-i18n="babaTitle">বাবার ছায়া: যেখানে সব ঝড় শান্ত হয়ে যায়</h3>
+              <h3 class="baba-title bengali-font" data-i18n="babaTitle" id="babaTitleText">বাবার ছায়া: যেখানে সব ঝড় শান্ত হয়ে যায়</h3>
 
-              <p class="baba-body bengali-font" data-i18n="babaBody1">
+              <p class="baba-body bengali-font" data-i18n="babaBody1" id="babaBody1Text">
                 পৃথিবীর বহু দেশ ঘুরলাম, কত রথী-মহারথীর সান্নিধ্য দেখলাম— কিন্তু বাবার কাঁধে হাত রেখে দাঁড়ানোর যে তৃপ্তি
                 ও শক্তি, তা আর কোথাও নেই।
               </p>
 
-              <div class="tribute-quote-callout bengali-font" data-i18n="babaQuote">
+              <div class="tribute-quote-callout bengali-font" data-i18n="babaQuote" id="babaQuoteText">
                 "বিপদ যখন মাথার ওপর আসে, তখন মানুষ হাত তুলে প্রভুর কাছে কাঁদে। কিন্তু বিপদ কেটে গেলে মানুষ আবার সব ভুলে
                 যায়... বাবা আমাকে শিখিয়েছেন সব অবস্থায় কৃতজ্ঞ থাকতে, মাটিকে ভালোবাসতে, আর আল্লাহকে জীবনে সবার প্রথমে
                 রাখতে।"
               </div>
 
-              <p class="baba-body bengali-font" data-i18n="babaBody2">
+              <p class="baba-body bengali-font" data-i18n="babaBody2" id="babaBody2Text">
                 প্লেনের সিটে পাশে বসা বাবার মুখে যখন শান্তির হাসি দেখি, কিংবা সমুদ্রের তীরে বাবার পাশে দাঁড়িয়ে বলি—
                 "বাবা, আমি আছি তো"— সেটাই আমার জীবনের সেরা অর্জন।
               </p>
 
-              <div class="baba-traits">
-                <div class="trait-pill"><i class="fa-solid fa-hands-praying"></i> <span data-i18n="trait1">দোয়ার
+              <div class="baba-traits" id="babaTraitsRow">
+                <div class="trait-pill"><i class="fa-solid fa-hands-praying"></i> <span data-i18n="trait1" id="babaTrait1">দোয়ার
                     স্তম্ভ</span></div>
-                <div class="trait-pill"><i class="fa-solid fa-compass"></i> <span data-i18n="trait2">নৈতিক দিশা</span>
+                <div class="trait-pill"><i class="fa-solid fa-compass"></i> <span data-i18n="trait2" id="babaTrait2">নৈতিক দিশা</span>
                 </div>
-                <div class="trait-pill"><i class="fa-solid fa-tree"></i> <span data-i18n="trait3">বটবৃক্ষের ছায়া</span>
+                <div class="trait-pill"><i class="fa-solid fa-tree"></i> <span data-i18n="trait3" id="babaTrait3">বটবৃক্ষের ছায়া</span>
                 </div>
               </div>
             </div>
@@ -1228,15 +1228,15 @@
           <div class="love-header">
             <div class="section-tag uiverse-badge">
               <i class="fa-solid fa-gem"></i>
-              <span data-i18n="loveBadge">চিরন্তন সহযাত্রী</span>
+              <span data-i18n="loveBadge" id="loveBadgeText">চিরন্তন সহযাত্রী</span>
             </div>
-            <h3 class="love-title" data-i18n="loveTitle">দুটি প্রাণ, এক অনন্ত দিগন্ত</h3>
-            <p class="love-subtitle" data-i18n="loveSubtitle">
+            <h3 class="love-title" data-i18n="loveTitle" id="loveTitleText">দুটি প্রাণ, এক অনন্ত দিগন্ত</h3>
+            <p class="love-subtitle" data-i18n="loveSubtitle" id="loveSubtitleText">
               সিল্ক রোডের রাজকীয় স্থাপত্য থেকে পাহাড়ি হ্রদ আর গ্রামের সবুজ আঙিনা।
             </p>
           </div>
 
-          <div class="love-gallery-grid">
+          <div class="love-gallery-grid" id="loveGalleryGrid">
 
             <!-- Photo 1: Royal Uzbekistan couple -->
             <div class="love-card uiverse-tilt"
