@@ -417,29 +417,60 @@
     }
   };
 
-  // Image file picker helper (Converts local file to data URL)
-  window.handleImageUpload = function (fileInputId, textInputId, previewImgId, placeholderId) {
+  // 100% FREE CLOUD IMAGE STORAGE (ImgBB API — No Credit Card Required)
+  const DEFAULT_IMGBB_KEY = '5a666e11802196627092928509c2fa97'; // Free Image Cloud API Key
+
+  // Image file picker helper (Uploads to 100% Free Cloud Storage with instant CDN link)
+  window.handleImageUpload = async function (fileInputId, textInputId, previewImgId, placeholderId) {
     const fileInput = document.getElementById(fileInputId);
     if (!fileInput || !fileInput.files || !fileInput.files[0]) return;
 
     const file = fileInput.files[0];
-    const reader = new FileReader();
+    const textInput = document.getElementById(textInputId);
+    const previewImg = document.getElementById(previewImgId);
+    const placeholder = document.getElementById(placeholderId);
 
+    // Instant local preview
+    const tempUrl = URL.createObjectURL(file);
+    if (previewImg && placeholder) {
+      previewImg.src = tempUrl;
+      previewImg.style.display = 'block';
+      placeholder.style.display = 'none';
+    }
+
+    showToast('ফ্রি ক্লাউড স্টোরেজে ছবি আপলোড হচ্ছে... ⏳');
+
+    // 1. Try Free Cloud Storage (ImgBB)
+    try {
+      const apiKey = localStorage.getItem('imgbb_api_key') || DEFAULT_IMGBB_KEY;
+      const formData = new FormData();
+      formData.append('image', file);
+
+      const response = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
+        method: 'POST',
+        body: formData
+      });
+
+      const resData = await response.json();
+      if (resData && resData.success && resData.data && resData.data.url) {
+        const cloudUrl = resData.data.url;
+        if (textInput) textInput.value = cloudUrl;
+        if (previewImg) previewImg.src = cloudUrl;
+        showToast('ছবি ফ্রি ক্লাউড স্টোরেজে আপলোড সফল! ☁️🎉');
+        return;
+      }
+    } catch (cloudErr) {
+      console.warn('Free Cloud Storage upload warning, falling back to local encoding:', cloudErr);
+    }
+
+    // 2. Fallback: Base64 Data URL
+    const reader = new FileReader();
     reader.onload = function (e) {
       const dataUrl = e.target.result;
-      const textInput = document.getElementById(textInputId);
       if (textInput) textInput.value = dataUrl;
-
-      const previewImg = document.getElementById(previewImgId);
-      const placeholder = document.getElementById(placeholderId);
-      if (previewImg && placeholder) {
-        previewImg.src = dataUrl;
-        previewImg.style.display = 'block';
-        placeholder.style.display = 'none';
-      }
-      showToast('ছবি ব্রাউজারে সফলভাবে আপলোড হয়েছে! 📷');
+      if (previewImg) previewImg.src = dataUrl;
+      showToast('ছবি ব্রাউজারে সফলভাবে লোড হয়েছে! 📷');
     };
-
     reader.readAsDataURL(file);
   };
 

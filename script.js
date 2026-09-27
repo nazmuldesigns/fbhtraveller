@@ -901,18 +901,26 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = 'hidden';
     detailsPageView.scrollTop = 0;
 
-    // Deep link hash update
-    window.location.hash = `view/${type}/${id}`;
+    // Deep link hash update with history state for mobile back button support
+    const targetHash = `#view/${type}/${id}`;
+    if (window.location.hash !== targetHash) {
+      history.pushState({ modal: 'detailView', type, id }, '', targetHash);
+    }
   };
 
-  window.closeDetailView = function() {
+  window.closeDetailView = function(isFromPopState = false) {
     if (!detailsPageView) return;
+    const wasActive = detailsPageView.classList.contains('active');
     detailsPageView.classList.remove('active');
     document.body.style.overflow = '';
     currentDetailItem = null;
 
-    if (window.location.hash && window.location.hash.startsWith('#view/')) {
-      history.pushState("", document.title, window.location.pathname + window.location.search);
+    if (wasActive && !isFromPopState) {
+      if (window.location.hash && window.location.hash.startsWith('#view/')) {
+        history.back();
+      } else {
+        history.pushState("", document.title, window.location.pathname + window.location.search);
+      }
     }
   };
 
@@ -1583,22 +1591,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // URL Hash Deep Linking Check on Load
+  // URL Hash Deep Linking Check on Load & Popstate
   function checkUrlHashDeepLink() {
     const hash = window.location.hash;
     if (hash && hash.startsWith('#view/')) {
       const parts = hash.replace('#view/', '').split('/');
       if (parts.length >= 2) {
         const [type, id] = parts;
-        setTimeout(() => {
-          openDetailView(type, id);
-        }, 300);
+        if (!detailsPageView || !detailsPageView.classList.contains('active')) {
+          setTimeout(() => {
+            openDetailView(type, id, true);
+          }, 100);
+        }
+      }
+    } else {
+      if (detailsPageView && detailsPageView.classList.contains('active')) {
+        closeDetailView(true);
       }
     }
   }
 
   checkUrlHashDeepLink();
   window.addEventListener('hashchange', checkUrlHashDeepLink);
+
+  // Global Mobile Hardware / Browser Back Button (popstate) Handler
+  window.addEventListener('popstate', (e) => {
+    // 1. Close detail article viewer if open
+    if (detailsPageView && detailsPageView.classList.contains('active')) {
+      closeDetailView(true);
+    }
+    // 2. Close image lightbox if open
+    if (lightboxModal && lightboxModal.classList.contains('active')) {
+      closeLightbox(true);
+    }
+    // 3. Close share modal if open
+    const shareModalEl = document.getElementById('shareModal');
+    if (shareModalEl && shareModalEl.classList.contains('active')) {
+      if (window.closeShareModal) window.closeShareModal(true);
+    }
+    // 4. Close admin auth modal if open
+    const authModalEl = document.getElementById('adminAuthModal');
+    if (authModalEl && authModalEl.classList.contains('active')) {
+      if (window.closeAdminAuthModal) window.closeAdminAuthModal();
+    }
+    // 5. Close admin panel if open
+    const adminPanelEl = document.getElementById('adminPanelModal');
+    if (adminPanelEl && adminPanelEl.classList.contains('active')) {
+      if (window.closeAdminPanel) window.closeAdminPanel();
+    }
+  });
 
   // ==========================================
   // 5. PHOTO LIGHTBOX MODAL
@@ -1613,12 +1654,22 @@ document.addEventListener('DOMContentLoaded', () => {
     lightboxCaption.textContent = caption || '';
     lightboxModal.classList.add('active');
     document.body.style.overflow = 'hidden';
+
+    // Push history for mobile back button
+    if (window.location.hash !== '#lightbox') {
+      history.pushState({ modal: 'lightbox' }, '', '#lightbox');
+    }
   };
 
-  window.closeLightbox = function() {
+  window.closeLightbox = function(isFromPopState = false) {
     if (!lightboxModal) return;
+    const wasActive = lightboxModal.classList.contains('active');
     lightboxModal.classList.remove('active');
     document.body.style.overflow = '';
+    
+    if (wasActive && !isFromPopState && window.location.hash === '#lightbox') {
+      history.back();
+    }
   };
 
   // Keyboard escape handler for modals
@@ -2787,6 +2838,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
       requestAnimationFrame(parallaxAnimationLoop);
     }
+
+    // ==========================================
+    // HERO LIVE FACEBOOK POST SYNC
+    // ==========================================
+    async function initHeroFacebookSync() {
+      const fbCard = document.getElementById('heroFbCard');
+      if (!fbCard) return;
+
+      const fbAvatar = document.getElementById('fbCardAvatar');
+      const fbAuthor = document.getElementById('fbCardAuthor');
+      const fbTime = document.getElementById('fbCardTime');
+      const fbCaption = document.getElementById('fbCardCaption');
+      const fbMediaBox = document.getElementById('fbCardMediaBox');
+      const fbImage = document.getElementById('fbCardImage');
+      const fbLikes = document.getElementById('fbCardLikes');
+
+      try {
+        const response = await fetch('./latest-fb-post.json?t=' + Date.now());
+        if (!response.ok) return;
+        const data = await response.json();
+
+        if (data.author && fbAuthor) fbAuthor.textContent = data.author;
+        if (data.authorAvatar && fbAvatar) fbAvatar.src = data.authorAvatar;
+        if (data.caption && fbCaption) fbCaption.textContent = data.caption;
+        if (data.timeAgo && fbTime) fbTime.innerHTML = `<i class="fa-regular fa-clock"></i> ${data.timeAgo}`;
+        if (data.likesCount && fbLikes) fbLikes.textContent = data.likesCount;
+
+        if (data.image && fbImage && fbMediaBox) {
+          fbImage.src = data.image;
+          fbMediaBox.style.display = 'block';
+        } else if (fbMediaBox) {
+          fbMediaBox.style.display = 'none';
+        }
+      } catch (err) {
+        console.log('FB Post sync note:', err);
+      }
+    }
+
+    initHeroFacebookSync();
 
   });
 
