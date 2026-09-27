@@ -211,6 +211,7 @@
     const titleEl = document.getElementById('topbarPageTitle');
     const titles = {
       'overview': 'ড্যাশবোর্ড ও সার্বিক পরিসংখ্যান',
+      'hero-fb': 'হিরো ফেসবুক পোস্ট লাইভ কন্ট্রোল',
       'travel-gallery': 'প্যারালাক্স ট্রাভেল গ্যালারি (Carousel)',
       'love-cards': 'লাভ ও ফ্যামিলি মেমোরিজ (3D Cards)',
       'articles': 'লেখালেখি ও ব্লগ (Articles)',
@@ -222,6 +223,7 @@
 
     // Render tab specifics
     if (tabId === 'overview') renderDashboard();
+    else if (tabId === 'hero-fb') renderHeroFb();
     else if (tabId === 'travel-gallery') renderTravelGallery();
     else if (tabId === 'love-cards') renderLoveCards();
     else if (tabId === 'articles') renderArticles();
@@ -543,6 +545,87 @@
       `;
     }).join('');
   }
+
+  // ==========================================
+  // HERO FACEBOOK POST TAB
+  // ==========================================
+  function renderHeroFb() {
+    const post = AdminStore.data.heroFbPost || {
+      caption: "জীবনকে দেখতে শিখুন নতুন দৃষ্টিকোণ থেকে। প্রতিটি যাত্রাই নতুন কিছু শেখায়, প্রতিটি মানুষই অনন্য এক গল্পের বই।",
+      image: "./Asist/Travel Gallery/1.jpeg",
+      timeAgo: "Recent Facebook Post",
+      postUrl: "https://www.facebook.com/fahadbinhusneali1"
+    };
+
+    const captionInput = document.getElementById('fbAdminCaption');
+    const urlInput = document.getElementById('fbAdminUrlInput');
+    const timeInput = document.getElementById('fbAdminTime');
+    const postUrlInput = document.getElementById('fbAdminPostUrl');
+
+    if (captionInput) captionInput.value = post.caption || '';
+    if (urlInput) urlInput.value = post.image || '';
+    if (timeInput) timeInput.value = post.timeAgo || '';
+    if (postUrlInput) postUrlInput.value = post.postUrl || '';
+
+    const previewImg = document.getElementById('fbAdminPreviewImg');
+    const placeholder = document.getElementById('fbAdminPreviewPlaceholder');
+    if (previewImg && placeholder) {
+      if (post.image) {
+        previewImg.src = post.image;
+        previewImg.style.display = 'block';
+        placeholder.style.display = 'none';
+      } else {
+        previewImg.style.display = 'none';
+        placeholder.style.display = 'flex';
+      }
+    }
+
+    window.updateFbPreview();
+  }
+
+  window.updateFbPreview = function () {
+    const caption = document.getElementById('fbAdminCaption')?.value || 'জীবনকে দেখতে শিখুন নতুন দৃষ্টিকোণ থেকে...';
+    const imgUrl = document.getElementById('fbAdminUrlInput')?.value || '';
+    const time = document.getElementById('fbAdminTime')?.value || 'Recent Facebook Post';
+
+    const pCaption = document.getElementById('previewCaptionText');
+    const pTime = document.getElementById('previewTimeText');
+    const pBox = document.getElementById('previewMediaBox');
+    const pImg = document.getElementById('previewMediaImg');
+
+    if (pCaption) pCaption.textContent = caption;
+    if (pTime) pTime.innerHTML = `<i class="fa-regular fa-clock"></i> ${escapeHtml(time)}`;
+    if (pBox && pImg) {
+      if (imgUrl) {
+        pImg.src = imgUrl;
+        pBox.style.display = 'block';
+      } else {
+        pBox.style.display = 'none';
+      }
+    }
+  };
+
+  window.handleSaveHeroFb = function (e) {
+    if (e) e.preventDefault();
+    const caption = document.getElementById('fbAdminCaption')?.value.trim() || '';
+    const image = document.getElementById('fbAdminUrlInput')?.value.trim() || '';
+    const timeAgo = document.getElementById('fbAdminTime')?.value.trim() || 'Just now';
+    const postUrl = document.getElementById('fbAdminPostUrl')?.value.trim() || 'https://www.facebook.com/fahadbinhusneali1';
+
+    AdminStore.data.heroFbPost = {
+      author: "Fahad Bin Husne Ali",
+      authorAvatar: "./Asist/Personal/profile1.jpg",
+      caption,
+      image,
+      timeAgo,
+      postUrl,
+      likesCount: "12K+ Community",
+      lastSynced: new Date().toISOString()
+    };
+
+    AdminStore.save('heroFbPost');
+    showToast('হিরো ফেসবুক পোস্ট সফলভাবে সেভ ও লাইভ আপডেট হয়েছে! 🚀');
+  };
 
   window.openAddLoveModal = function () {
     const modal = document.getElementById('loveEditModal');

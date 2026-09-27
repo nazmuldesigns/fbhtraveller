@@ -691,6 +691,7 @@ document.addEventListener('DOMContentLoaded', () => {
       renderVentures();
       renderTravels();
       renderGenz();
+      if (window.renderHeroFacebookCard) window.renderHeroFacebookCard();
       if (typeof showToast === 'function') {
         showToast('এডমিন আপডেট লাইভ সিঙ্ক হয়েছে! ✨');
       }
@@ -707,6 +708,7 @@ document.addEventListener('DOMContentLoaded', () => {
       renderVentures();
       renderTravels();
       renderGenz();
+      if (window.renderHeroFacebookCard) window.renderHeroFacebookCard();
     }
   });
 
@@ -2842,7 +2844,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // HERO LIVE FACEBOOK POST SYNC
     // ==========================================
-    async function initHeroFacebookSync() {
+    window.renderHeroFacebookCard = function() {
       const fbCard = document.getElementById('heroFbCard');
       if (!fbCard) return;
 
@@ -2854,29 +2856,35 @@ document.addEventListener('DOMContentLoaded', () => {
       const fbImage = document.getElementById('fbCardImage');
       const fbLikes = document.getElementById('fbCardLikes');
 
-      try {
-        const response = await fetch('./latest-fb-post.json?t=' + Date.now());
-        if (!response.ok) return;
-        const data = await response.json();
+      function applyData(d) {
+        if (!d) return;
+        if (d.author && fbAuthor) fbAuthor.textContent = d.author;
+        if (d.authorAvatar && fbAvatar) fbAvatar.src = d.authorAvatar;
+        if (d.caption && fbCaption) fbCaption.textContent = d.caption;
+        if (d.timeAgo && fbTime) fbTime.innerHTML = `<i class="fa-regular fa-clock"></i> ${d.timeAgo}`;
+        if (d.likesCount && fbLikes) fbLikes.textContent = d.likesCount;
 
-        if (data.author && fbAuthor) fbAuthor.textContent = data.author;
-        if (data.authorAvatar && fbAvatar) fbAvatar.src = data.authorAvatar;
-        if (data.caption && fbCaption) fbCaption.textContent = data.caption;
-        if (data.timeAgo && fbTime) fbTime.innerHTML = `<i class="fa-regular fa-clock"></i> ${data.timeAgo}`;
-        if (data.likesCount && fbLikes) fbLikes.textContent = data.likesCount;
-
-        if (data.image && fbImage && fbMediaBox) {
-          fbImage.src = data.image;
+        if (d.image && fbImage && fbMediaBox) {
+          fbImage.src = d.image;
           fbMediaBox.style.display = 'block';
         } else if (fbMediaBox) {
           fbMediaBox.style.display = 'none';
         }
-      } catch (err) {
-        console.log('FB Post sync note:', err);
       }
-    }
 
-    initHeroFacebookSync();
+      // Check PortfolioStore first (from Admin Panel live update)
+      if (typeof PortfolioStore !== 'undefined' && PortfolioStore.data && PortfolioStore.data.heroFbPost) {
+        applyData(PortfolioStore.data.heroFbPost);
+      } else {
+        // Fallback to latest-fb-post.json
+        fetch('./latest-fb-post.json?t=' + Date.now())
+          .then(r => r.json())
+          .then(jsonData => applyData(jsonData))
+          .catch(err => console.log('FB Post sync note:', err));
+      }
+    };
+
+    window.renderHeroFacebookCard();
 
   });
 
