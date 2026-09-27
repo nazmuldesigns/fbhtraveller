@@ -798,14 +798,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const grid = document.getElementById('articlesGrid');
     if (!grid) return;
 
+    const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'bn') === 'en';
     const articles = PortfolioStore.getArticles();
     const countPill = document.getElementById('articlesCountText');
     if (countPill) {
-      countPill.textContent = `${articles.length}টি নির্বাচিত লেখা`;
+      countPill.textContent = isEn
+        ? `${articles.length} Curated Essays`
+        : `${articles.length}টি নির্বাচিত লেখা`;
     }
 
     if (!articles.length) {
-      grid.innerHTML = `<div class="empty-notice glass-card"><p>এখনো কোনো আর্টিকেল যুক্ত করা হয়নি। এডমিন প্যানেল থেকে প্রথম আর্টিকেল লিখুন!</p></div>`;
+      grid.innerHTML = isEn
+        ? `<div class="empty-notice glass-card"><p>No articles found yet. Publish your first article from the Admin Panel!</p></div>`
+        : `<div class="empty-notice glass-card"><p>এখনো কোনো আর্টিকেল যুক্ত করা হয়নি। এডমিন প্যানেল থেকে প্রথম আর্টিকেল লিখুন!</p></div>`;
       const seeMoreWrap = document.getElementById('articlesSeeMoreWrap');
       if (seeMoreWrap) seeMoreWrap.style.display = 'none';
       return;
@@ -819,9 +824,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (articles.length > INITIAL_LIMIT) {
       if (seeMoreWrap) seeMoreWrap.style.display = 'flex';
       if (seeMoreBtnText) {
-        seeMoreBtnText.textContent = isShowingAllArticles
-          ? 'সংক্ষেপ করুন (Show Less)'
-          : `সি অল আর্টিকেল (${articles.length}টি লেখা দেখুন)`;
+        if (isEn) {
+          seeMoreBtnText.textContent = isShowingAllArticles
+            ? 'Show Less'
+            : `See All Articles (${articles.length} Stories)`;
+        } else {
+          seeMoreBtnText.textContent = isShowingAllArticles
+            ? 'সংক্ষেপ করুন (Show Less)'
+            : `সি অল আর্টিকেল (${articles.length}টি লেখা দেখুন)`;
+        }
       }
     } else {
       if (seeMoreWrap) seeMoreWrap.style.display = 'none';
@@ -831,22 +842,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     grid.innerHTML = displayArticles.map(art => {
       const thumb = art.thumbnail || art.coverImg || './Asist/Personal/profile1.jpg';
+      let title = art.title;
+      let snippet = art.snippet || '';
+      let category = art.category || (isEn ? 'Essay' : 'লেখা');
+      let readTime = art.readTime || (isEn ? '3 min read' : '৩ মিনিট পাঠ');
+      let date = art.date || (isEn ? '2024' : '২০২৪');
+
+      if (isEn && window.ARTICLES_I18N && window.ARTICLES_I18N[art.id]) {
+        const trans = window.ARTICLES_I18N[art.id];
+        title = trans.title || title;
+        snippet = trans.snippet || snippet;
+        category = trans.category || category;
+        readTime = trans.readTime || readTime;
+        date = trans.date || date;
+      }
+
       return `
         <article class="story-card glass-card uiverse-tilt" onclick="openDetailView('article', '${art.id}')">
           <div class="story-card-cover-wrap">
-            <img src="${thumb}" alt="${art.title}" class="story-card-cover" onerror="this.src='./Asist/Personal/profile1.jpg'">
-            <div class="story-tag-chip">${art.category || 'লেখা'}</div>
+            <img src="${thumb}" alt="${title}" class="story-card-cover" onerror="this.src='./Asist/Personal/profile1.jpg'">
+            <div class="story-tag-chip">${category}</div>
           </div>
           <div class="story-content">
             <div class="story-meta">
-              <span><i class="fa-regular fa-clock"></i> ${art.readTime || '৩ মিনিট পাঠ'}</span>
-              <span><i class="fa-regular fa-calendar"></i> ${art.date || '২০২৪'}</span>
+              <span><i class="fa-regular fa-clock"></i> ${readTime}</span>
+              <span><i class="fa-regular fa-calendar"></i> ${date}</span>
             </div>
-            <h3 class="story-title bengali-font">${art.title}</h3>
-            <p class="story-excerpt bengali-font">${art.snippet || ''}</p>
+            <h3 class="story-title ${isEn ? '' : 'bengali-font'}">${title}</h3>
+            <p class="story-excerpt ${isEn ? '' : 'bengali-font'}">${snippet}</p>
             <div class="story-footer">
               <span class="read-more-link">
-                <span>সম্পূর্ণ পড়ুন</span>
+                <span>${isEn ? 'Read Full Story' : 'সম্পূর্ণ পড়ুন'}</span>
                 <i class="fa-solid fa-arrow-right"></i>
               </span>
             </div>
@@ -875,6 +901,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const grid = document.getElementById('bentoVenturesGrid');
     if (!grid) return;
 
+    const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'bn') === 'en';
     const ventures = PortfolioStore.getVentures();
     if (!ventures || !ventures.length) return;
 
@@ -902,10 +929,23 @@ document.addEventListener('DOMContentLoaded', () => {
         badgeIcon = 'fa-graduation-cap';
       }
 
+      let title = v.title;
+      let desc = v.snippet || v.description || '';
+      let category = v.category || (isEn ? 'Initiative' : 'উদ্যোগ');
+      let role = v.role || (isEn ? 'Initiator' : 'উদ্যোক্তা');
+
+      if (isEn && window.VENTURES_I18N && window.VENTURES_I18N[v.id]) {
+        const trans = window.VENTURES_I18N[v.id];
+        title = trans.title || title;
+        desc = trans.snippet || desc;
+        category = trans.category || category;
+        role = trans.role || role;
+      }
+
       const thumbImg = v.thumbnail || v.coverImg || '';
       const thumbHtml = thumbImg ? `
         <div class="bento-thumb-wrap">
-          <img src="${thumbImg}" alt="${v.title}" loading="lazy" onerror="this.src='./Asist/GenZ/start.1.jpg'">
+          <img src="${thumbImg}" alt="${title}" loading="lazy" onerror="this.src='./Asist/GenZ/start.1.jpg'">
         </div>
       ` : '';
 
@@ -915,20 +955,20 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="bento-header">
             <div class="venture-badge ${badgeClass}">
               <i class="fa-solid ${badgeIcon}"></i>
-              <span>${v.category || 'Initiative'}</span>
+              <span>${category}</span>
             </div>
-            <span class="venture-role">${v.role || 'Initiator'}</span>
+            <span class="venture-role">${role}</span>
           </div>
 
           ${thumbHtml}
 
           <div class="bento-content-body">
-            <h3 class="venture-title">${v.title}</h3>
-            <p class="venture-desc">${v.snippet || v.description || ''}</p>
+            <h3 class="venture-title">${title}</h3>
+            <p class="venture-desc">${desc}</p>
 
             <div class="venture-card-footer">
               <button class="view-detail-pill" onclick="event.stopPropagation(); openDetailView('venture', '${v.id}')">
-                <span>সম্পূর্ণ বিস্তারিত ও কভার পড়ুন</span>
+                <span>${isEn ? 'Read Full Details & Story' : 'সম্পূর্ণ বিস্তারিত ও কভার পড়ুন'}</span>
                 <i class="fa-solid fa-arrow-right"></i>
               </button>
             </div>
@@ -981,26 +1021,49 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentDetailItem = null;
 
   window.openDetailView = function(type, id) {
+    const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'bn') === 'en';
     let item = null;
     let categoryLabel = '';
-    let authorName = 'ফাহাদ বিন হুসনে আলী';
-    let authorRole = 'God First • Online Professional • Storyteller • Family Man';
+    let authorName = isEn ? 'Fahad Bin Husne Ali' : 'ফাহাদ বিন হুসনে আলী';
+    let authorRole = isEn ? 'God First • Online Professional • Storyteller • Family Man' : 'God First • অনলাইন প্রফেশনাল • লেখক • পারিবারিক মানুষ';
 
     if (type === 'article') {
       item = PortfolioStore.getArticle(id);
-      categoryLabel = item ? (item.category || 'আর্টিকেল') : '';
+      categoryLabel = item ? (item.category || (isEn ? 'Article' : 'আর্টিকেল')) : '';
     } else if (type === 'venture') {
       item = PortfolioStore.getVenture(id);
-      categoryLabel = item ? (item.category || 'The Lab Venture') : '';
+      categoryLabel = item ? (item.category || (isEn ? 'The Lab Venture' : 'দ্য ল্যাব উদ্যোগ')) : '';
     } else if (type === 'travel') {
       item = PortfolioStore.getTravel(id);
-      categoryLabel = item ? (item.category || 'ভ্রমণ ডায়েরি') : '';
+      categoryLabel = item ? (item.category || (isEn ? 'Travel Log' : 'ভ্রমণ ডায়েরি')) : '';
     } else if (type === 'genz') {
       item = PortfolioStore.getGenz(id);
       categoryLabel = item ? (item.category || 'Gen-Z Tech Hub') : '';
     }
 
     if (!item || !detailsPageView || !detailArticleContent) return;
+
+    let displayTitle = item.title;
+    let displayContent = item.content || item.snippet || '';
+    let displayReadTime = item.readTime;
+    let displayDate = item.date;
+    let displayRole = item.role;
+
+    if (isEn) {
+      if (type === 'article' && window.ARTICLES_I18N && window.ARTICLES_I18N[id]) {
+        const trans = window.ARTICLES_I18N[id];
+        displayTitle = trans.title || displayTitle;
+        categoryLabel = trans.category || categoryLabel;
+        displayReadTime = trans.readTime || displayReadTime;
+        displayDate = trans.date || displayDate;
+      } else if (type === 'venture' && window.VENTURES_I18N && window.VENTURES_I18N[id]) {
+        const trans = window.VENTURES_I18N[id];
+        displayTitle = trans.title || displayTitle;
+        categoryLabel = trans.category || categoryLabel;
+        displayRole = trans.role || displayRole;
+      }
+    }
+
     currentDetailItem = { type, id, item };
 
     // Update edit button visibility in top bar
@@ -1011,7 +1074,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const detailBanner = item.coverImg || item.thumbnail;
     const coverHtml = detailBanner ? `
-      <img src="${detailBanner}" alt="${item.title}" class="details-hero-cover" onerror="this.style.display='none'">
+      <img src="${detailBanner}" alt="${displayTitle}" class="details-hero-cover" onerror="this.style.display='none'">
     ` : '';
 
     detailArticleContent.innerHTML = `
@@ -1020,19 +1083,19 @@ document.addEventListener('DOMContentLoaded', () => {
           <i class="fa-solid fa-feather-pointed"></i>
           <span>${categoryLabel}</span>
         </div>
-        <h1 class="details-title bengali-font">${item.title}</h1>
+        <h1 class="details-title ${isEn ? '' : 'bengali-font'}">${displayTitle}</h1>
         <div class="details-meta-bar">
           <span><i class="fa-solid fa-user-pen text-gold"></i> ${authorName}</span>
-          ${item.readTime ? `<span><i class="fa-regular fa-clock"></i> ${item.readTime}</span>` : ''}
-          ${item.date ? `<span><i class="fa-regular fa-calendar"></i> ${item.date}</span>` : ''}
-          ${item.role ? `<span><i class="fa-solid fa-briefcase text-gold"></i> ${item.role}</span>` : ''}
+          ${displayReadTime ? `<span><i class="fa-regular fa-clock"></i> ${displayReadTime}</span>` : ''}
+          ${displayDate ? `<span><i class="fa-regular fa-calendar"></i> ${displayDate}</span>` : ''}
+          ${displayRole ? `<span><i class="fa-solid fa-briefcase text-gold"></i> ${displayRole}</span>` : ''}
         </div>
       </header>
 
       ${coverHtml}
 
-      <div class="details-body bengali-font">
-        ${item.content || item.snippet || ''}
+      <div class="details-body ${isEn ? '' : 'bengali-font'}">
+        ${displayContent}
       </div>
 
       <footer class="article-author-card">
@@ -2225,6 +2288,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       function drawParticles() {
         ctx.clearRect(0, 0, width, height);
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
 
         for (let i = 0; i < particles.length; i++) {
           const p = particles[i];
@@ -2251,7 +2315,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(148, 163, 184, ${p.alpha})`;
+          ctx.fillStyle = isLight
+            ? `rgba(71, 85, 105, ${p.alpha * 0.7})`
+            : `rgba(148, 163, 184, ${p.alpha})`;
           ctx.fill();
 
           // Connect lines between nearby particles
@@ -2262,11 +2328,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const dist = Math.sqrt(dx * dx + dy * dy);
 
             if (dist < 110) {
-              const lineAlpha = (1 - dist / 110) * 0.18;
+              const lineAlpha = (1 - dist / 110) * (isLight ? 0.22 : 0.18);
               ctx.beginPath();
               ctx.moveTo(p.x, p.y);
               ctx.lineTo(p2.x, p2.y);
-              ctx.strokeStyle = `rgba(99, 102, 241, ${lineAlpha})`;
+              ctx.strokeStyle = isLight
+                ? `rgba(79, 70, 229, ${lineAlpha})`
+                : `rgba(99, 102, 241, ${lineAlpha})`;
               ctx.lineWidth = 0.75;
               ctx.stroke();
             }
@@ -2348,16 +2416,27 @@ document.addEventListener('DOMContentLoaded', () => {
       let rotatingCardsData = PortfolioStore.getLoveCards();
 
       window.renderRotatingCards = function() {
+        const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'bn') === 'en';
         rotatingCardsData = PortfolioStore.getLoveCards();
         const cards = rotatingCardsRing.querySelectorAll('.rc-card');
         rotatingCardsData.forEach((item, idx) => {
+          let title = item.title;
+          let tag = item.tag;
+          if (isEn && window.LOVE_CARDS_I18N && window.LOVE_CARDS_I18N[item.id]) {
+            const trans = window.LOVE_CARDS_I18N[item.id];
+            title = trans.title || title;
+            tag = trans.tag || tag;
+          }
           if (cards[idx]) {
             const img = cards[idx].querySelector('img');
-            const tag = cards[idx].querySelector('.rc-card-tag');
+            const tagEl = cards[idx].querySelector('.rc-card-tag');
             const cap = cards[idx].querySelector('.rc-card-caption');
             if (img && item.img) img.src = item.img;
-            if (tag && item.tag) tag.innerHTML = `<i class="fa-solid fa-heart"></i> ${escapeHtml(item.tag)}`;
-            if (cap && item.title) cap.textContent = item.title;
+            if (tagEl && tag) tagEl.innerHTML = `<i class="fa-solid fa-heart"></i> ${escapeHtml(tag)}`;
+            if (cap && title) {
+              cap.textContent = title;
+              cap.className = `rc-card-caption ${isEn ? '' : 'bengali-font'}`;
+            }
           }
         });
         updateSpotlight(activeCardIndex);
@@ -2432,10 +2511,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = rotatingCardsData[index];
         if (!data) return;
 
-        if (rcSpotlightCounter) rcSpotlightCounter.textContent = `Memory ${(index + 1).toString().padStart(2, '0')} / 10`;
-        if (rcSpotlightTag) rcSpotlightTag.textContent = data.tag;
-        if (rcSpotlightTitle) rcSpotlightTitle.textContent = data.title;
-        if (rcSpotlightDesc) rcSpotlightDesc.textContent = `"${data.desc}"`;
+        const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'bn') === 'en';
+        let title = data.title;
+        let tag = data.tag;
+        let desc = data.desc;
+        if (isEn && window.LOVE_CARDS_I18N && window.LOVE_CARDS_I18N[data.id]) {
+          const trans = window.LOVE_CARDS_I18N[data.id];
+          title = trans.title || title;
+          tag = trans.tag || tag;
+          desc = trans.desc || desc;
+        }
+
+        if (rcSpotlightCounter) rcSpotlightCounter.textContent = isEn
+          ? `Memory ${(index + 1).toString().padStart(2, '0')} / 10`
+          : `স্মৃতি ${(index + 1).toString().padStart(2, '0')} / ১০`;
+        if (rcSpotlightTag) rcSpotlightTag.textContent = tag;
+        if (rcSpotlightTitle) {
+          rcSpotlightTitle.textContent = title;
+          rcSpotlightTitle.className = isEn ? 'rc-spotlight-title' : 'rc-spotlight-title bengali-font';
+        }
+        if (rcSpotlightDesc) {
+          rcSpotlightDesc.textContent = `"${desc}"`;
+          rcSpotlightDesc.className = isEn ? 'rc-spotlight-desc' : 'rc-spotlight-desc bengali-font';
+        }
 
         // Update active dot
         const dots = rotatingCardsDots ? rotatingCardsDots.querySelectorAll('.rc-dot') : [];
@@ -2731,17 +2829,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Render items from PortfolioStore
       window.renderParallaxCarouselTracks = function() {
+        const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'bn') === 'en';
         const allPhotos = PortfolioStore.getTravelGallery();
         const row1Photos = allPhotos.slice(0, 10);
         const row2Photos = allPhotos.slice(10, 20);
 
         function generateCardHtml(item) {
+          let title = item.title;
+          let desc = item.desc;
+          if (isEn && window.TRAVEL_GALLERY_I18N && window.TRAVEL_GALLERY_I18N[item.id]) {
+            const trans = window.TRAVEL_GALLERY_I18N[item.id];
+            title = trans.title || title;
+            desc = trans.desc || desc;
+          }
+
           return `
-            <div class="parallax-card" data-id="${item.id}" onclick="openLightbox('${item.img}', '${escapeHtml(item.title)} — ${escapeHtml(item.desc)}')">
+            <div class="parallax-card" data-id="${item.id}" onclick="openLightbox('${item.img}', '${escapeHtml(title)} — ${escapeHtml(desc)}')">
               <div class="parallax-inner-box">
-                <img src="${item.img}" alt="${escapeHtml(item.title)}" class="parallax-inner-img" loading="lazy" onerror="this.src='./Asist/Travel/t.1.jpg'">
+                <img src="${item.img}" alt="${escapeHtml(title)}" class="parallax-inner-img" loading="lazy" onerror="this.src='./Asist/Travel/t.1.jpg'">
                 <div class="parallax-card-hover-tag">
-                  <span class="parallax-card-hover-title bengali-font">${escapeHtml(item.title)}</span>
+                  <span class="parallax-card-hover-title ${isEn ? '' : 'bengali-font'}">${escapeHtml(title)}</span>
                   <span class="parallax-card-hover-zoom"><i class="fa-solid fa-expand"></i></span>
                 </div>
               </div>
@@ -2992,6 +3099,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.renderHeroSection = function () {
       if (typeof PortfolioStore === 'undefined' || !PortfolioStore.data) return;
       const hero = PortfolioStore.data.hero || DEFAULT_HERO;
+      const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'bn') === 'en';
 
       // 1. Profile image
       const mainHeroImg = document.getElementById('mainHeroImage');
@@ -3005,24 +3113,28 @@ document.addEventListener('DOMContentLoaded', () => {
         badgeHighlight.textContent = hero.badgeHighlight;
       }
       const badgeSub = document.getElementById('heroBadgeSub');
-      if (badgeSub && hero.focusLine) {
+      if (badgeSub && hero.focusLine && hero.focusLine !== DEFAULT_HERO.focusLine) {
         badgeSub.textContent = hero.focusLine;
       }
 
       // 3. Status pill
       const statusText = document.getElementById('heroStatusText');
-      if (statusText && hero.status) {
+      if (statusText && hero.status && hero.status !== DEFAULT_HERO.status) {
         statusText.textContent = hero.status;
       }
 
       // 4. Hero bio text
       const bioEl = document.getElementById('heroBioText');
-      if (bioEl && hero.bio) {
+      if (bioEl && hero.bio && hero.bio !== DEFAULT_HERO.bio) {
         bioEl.textContent = hero.bio;
       }
 
       // 5. Typewriter animated roles
-      if (hero.roles && Array.isArray(hero.roles) && hero.roles.length) {
+      if (isEn && window.I18N_DICT && window.I18N_DICT.en && window.I18N_DICT.en.heroRoles) {
+        if (typeof window.updateHeroRoles === 'function') {
+          window.updateHeroRoles(window.I18N_DICT.en.heroRoles);
+        }
+      } else if (hero.roles && Array.isArray(hero.roles) && hero.roles.length) {
         if (typeof window.updateHeroRoles === 'function') {
           window.updateHeroRoles(hero.roles);
         }
@@ -3035,6 +3147,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.renderFooterSocialLinks = function () {
       if (typeof PortfolioStore === 'undefined' || !PortfolioStore.data) return;
       const social = PortfolioStore.data.social || DEFAULT_SOCIAL;
+      const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'bn') === 'en';
 
       // 1. Footer social links
       const fbLink = document.getElementById('footerFbLink');
@@ -3053,8 +3166,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const connectEmailText = document.getElementById('connectEmailText');
       const connectGmailBtn = document.getElementById('connectGmailBtn');
 
-      if (prTitle && social.prTitle) prTitle.textContent = social.prTitle;
-      if (prDesc && social.prDesc) prDesc.textContent = social.prDesc;
+      if (prTitle && social.prTitle && social.prTitle !== DEFAULT_SOCIAL.prTitle) {
+        prTitle.textContent = social.prTitle;
+      } else if (prTitle && window.I18N_DICT) {
+        const dict = isEn ? window.I18N_DICT.en : window.I18N_DICT.bn;
+        if (dict && dict.prBoxTitle) prTitle.textContent = dict.prBoxTitle;
+      }
+
+      if (prDesc && social.prDesc && social.prDesc !== DEFAULT_SOCIAL.prDesc) {
+        prDesc.textContent = social.prDesc;
+      } else if (prDesc && window.I18N_DICT) {
+        const dict = isEn ? window.I18N_DICT.en : window.I18N_DICT.bn;
+        if (dict && dict.prBoxDesc) prDesc.textContent = dict.prBoxDesc;
+      }
+
       if (connectEmailText && social.email) {
         connectEmailText.textContent = social.email;
         connectEmailText.href = `mailto:${social.email}`;
