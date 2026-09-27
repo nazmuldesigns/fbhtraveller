@@ -775,7 +775,31 @@
 
         <div class="form-group">
           <label class="form-label" for="articleContentInput">সম্পূর্ণ লেখার বিস্তারিত (Full Body Content) *</label>
-          <textarea id="articleContentInput" class="form-textarea bengali-font" style="min-height: 220px;" placeholder="সম্পূর্ণ লেখাটি এখানে লিখুন বা পেস্ট করুন..." required></textarea>
+          <div class="editor-toolbar" style="margin-bottom: 0.5rem; display: flex; gap: 0.35rem; flex-wrap: wrap; background: rgba(0,0,0,0.25); padding: 0.4rem; border-radius: 8px; border: 1px solid var(--border-color);">
+            <button type="button" class="toolbar-btn" onclick="insertFormatTag('articleContentInput', '<strong>', '</strong>')" title="Bold (বোল্ড)">
+              <i class="fa-solid fa-bold"></i> <span>বোল্ড</span>
+            </button>
+            <button type="button" class="toolbar-btn" onclick="insertFormatTag('articleContentInput', '<em>', '</em>')" title="Italic (ইটালিক)">
+              <i class="fa-solid fa-italic"></i> <span>ইটালিক</span>
+            </button>
+            <button type="button" class="toolbar-btn" onclick="insertFormatTag('articleContentInput', '<mark>', '</mark>')" title="Highlight (হাইলাইট)">
+              <i class="fa-solid fa-highlighter text-gold"></i> <span>হাইলাইট</span>
+            </button>
+            <button type="button" class="toolbar-btn" onclick="insertFormatTag('articleContentInput', '<blockquote>&quot;', '&quot;</blockquote>')" title="Quote (উক্তি)">
+              <i class="fa-solid fa-quote-left text-cyan"></i> <span>উক্তি</span>
+            </button>
+            <button type="button" class="toolbar-btn" onclick="insertFormatTag('articleContentInput', '<h3>', '</h3>')" title="Heading (সাব-হেডিং)">
+              <i class="fa-solid fa-heading"></i> <span>হেডিং</span>
+            </button>
+            <button type="button" class="toolbar-btn" onclick="insertFormatTag('articleContentInput', '<p>', '</p>')" title="Paragraph (প্যারাগ্রাফ)">
+              <i class="fa-solid fa-paragraph"></i> <span>প্যারা</span>
+            </button>
+            <div class="toolbar-divider" style="width: 1px; height: 18px; background: rgba(255,255,255,0.15); margin: auto 0.2rem;"></div>
+            <button type="button" class="toolbar-btn" onclick="insertArticleImage('articleContentInput')" title="Insert Image (ছবি যোগ করুন)">
+              <i class="fa-solid fa-image text-gold"></i> <span>ছবি যোগ</span>
+            </button>
+          </div>
+          <textarea id="articleContentInput" class="form-textarea bengali-font" style="min-height: 220px;" placeholder="সম্পূর্ণ লেখাটি এখানে লিখুন বা পেস্ট করুন (HTML ট্যাগ বা টুলবার ব্যবহার করতে পারেন)..." required></textarea>
         </div>
 
         <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1rem;">
@@ -879,6 +903,30 @@
 
         <div class="form-group">
           <label class="form-label" for="ventureContentInput">সম্পূর্ণ বিবরণ ও বিস্তারিত (Full Details / Content)</label>
+          <div class="editor-toolbar" style="margin-bottom: 0.5rem; display: flex; gap: 0.35rem; flex-wrap: wrap; background: rgba(0,0,0,0.25); padding: 0.4rem; border-radius: 8px; border: 1px solid var(--border-color);">
+            <button type="button" class="toolbar-btn" onclick="insertFormatTag('ventureContentInput', '<strong>', '</strong>')" title="Bold (বোল্ড)">
+              <i class="fa-solid fa-bold"></i> <span>বোল্ড</span>
+            </button>
+            <button type="button" class="toolbar-btn" onclick="insertFormatTag('ventureContentInput', '<em>', '</em>')" title="Italic (ইটালিক)">
+              <i class="fa-solid fa-italic"></i> <span>ইটালিক</span>
+            </button>
+            <button type="button" class="toolbar-btn" onclick="insertFormatTag('ventureContentInput', '<mark>', '</mark>')" title="Highlight (হাইলাইট)">
+              <i class="fa-solid fa-highlighter text-gold"></i> <span>হাইলাইট</span>
+            </button>
+            <button type="button" class="toolbar-btn" onclick="insertFormatTag('ventureContentInput', '<blockquote>&quot;', '&quot;</blockquote>')" title="Quote (উক্তি)">
+              <i class="fa-solid fa-quote-left text-cyan"></i> <span>উক্তি</span>
+            </button>
+            <button type="button" class="toolbar-btn" onclick="insertFormatTag('ventureContentInput', '<h3>', '</h3>')" title="Heading (সাব-হেডিং)">
+              <i class="fa-solid fa-heading"></i> <span>হেডিং</span>
+            </button>
+            <button type="button" class="toolbar-btn" onclick="insertFormatTag('ventureContentInput', '<p>', '</p>')" title="Paragraph (প্যারাগ্রাফ)">
+              <i class="fa-solid fa-paragraph"></i> <span>প্যারা</span>
+            </button>
+            <div class="toolbar-divider" style="width: 1px; height: 18px; background: rgba(255,255,255,0.15); margin: auto 0.2rem;"></div>
+            <button type="button" class="toolbar-btn" onclick="insertArticleImage('ventureContentInput')" title="Insert Image (ছবি যোগ করুন)">
+              <i class="fa-solid fa-image text-gold"></i> <span>ছবি যোগ</span>
+            </button>
+          </div>
           <textarea id="ventureContentInput" class="form-textarea bengali-font" style="min-height: 200px;" placeholder="ভেঞ্চারের বিস্তারিত বিবরণ লিখুন (HTML বা টেক্সট)..."></textarea>
         </div>
 

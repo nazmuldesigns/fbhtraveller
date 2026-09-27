@@ -1307,6 +1307,42 @@
     modal.classList.add('active');
   };
 
+  // Rich Formatting Helpers for Textarea Content
+  window.insertFormatTag = function (targetId, startTag, endTag) {
+    const textarea = document.getElementById(targetId);
+    if (!textarea) return;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const selectedText = textarea.value.substring(start, end) || 'টেক্সট';
+    const replacement = startTag + selectedText + endTag;
+    
+    if (typeof textarea.setRangeText === 'function') {
+      textarea.setRangeText(replacement, start, end, 'end');
+    } else {
+      textarea.value = textarea.value.substring(0, start) + replacement + textarea.value.substring(end);
+    }
+    textarea.focus();
+  };
+
+  window.insertArticleImage = function (targetId) {
+    const url = prompt('ছবির লিঙ্ক / ফাইল পাথ দিন (যেমন: ./Asist/GenZ/start.1.jpg বা https://...):', './Asist/Personal/1.jpg');
+    if (!url) return;
+    const caption = prompt('ছবির ক্যাপশন লিখুন (ঐচ্ছিক):', '');
+    const imgHtml = `\n<div class="article-media-wrapper img-center">\n  <img src="${url}" alt="${caption || 'Image'}" loading="lazy">\n  ${caption ? `<span class="article-caption">${caption}</span>` : ''}\n</div>\n`;
+    
+    const textarea = document.getElementById(targetId);
+    if (!textarea) return;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    
+    if (typeof textarea.setRangeText === 'function') {
+      textarea.setRangeText(imgHtml, start, end, 'end');
+    } else {
+      textarea.value = textarea.value.substring(0, start) + imgHtml + textarea.value.substring(end);
+    }
+    textarea.focus();
+  };
+
   window.closeArticleModal = function () {
     const modal = document.getElementById('articleEditModal');
     if (modal) modal.classList.remove('active');
