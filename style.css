@@ -103,6 +103,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   max-width: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -113,6 +114,20 @@ body {
   overflow-x: hidden;
   position: relative;
   min-height: 100vh;
+  touch-action: pan-y;
+}
+
+/* Offscreen Section Rendering Optimization via content-visibility */
+#roots-love,
+#travel,
+#writings,
+#beliefs,
+#creed,
+#impact,
+#connect,
+.quotes-slider-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 650px;
 }
 
 .bengali-font {
@@ -6815,4 +6830,61 @@ body {
   background: #ef4444;
   color: #fff;
 }
+
+/* ==========================================================================
+   MOBILE & TOUCH DEVICE PERFORMANCE ENGINE
+   Silky 60-120fps scrolling, lightweight GPU rasterization, instant paint
+   ========================================================================== */
+@media (max-width: 768px), (hover: none) and (pointer: coarse) {
+  /* Eliminate heavy GPU blur compositing */
+  .ambient-glow {
+    display: none !important;
+  }
+
+  .particle-canvas {
+    opacity: 0.25;
+    pointer-events: none;
+  }
+
+  /* Optimize glass cards for smooth touch scrolling */
+  .glass-card,
+  .navbar,
+  .hero-glass-card,
+  .quote-display-card,
+  .baba-tribute-card,
+  .love-card,
+  .writing-card,
+  .social-card-pr {
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.45) !important;
+  }
+
+  [data-theme="light"] .glass-card,
+  [data-theme="light"] .navbar,
+  [data-theme="light"] .hero-glass-card,
+  [data-theme="light"] .quote-display-card,
+  [data-theme="light"] .baba-tribute-card,
+  [data-theme="light"] .love-card,
+  [data-theme="light"] .writing-card,
+  [data-theme="light"] .social-card-pr {
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08) !important;
+  }
+
+  /* Hardware acceleration for scrolling tracks */
+  .parallax-track,
+  .rotating-cards-ring,
+  .scroll-progress-bar {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
 

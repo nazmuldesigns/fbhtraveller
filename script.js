@@ -96,32 +96,34 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================
-  // 3. 3D TACTILE TILT ON CARDS (UIVERSE FEEL)
+  // 3. 3D TACTILE TILT ON CARDS (UIVERSE FEEL) — Desktop only to prevent touch jank
   // ==========================================
-  const tiltCards = document.querySelectorAll('.uiverse-tilt');
+  const isDesktopPointer = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (isDesktopPointer) {
+    const tiltCards = document.querySelectorAll('.uiverse-tilt');
+    tiltCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
-  tiltCards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
 
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
+        const deltaX = (x - centerX) / centerX;
+        const deltaY = (y - centerY) / centerY;
 
-      const deltaX = (x - centerX) / centerX;
-      const deltaY = (y - centerY) / centerY;
+        const rotateX = -deltaY * 5;
+        const rotateY = deltaX * 5;
 
-      const rotateX = -deltaY * 5;
-      const rotateY = deltaX * 5;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+      }, { passive: true });
 
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+      });
     });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
-    });
-  });
+  }
 
   // ==========================================
   // 4. PORTFOLIO DATA STORE & CMS CORE ENGINE
@@ -2649,9 +2651,10 @@ document.addEventListener('DOMContentLoaded', () => {
     renderBlessings();
 
     // ==========================================
-    // 13. TOP SCROLL PROGRESS BAR
+    // 13. TOP SCROLL PROGRESS BAR (Throttled for silky 60fps scrolling)
     // ==========================================
     const progressBar = document.getElementById('scrollProgressBar');
+    let scrollProgressTicking = false;
 
     function updateScrollProgress() {
       if (!progressBar) return;
@@ -2659,35 +2662,48 @@ document.addEventListener('DOMContentLoaded', () => {
       const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
       progressBar.style.width = progress + '%';
+      scrollProgressTicking = false;
     }
 
-    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    window.addEventListener('scroll', () => {
+      if (!scrollProgressTicking) {
+        requestAnimationFrame(updateScrollProgress);
+        scrollProgressTicking = true;
+      }
+    }, { passive: true });
 
     // ==========================================
-    // 14. INTERACTIVE CONSTELLATION PARTICLE CANVAS
+    // 14. INTERACTIVE CONSTELLATION PARTICLE CANVAS (Mobile-Optimized & Scroll-Throttled)
     // ==========================================
     function initParticleCanvas() {
       const canvas = document.getElementById('particleCanvas');
       if (!canvas) return;
-      const ctx = canvas.getContext('2d');
 
+      // On mobile devices (touch screens < 768px), disable canvas animation for 100% fluid scroll
+      const isMobile = window.innerWidth <= 768 || (navigator.maxTouchPoints && navigator.maxTouchPoints > 1);
+      if (isMobile) {
+        canvas.style.display = 'none';
+        return;
+      }
+
+      const ctx = canvas.getContext('2d');
       let width = canvas.width = window.innerWidth;
       let height = canvas.height = window.innerHeight;
 
       const particles = [];
-      const particleCount = Math.min(Math.floor((width * height) / 18000), 70);
+      const particleCount = Math.min(Math.floor((width * height) / 22000), 45);
 
       window.addEventListener('resize', () => {
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
-      });
+      }, { passive: true });
 
-      let mouse = { x: null, y: null, radius: 120 };
+      let mouse = { x: null, y: null, radius: 110 };
 
       window.addEventListener('mousemove', (e) => {
         mouse.x = e.clientX;
         mouse.y = e.clientY;
-      });
+      }, { passive: true });
 
       window.addEventListener('mouseleave', () => {
         mouse.x = null;
@@ -2698,68 +2714,71 @@ document.addEventListener('DOMContentLoaded', () => {
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.45,
-          vy: (Math.random() - 0.5) * 0.45,
-          radius: Math.random() * 1.8 + 0.8,
-          alpha: Math.random() * 0.5 + 0.2
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          radius: Math.random() * 1.5 + 0.6,
+          alpha: Math.random() * 0.4 + 0.2
         });
       }
 
+      let isPaused = false;
+      document.addEventListener('visibilitychange', () => {
+        isPaused = document.hidden;
+      });
+
       function drawParticles() {
-        ctx.clearRect(0, 0, width, height);
-        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        if (!isPaused) {
+          ctx.clearRect(0, 0, width, height);
+          const isLight = document.documentElement.getAttribute('data-theme') === 'light';
 
-        for (let i = 0; i < particles.length; i++) {
-          const p = particles[i];
+          for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            p.x += p.vx;
+            p.y += p.vy;
 
-          p.x += p.vx;
-          p.y += p.vy;
+            if (p.x < 0) p.x = width;
+            if (p.x > width) p.x = 0;
+            if (p.y < 0) p.y = height;
+            if (p.y > height) p.y = 0;
 
-          if (p.x < 0) p.x = width;
-          if (p.x > width) p.x = 0;
-          if (p.y < 0) p.y = height;
-          if (p.y > height) p.y = 0;
-
-          // Mouse attraction / gentle interaction
-          if (mouse.x !== null) {
-            const dx = mouse.x - p.x;
-            const dy = mouse.y - p.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < mouse.radius) {
-              const force = (mouse.radius - dist) / mouse.radius;
-              p.x -= (dx / dist) * force * 1.5;
-              p.y -= (dy / dist) * force * 1.5;
+            if (mouse.x !== null) {
+              const dx = mouse.x - p.x;
+              const dy = mouse.y - p.y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < mouse.radius) {
+                const force = (mouse.radius - dist) / mouse.radius;
+                p.x -= (dx / dist) * force * 1.2;
+                p.y -= (dy / dist) * force * 1.2;
+              }
             }
-          }
 
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-          ctx.fillStyle = isLight
-            ? `rgba(71, 85, 105, ${p.alpha * 0.7})`
-            : `rgba(148, 163, 184, ${p.alpha})`;
-          ctx.fill();
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = isLight
+              ? `rgba(71, 85, 105, ${p.alpha * 0.7})`
+              : `rgba(148, 163, 184, ${p.alpha})`;
+            ctx.fill();
 
-          // Connect lines between nearby particles
-          for (let j = i + 1; j < particles.length; j++) {
-            const p2 = particles[j];
-            const dx = p.x - p2.x;
-            const dy = p.y - p2.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
+            for (let j = i + 1; j < particles.length; j++) {
+              const p2 = particles[j];
+              const dx = p.x - p2.x;
+              const dy = p.y - p2.y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
 
-            if (dist < 110) {
-              const lineAlpha = (1 - dist / 110) * (isLight ? 0.22 : 0.18);
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(p2.x, p2.y);
-              ctx.strokeStyle = isLight
-                ? `rgba(79, 70, 229, ${lineAlpha})`
-                : `rgba(99, 102, 241, ${lineAlpha})`;
-              ctx.lineWidth = 0.75;
-              ctx.stroke();
+              if (dist < 100) {
+                const lineAlpha = (1 - dist / 100) * (isLight ? 0.2 : 0.15);
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.strokeStyle = isLight
+                  ? `rgba(79, 70, 229, ${lineAlpha})`
+                  : `rgba(99, 102, 241, ${lineAlpha})`;
+                ctx.lineWidth = 0.65;
+                ctx.stroke();
+              }
             }
           }
         }
-
         requestAnimationFrame(drawParticles);
       }
 
@@ -2789,29 +2808,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 16. ACTIVE NAV HIGHLIGHT ON SCROLL
+    // 16. ACTIVE NAV HIGHLIGHT (Zero-cost IntersectionObserver)
     // ==========================================
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    window.addEventListener('scroll', () => {
-      let scrollY = window.pageYOffset;
-
-      sections.forEach(current => {
-        const sectionHeight = current.offsetHeight;
-        const sectionTop = current.offsetTop - 140;
-        const sectionId = current.getAttribute('id');
-
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-          navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === '#' + sectionId) {
-              link.classList.add('active');
-            }
-          });
-        }
+    if ('IntersectionObserver' in window && sections.length > 0) {
+      const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const sectionId = entry.target.getAttribute('id');
+            navLinks.forEach(link => {
+              if (link.getAttribute('href') === '#' + sectionId) {
+                link.classList.add('active');
+              } else {
+                link.classList.remove('active');
+              }
+            });
+          }
+        });
+      }, {
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0.1
       });
-    }, { passive: true });
+
+      sections.forEach(sec => navObserver.observe(sec));
+    }
 
     // ==========================================
     // 17. REACT BITS PRO: 3D ROTATING CARDS COMPONENT (LOVE SECTION)
@@ -3195,10 +3217,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isDragging) onDragEnd();
       });
 
-      // Continuous Animation Loop (Auto-play: duration = 30s)
+      // Continuous Animation Loop (Auto-play: duration = 30s) with Viewport Pause
       let lastTimestamp = performance.now();
+      let rcAnimFrameId = null;
+      let rcIsVisible = true;
 
       function animationLoop(timestamp) {
+        if (!rcIsVisible) {
+          rcAnimFrameId = null;
+          return;
+        }
+
         const delta = Math.min(0.1, (timestamp - lastTimestamp) / 1000);
         lastTimestamp = timestamp;
 
@@ -3212,12 +3241,27 @@ document.addEventListener('DOMContentLoaded', () => {
           updateScene();
         }
 
-        requestAnimationFrame(animationLoop);
+        rcAnimFrameId = requestAnimationFrame(animationLoop);
       }
 
-      // Start initial scene update & animation loop
+      // IntersectionObserver to pause 3D rotating cards loop when offscreen
+      if ('IntersectionObserver' in window && rotatingCardsContainer) {
+        const rcObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            rcIsVisible = entry.isIntersecting;
+            if (rcIsVisible && !rcAnimFrameId) {
+              lastTimestamp = performance.now();
+              rcAnimFrameId = requestAnimationFrame(animationLoop);
+            }
+          });
+        }, { threshold: 0.05 });
+        rcObserver.observe(rotatingCardsContainer);
+      } else {
+        rcAnimFrameId = requestAnimationFrame(animationLoop);
+      }
+
+      // Start initial scene update
       updateScene();
-      requestAnimationFrame(animationLoop);
     }
 
     // ==========================================
@@ -3507,14 +3551,33 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window._row2Controller) window._row2Controller.initMeasurements();
       });
 
-      // Master Animation Loop
+      // Master Animation Loop with Viewport Pause via IntersectionObserver
+      let parallaxAnimFrameId = null;
+      let parallaxIsVisible = true;
+
       function parallaxAnimationLoop() {
+        if (!parallaxIsVisible) {
+          parallaxAnimFrameId = null;
+          return;
+        }
         if (window._row1Controller) window._row1Controller.update();
         if (window._row2Controller) window._row2Controller.update();
-        requestAnimationFrame(parallaxAnimationLoop);
+        parallaxAnimFrameId = requestAnimationFrame(parallaxAnimationLoop);
       }
 
-      requestAnimationFrame(parallaxAnimationLoop);
+      if ('IntersectionObserver' in window && parallaxContainer) {
+        const parallaxObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            parallaxIsVisible = entry.isIntersecting;
+            if (parallaxIsVisible && !parallaxAnimFrameId) {
+              parallaxAnimFrameId = requestAnimationFrame(parallaxAnimationLoop);
+            }
+          });
+        }, { threshold: 0.05 });
+        parallaxObserver.observe(parallaxContainer);
+      } else {
+        parallaxAnimFrameId = requestAnimationFrame(parallaxAnimationLoop);
+      }
     }
 
     // ==========================================
