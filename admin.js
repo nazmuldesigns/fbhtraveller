@@ -67,6 +67,101 @@
     { id: 'love_10', img: './Asist/card/10.jpg', tag: 'Silk Road Fairytale', title: 'সমারখন্দের সুলতান ও রানী', desc: 'ঐতিহাসিক সিল্ক রোডের স্থাপত্যে যুগল রূপকথা— রাজকীয় ঐতিহ্যে এক অবিস্মরণীয় ভালোবাসার স্মারক।' }
   ];
 
+  const DEFAULT_ARTICLES = [
+    {
+      id: 'kidney',
+      title: "কিডনি পেশেন্ট ও আইফোন জোক: হাসির আড়ালে সুস্থতার দাম",
+      category: "সামাজিক পর্যবেক্ষণ",
+      readTime: "৩ মিনিট পাঠ",
+      date: "২০২৪",
+      coverImg: "./Asist/GenZ/start.1.jpg",
+      excerpt: "সামাজিক মাধ্যমে একটা জোক বহু বছর ধরে ঘোরে— 'নতুন আইফোন এসেছে, একটা কিডনি বেচে দিলে তবেই কেনা সম্ভব!' কিন্তু হাসপাতালের ডায়ালাইসিস করিডোরে দাঁড়ালে বোঝা যায় সুস্থতার আসল মূল্য...",
+      snippet: "সামাজিক মাধ্যমে একটা জোক বহু বছর ধরে ঘোরে— 'নতুন আইফোন এসেছে, একটা কিডনি বেচে দিলে তবেই কেনা সম্ভব!' কিন্তু হাসপাতালের ডায়ালাইসিস করিডোরে দাঁড়ালে বোঝা যায় সুস্থতার আসল মূল্য...",
+      content: `<p>সামাজিক মাধ্যমে একটা জোক বহু বছর ধরে ঘোরে— <em>"নতুন আইফোন এসেছে, একটা কিডনি বেচে দিলে তবেই কেনা সম্ভব!"</em> আমরা সবাই হয়তো কোনো না কোনো সময় এই মিম দেখে হেসেছি, শেয়ার দিয়েছি। কিন্তু এই সস্তা হাসির পেছনে লুকিয়ে থাকা হাড়কাঁপানো সত্যটা আমরা কয়জন অনুভব করি?</p><p>একদিন কোনো এক হাসপাতালের ডায়ালাইসিস ইউনিটের করিডোরে গিয়ে দাঁড়ালে বুঝতে পারবেন— সুস্থ একটি কিডনি থাকা মানুষের জীবনে কত বড় এক অলৌকিক রহমত। সেখানে মেশিনের ঘড়ঘড় শব্দে প্রতিটা মিনিট কাটে মৃত্যুর সাথে পাঞ্জা লড়ে। একজন মানুষ যখন সপ্তাহে তিন দিন চার ঘণ্টা করে নিজের শরীরের রক্ত কৃত্রিমভাবে পরিষ্কার করাতে বাধ্য হন, তার কাছে দুনিয়ার কোনো দামী গাড়ি, বাড়ি বা সর্বশেষ মডেলের আইফোনের এক পয়সা মূল্য থাকে না।</p><blockquote>"আমরা যেসব অঙ্গের যত্ন নিই না, সৃষ্টিকর্তার যেসব নেয়ামত বিনামূল্যে পাচ্ছি বলে অবহেলা করি— সেগুলোর মূল্য শুধু তারাই বোঝে, যারা এক ফোঁটা স্বাভাবিক প্রস্রাব বা এক রাত ব্যথাহীন ঘুমের জন্য কোটি টাকা ঢালতে প্রস্তুত।"</blockquote><p>আমরা ভোগের পেছনে ছুটতে গিয়ে জীবনকে পণ বানিয়ে ফেলি। অথচ সুস্থ শরীর নিয়ে সকালে ঘুম থেকে উঠতে পারাটাই যে পৃথিবীর শ্রেষ্ঠ বিলাসিতা, সেই বোধটাই আমাদের মাঝে নেই। আইফোন প্রতি বছর আপডেট হয়, কিন্তু আপনার দেহটা কোনো দ্বিতীয় সংস্করণে আসে না। হাসুন, কিন্তু নেয়ামতের শুকরিয়া আদায় করতে ভুলবেন না।</p>`
+    },
+    {
+      id: 'worker',
+      title: "নীলফামারীর শ্রমিক: ঘামের গন্ধ আর মেকি সভ্যতার ভিড়ে নীরব নায়ক",
+      category: "মানবিক গল্প",
+      readTime: "৪ মিনিট পাঠ",
+      date: "২০২৪",
+      coverImg: "./Asist/Travel/t.1.jpg",
+      excerpt: "সূর্য ওঠার আগেই হালকা কুয়াশা ভেদ করে শত শত সাইকেলের টুংটাং শব্দে মুখরিত হয়ে ওঠে রাস্তা। নীলফামারীর ইপিজেডের এই মেহনতি মানুষেরাই দেশের অর্থনীতির আসল কারিগর...",
+      snippet: "সূর্য ওঠার আগেই হালকা কুয়াশা ভেদ করে শত শত সাইকেলের টুংটাং শব্দে মুখরিত হয়ে ওঠে রাস্তা। নীলফামারীর ইপিজেডের এই মেহনতি মানুষেরাই দেশের অর্থনীতির আসল কারিগর...",
+      content: `<p>নীলফামারীর উত্তরা ইপিজেডের সকালটা বড় অদ্ভুত। সূর্য ওঠার আগেই হালকা কুয়াশা ভেদ করে শত শত সাইকেলের টুংটাং শব্দে মুখরিত হয়ে ওঠে রাস্তা। নারী-পুরুষ শ্রমিকদের ব্যস্ত কদম। তাদের পরনে সাধারণ কাপড়, হাতে ছোট টিফিন ক্যারিয়ার, কিন্তু চোখে এক অজানা যুদ্ধের সংকল্প।</p><p>এদের গল্প পত্রিকার পাতায় আসে না, এরা কোনো সোশ্যাল মিডিয়ার সেলিব্রিটি নয়। অথচ আমাদের দেশের অর্থনীতির যে গর্বিত চাকা ঘোরে, তার মূল জ্বালানি এই মানুষগুলোর নোনা ঘাম। দিনভর ঘণ্টার পর ঘণ্টা সেলাই মেশিনের সুইয়ের সামনে বসে তারা বিশ্বখ্যাত ব্র্যান্ডের পোশাক তৈরি করে। যে পোশাক ইউরোপ-আমেরিকার ঝাঁ-চকচকে শো-রুমে হাজার ডলারে বিক্রি হয়, সেই পোশাকের সুতো কাটতে গিয়ে হয়তো তাদের আঙুল ফেটে রক্ত বেরোয়।</p><blockquote>"আমরা যখন এসির নিচে বসে দেশের উন্নয়ন নিয়ে বড় বড় কথা বলি, তখন মাটির কাছাকাছি থাকা এই মানুষগুলো কোনো অভিযোগ ছাড়া নীরবে দেশের ভিত্তিপ্রস্তর বহন করে চলে।"</blockquote><p>তাদের সাথে কথা বললে বোঝা যায়, তাদের চাওয়া কত সাধারণ— মাস শেষে একটু হাসিমুখে চাল-ডাল কেনা, বাচ্চার স্কুলের বেতন দেওয়া, আর বৃদ্ধ বাবা-মায়ের জন্য এক পাতার ওষুধ। মেকি সভ্যতার ভিড়ে এই মানুষগুলোর সততা আর সরলতাই এই দেশের আসল সৌন্দর্য। তাদের এই আত্মত্যাগের প্রতি শ্রদ্ধা জানানো আমাদের নাগরিক দায়িত্ব।</p>`
+    },
+    {
+      id: 'bank',
+      title: "ব্যাংকের লম্বা লাইন: কাগজের ভিড়ে হারিয়ে যাওয়া মানুষ",
+      category: "নাগরিক অসঙ্গতি",
+      readTime: "৩ মিনিট পাঠ",
+      date: "২০২৩",
+      coverImg: "./Asist/GenZ/nazmul.jpg",
+      excerpt: "সকাল এগারোটায় ব্যাংকের শাখাগুলোতে ঢুকলে মনে হয় এক ভিন্ন গ্রহের সমাবেশ। কাঁচের ওপারে টাই-স্যুট পরা অফিসার, আর কাঁচের এপারে টোকেন হাতে ঘণ্টার পর ঘণ্টা দাঁড়িয়ে থাকা সাধারণ আমজনতা...",
+      snippet: "সকাল এগারোটায় ব্যাংকের শাখাগুলোতে ঢুকলে মনে হয় এক ভিন্ন গ্রহের সমাবেশ। কাঁচের ওপারে টাই-স্যুট পরা অফিসার, আর কাঁচের এপারে টোকেন হাতে ঘণ্টার পর ঘণ্টা দাঁড়িয়ে থাকা সাধারণ আমজনতা...",
+      content: `<p>সকাল এগারোটায় ব্যাংকের শাখাগুলোতে ঢুকলে মনে হয় এক ভিন্ন গ্রহের সমাবেশ। কাঁচের ওপারে টাই-স্যুট পরা অফিসার, আর কাঁচের এপারে টোকেন হাতে ঘণ্টার পর ঘণ্টা দাঁড়িয়ে থাকা সাধারণ আমজনতা।</p><p>সেদিন দেখলাম এক অশীতিপর বৃদ্ধা এসেছেন তার পেনশনের যৎসামান্য টাকা তুলতে। ডিজিটাল ডিভাইসে তার হাতের আঙুলের ছাপ বারবার ফেইল করছে। বয়সের ভারে চামড়া কুঁচকে যাওয়া রেখাগুলো আধুনিক ফিঙ্গারপ্রিন্ট সেন্সরে মিলছে না। তরুণ ব্যাংকার বিরক্তি নিয়ে বলছেন— <em>"চাচী, আপনার ফিঙ্গারপ্রিন্ট তো ম্যাচ করে না, নির্বাচন অফিসে গিয়ে ঠিক করে আনেন।"</em></p><blockquote>"টেকনোলজি আসার কথা ছিল মানুষের জীবন সহজ করতে, মানুষকে মর্যাদা দিতে। অথচ আমরা প্রযুক্তিকে বানিয়ে ফেলেছি মানুষকে অসম্মান করার ও হয়রানি করার এক অদ্ভুত দেয়াল।"</blockquote><p>বৃদ্ধাটি ফ্যালফ্যাল করে তাকিয়ে রইলেন। তিনি বোঝেন না অ্যালগরিদম কী, ডেটাবেজ কী। তিনি শুধু বোঝেন এটা তার নিজের উপার্জিত টাকা, যা দিয়ে তিনি আজ রাতের ভাত আর ওষুধ কিনবেন। কাগজের ফাইল আর স্ক্রিনের আড়ালে আমাদের মানবিক সংবেদনশীলতা কবে এত ভোঁতা হয়ে গেল?</p>`
+    },
+    {
+      id: 'silence',
+      title: "বোবা মানুষের গল্প: শব্দহীন চোখের যে ভাষা হৃদয় ছুঁয়ে যায়",
+      category: "আধ্যাত্মিক উপলব্ধি",
+      readTime: "৪ মিনিট পাঠ",
+      date: "২০২৪",
+      coverImg: "./Asist/Personal/1.jpg",
+      excerpt: "শব্দদূষণে ভরা এই পৃথিবীতে সবাই শুধু বলতে চায়, কেউ শুনতে চায় না। এক বাকপ্রতিবন্ধী যুবকের চোখের আলোতে যে শিক্ষা পেয়েছিলাম, তা হাজারও বক্তব্যের চেয়ে শক্তিশালী...",
+      snippet: "শব্দদূষণে ভরা এই পৃথিবীতে সবাই শুধু বলতে চায়, কেউ শুনতে চায় না। এক বাকপ্রতিবন্ধী যুবকের চোখের আলোতে যে শিক্ষা পেয়েছিলাম, তা হাজারও বক্তব্যের চেয়ে শক্তিশালী...",
+      content: `<p>শব্দদূষণে ভরা এই পৃথিবীতে সবাই শুধু বলতে চায়, কেউ শুনতে চায় না। বক্তার অভাব নেই, কিন্তু শ্রোতা বিলুপ্তপ্রায় প্রাণী। ঠিক এই সময়ে এমন একজন মানুষের মুখোমুখি হওয়া, যিনি কখনোই কথা বলতে পারেন না— এক অভাবনীয় শিক্ষা।</p><p>এক চায়ের দোকানে পরিচয় হয়েছিল এক বাকপ্রতিবন্ধী যুবকের সাথে। মুখে কোনো আওয়াজ নেই, কিন্তু তার দৃষ্টিতে যে গভীরতা, যে কৃতজ্ঞতা আর নিখাদ সত্য ছিল, তা কোনো সুললিত বক্তব্যের চেয়ে হাজার গুণ বেশি শক্তিশালী। এক কাপ চা আর একটু হাসিমুখের অভিবাদনে তার মুখের যে স্বর্গীয় আলো জ্বলে উঠেছিল, তা আজও আমার স্মৃতিতে জলজ্যান্ত।</p><blockquote>"আমরা কোটি কোটি শব্দ খরচ করে মানুষকে আঘাত করি, মিথ্যা বলি, অহংকার প্রকাশ করি। অথচ যার জবান নেই, সে শুধু তার চোখের নীরব ভাষায় সৃষ্টিকর্তার মহিমা আর মানুষের প্রতি অকৃত্রিম ভালোবাসা প্রকাশ করে যায়।"</blockquote><p>নীরবতারও একটা পবিত্র ভাষা আছে। যখন আমরা কথা বলা থামিয়ে সত্যিকার অর্থে মন দিয়ে চারপাশ দেখতে শিখি, তখনই কেবল এই সৃষ্টির নিগূঢ় সৌন্দর্য অনুভব করা সম্ভব হয়।</p>`
+    }
+  ];
+
+  const DEFAULT_VENTURES = [
+    {
+      id: 'pflab',
+      title: "Permanent Future Lab (PFLab)",
+      category: "Open Innovation & Shared Tech",
+      role: "Initiator & Grassroots Pioneer",
+      coverImg: "./Asist/GenZ/start.1.jpg",
+      snippet: "ডাচ কনসেপ্টের আদলে বাংলাদেশে প্রথম স্থায়ী উন্মুক্ত ল্যাব। যেখানে প্রতিটি গ্রামের শিশু-কিশোর ও তরুণ বিনা মূল্যে ভার্চুয়াল রিয়ালিটি (VR), রোবোটিক্স ও এআই প্রযুক্তি সরাসরি স্পর্শ করতে পারে।",
+      content: `<p><strong>Permanent Future Lab (PFLab)</strong> এমন একটি আন্দোলন, যা বিশ্বাস করে প্রযুক্তির অভিজ্ঞতা কোনো বিশেষ শ্রেণির একচেটিয়া অধিকার হতে পারে না। নেদারল্যান্ডসের উদ্ভাবনী কনসেপ্টকে অনুপ্রেরণা নিয়ে আমরা বাংলাদেশে এই উদ্যোগ চালু করেছি।</p><p>আমাদের মূল লক্ষ্য— রাজধানী ঢাকার বিলাসবহুল সেমিনারের বাইরে গিয়ে প্রত্যন্ত গ্রাম, চরাঞ্চল ও জেলা শহরের সাধারণ স্কুলগুলোতে আধুনিক প্রযুক্তিকে সাধারণ মানুষের দোরগোড়ায় পৌঁছে দেওয়া।</p>`
+    },
+    {
+      id: 'seats2meet',
+      title: "Seats2meet.com",
+      category: "Social Capital & Coworking",
+      role: "Social Entrepreneur & Community Architect",
+      coverImg: "./Asist/GenZ/486066417_672583348651874_1740925206979679803_n.jpg",
+      snippet: "সমাজ ও মেধার মিলনমেলা। কেবল চেয়ার-টেবিল নয়, মানুষের জ্ঞান ও অভিজ্ঞতার বিনিময়ে সামাজিক মূলধন (Social Capital) তৈরির আন্তর্জাতিক প্ল্যাটফর্ম।",
+      content: `<p><strong>Seats2meet</strong> প্রচলিত কো-ওয়ার্কিং স্পেসের ধারণাকে সম্পূর্ণ বদলে দিয়েছে। এখানে কাজের স্থান কেবল টাকার বিনিময়ে ভাড়া নেওয়া যায় না; এখানে সবচেয়ে বড় মুদ্রা হলো <em>Social Capital</em> বা মেধা ও সহযোগিতার বিনিময়।</p><p>যখন বিভিন্ন পেশার মানুষ একই টেবিলে বসে কফি পান করে এবং একে অপরের সমস্যার সমাধান খুঁজে দেয়, তখন অবচেতনভাবেই এক অনন্য সামাজিক নেটওয়ার্ক ও উদ্ভাবনী সুযোগের সৃষ্টি হয়।</p>`
+    },
+    {
+      id: 'ssp',
+      title: "SSP Organization LLC",
+      category: "Global Operations & Remote Advisory",
+      role: "Virtual Assistant & High-Level Operations",
+      coverImg: "./Asist/Personal/1.jpg",
+      snippet: "আন্তর্জাতিক মান বজায় রেখে দূরবর্তী ব্যবস্থাপনার জটিল কাজগুলো নিখুঁতভাবে পরিচালনা। ডিজিটাল নোম্যাড লাইফস্টাইলের আন্তর্জাতিক দৃষ্টান্ত।",
+      content: `<p><strong>SSP Organization LLC</strong>-এর সাথে কাজ করার অভিজ্ঞতা আমাকে শিখিয়েছে কীভাবে ভৌগোলিক সীমানা পেরিয়েও শতভাগ নির্ভরযোগ্য ও সুশৃঙ্খল কর্মদক্ষতা নিশ্চিত করা যায়।</p><p>রিমোট ওয়ার্ক মানে কেবল ল্যাপটপ নিয়ে বসা নয়; এটি হলো সময় সচেতনতা, উচ্চমানের পেশাদারিত্ব, গোপনীয়তা রক্ষা এবং আন্তর্জাতিক ক্লায়েন্টের সাথে সুস্পষ্ট যোগাযোগের এক আর্ট।</p>`
+    },
+    {
+      id: 'dujm',
+      title: "Dujm Digital Portal",
+      category: "Web Architecture & Digital Media",
+      role: "Website Manager & Digital Strategist",
+      coverImg: "./Asist/GenZ/start.1.jpg",
+      snippet: "আধুনিক ওয়েব স্থাপত্য, তথ্য নিরাপত্তা এবং কমিউনিটি মিডিয়া প্ল্যাটফর্মের মসৃণ পরিচালনা ও ডিজিটাল পাবলিশিং ম্যানেজমেন্ট।",
+      content: `<p>ডিজিটাল প্ল্যাটফর্ম পরিচালনায় <strong>Dujm</strong>-এর ওয়েবসাইট ম্যানেজার হিসেবে কাজ করা আমার প্রযুক্তিগত ও কন্টেন্ট ম্যানেজমেন্টের দক্ষতাকে সমৃদ্ধ করেছে।</p><p>ওয়েবসাইটের ইউজার এক্সপেরিয়েন্স (UX), কনটেন্ট পাবলিশিং শিডিউল এবং ট্রাফিকের গতিপ্রকৃতি বিশ্লেষণ করে কমিউনিটির কাছে সঠিক বার্তা সঠিক সময়ে পৌঁছে দেওয়াই ছিল মূল দায়িত্ব।</p>`
+    },
+    {
+      id: 'mentorship',
+      title: "Gen-Z Digital Mentorship & Youth Power",
+      category: "Youth Empowerment & Remote Careers",
+      role: "Mentor & Youth Catalyst",
+      coverImg: "./Asist/GenZ/nazmul.jpg",
+      snippet: "বাংলাদেশের ১,৫০০+ তরুণকে ক্যারিয়ার গাইডেন্স, রিমোট কাজের সঠিক দিকনির্দেশনা এবং আত্মবিশ্বাসী জীবনের অনুপ্রেরণা দেওয়া।",
+      content: `<p>তরুণদের চোখে যে স্বপ্ন থাকে, অনেক সময় সঠিক পথের অভাবে তা হারিয়ে যায়। আমাদের মেন্টরশিপ প্রোগ্রামের লক্ষ্য— শিক্ষার্থীদের হতাশা থেকে বের করে আন্তর্জাতিক রিমোট ক্যারিয়ার ও ফ্রিল্যান্সিংয়ে পথ দেখানো।</p>`
+    }
+  ];
+
   // ==========================================
   // ADMIN DATA STORE
   // ==========================================
@@ -85,6 +180,14 @@
           }
           if (!this.data.loveCards || !this.data.loveCards.length) {
             this.data.loveCards = DEFAULT_LOVE_CARDS;
+            modified = true;
+          }
+          if (!this.data.articles || !this.data.articles.length) {
+            this.data.articles = JSON.parse(JSON.stringify(DEFAULT_ARTICLES));
+            modified = true;
+          }
+          if (!this.data.ventures || !this.data.ventures.length) {
+            this.data.ventures = JSON.parse(JSON.stringify(DEFAULT_VENTURES));
             modified = true;
           }
           if (!this.data.settings) {
@@ -121,8 +224,8 @@
       this.data = {
         travelGallery: [...DEFAULT_TRAVEL_GALLERY],
         loveCards: [...DEFAULT_LOVE_CARDS],
-        articles: [],
-        ventures: [],
+        articles: JSON.parse(JSON.stringify(DEFAULT_ARTICLES)),
+        ventures: JSON.parse(JSON.stringify(DEFAULT_VENTURES)),
         travels: [],
         genz: [],
         settings: { passcode: '2026' }
@@ -279,6 +382,8 @@
     if (bLove) bLove.textContent = loveCards.length;
     const bArticles = document.getElementById('badgeArticles');
     if (bArticles) bArticles.textContent = articles.length;
+    const bVentures = document.getElementById('badgeVentures');
+    if (bVentures) bVentures.textContent = ventures.length;
   }
 
   // ==========================================
@@ -745,15 +850,20 @@
     }
 
     list.innerHTML = articles.map(art => {
+      const cover = art.coverImg || './Asist/GenZ/start.1.jpg';
       return `
-        <div class="admin-item-card" style="margin-bottom: 1rem;">
+        <div class="admin-item-card">
+          <div class="card-thumb-wrap">
+            <span class="card-row-tag">${escapeHtml(art.category || 'Article')} &bull; ${escapeHtml(art.readTime || '৫ মিনিট')}</span>
+            <img src="${cover}" alt="${escapeHtml(art.title)}" loading="lazy" onerror="this.src='./Asist/Personal/profile1.jpg'">
+          </div>
           <div class="card-body-wrap">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.5rem;">
-              <span class="card-row-tag">${escapeHtml(art.category || 'Article')} &bull; ${escapeHtml(art.readTime || '5 min')}</span>
-              <span style="font-size: 0.8rem; color: var(--text-dim);">${escapeHtml(art.date || '')}</span>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+              <span class="card-item-subtitle" style="margin-bottom: 0;">${escapeHtml(art.category || 'জীবনবোধ')}</span>
+              <span style="font-size: 0.78rem; color: var(--text-dim);">${escapeHtml(art.date || '')}</span>
             </div>
             <h3 class="card-item-title bengali-font">${escapeHtml(art.title)}</h3>
-            <p class="card-item-desc bengali-font">${escapeHtml(art.excerpt || '')}</p>
+            <p class="card-item-desc bengali-font">${escapeHtml(art.snippet || art.excerpt || '')}</p>
             <div class="card-actions-bar">
               <button class="btn-secondary" onclick="openEditArticleModal('${art.id}')">
                 <i class="fa-solid fa-pen-to-square"></i> <span>এডিট করুন</span>
@@ -768,6 +878,22 @@
     }).join('');
   }
 
+  window.onArticleCoverUrlInput = function (val) {
+    val = (val || '').trim();
+    const pImg = document.getElementById('articleCoverPreviewImg');
+    const pPh = document.getElementById('articleCoverPreviewPlaceholder');
+    if (pImg && pPh) {
+      if (val) {
+        pImg.src = val;
+        pImg.style.display = 'block';
+        pPh.style.display = 'none';
+      } else {
+        pImg.style.display = 'none';
+        pPh.style.display = 'flex';
+      }
+    }
+  };
+
   window.openAddArticleModal = function () {
     const modal = document.getElementById('articleEditModal');
     const form = document.getElementById('articleEditForm');
@@ -776,6 +902,15 @@
     form.reset();
     document.getElementById('articleEditId').value = '';
     document.getElementById('articleModalTitle').textContent = 'নতুন আর্টিকেল লিখুন ও প্রকাশ করুন';
+    
+    const pImg = document.getElementById('articleCoverPreviewImg');
+    const pPh = document.getElementById('articleCoverPreviewPlaceholder');
+    if (pImg && pPh) {
+      pImg.src = '';
+      pImg.style.display = 'none';
+      pPh.style.display = 'flex';
+    }
+
     modal.classList.add('active');
   };
 
@@ -792,8 +927,22 @@
     document.getElementById('articleCategoryInput').value = art.category || '';
     document.getElementById('articleReadTimeInput').value = art.readTime || '';
     document.getElementById('articleDateInput').value = art.date || '';
-    document.getElementById('articleExcerptInput').value = art.excerpt || '';
+    document.getElementById('articleCoverUrlInput').value = art.coverImg || '';
+    document.getElementById('articleExcerptInput').value = art.snippet || art.excerpt || '';
     document.getElementById('articleContentInput').value = art.content || '';
+
+    const pImg = document.getElementById('articleCoverPreviewImg');
+    const pPh = document.getElementById('articleCoverPreviewPlaceholder');
+    if (pImg && pPh) {
+      if (art.coverImg) {
+        pImg.src = art.coverImg;
+        pImg.style.display = 'block';
+        pPh.style.display = 'none';
+      } else {
+        pImg.style.display = 'none';
+        pPh.style.display = 'flex';
+      }
+    }
 
     modal.classList.add('active');
   };
@@ -810,6 +959,7 @@
     const category = document.getElementById('articleCategoryInput').value.trim() || 'জীবনবোধ';
     const readTime = document.getElementById('articleReadTimeInput').value.trim() || '৫ মিনিট পাঠ';
     const date = document.getElementById('articleDateInput').value.trim() || '২০২৬';
+    const coverImg = document.getElementById('articleCoverUrlInput').value.trim() || './Asist/GenZ/start.1.jpg';
     const excerpt = document.getElementById('articleExcerptInput').value.trim();
     const content = document.getElementById('articleContentInput').value.trim();
 
@@ -825,14 +975,20 @@
       if (idx >= 0) {
         AdminStore.data.articles[idx] = {
           ...AdminStore.data.articles[idx],
-          title, category, readTime, date, excerpt, content
+          title, category, readTime, date, coverImg,
+          snippet: excerpt,
+          excerpt,
+          content
         };
       }
     } else {
       const newId = 'art_' + Date.now();
       AdminStore.data.articles.unshift({
         id: newId,
-        title, category, readTime, date, excerpt, content
+        title, category, readTime, date, coverImg,
+        snippet: excerpt,
+        excerpt,
+        content
       });
     }
 
@@ -862,20 +1018,164 @@
 
     const ventures = AdminStore.data.ventures || [];
     if (ventures.length === 0) {
-      list.innerHTML = `<div class="empty-state">কোনো ভেঞ্চার পাওয়া যায়নি।</div>`;
+      list.innerHTML = `<div class="empty-state">কোনো ভেঞ্চার পাওয়া যায়নি। "নতুন ভেঞ্চার যোগ করুন" বাটনে ক্লিক করুন।</div>`;
       return;
     }
 
-    list.innerHTML = ventures.map(v => `
-      <div class="admin-item-card" style="margin-bottom: 1rem;">
-        <div class="card-body-wrap">
-          <span class="card-row-tag">${escapeHtml(v.role || 'Initiative')}</span>
-          <h3 class="card-item-title" style="margin-top: 0.5rem;">${escapeHtml(v.title)}</h3>
-          <p class="card-item-desc">${escapeHtml(v.description || '')}</p>
+    list.innerHTML = ventures.map(v => {
+      const cover = v.coverImg || './Asist/GenZ/start.1.jpg';
+      return `
+        <div class="admin-item-card">
+          <div class="card-thumb-wrap">
+            <span class="card-row-tag">${escapeHtml(v.role || v.category || 'Initiative')}</span>
+            <img src="${cover}" alt="${escapeHtml(v.title)}" loading="lazy" onerror="this.src='./Asist/Personal/profile1.jpg'">
+          </div>
+          <div class="card-body-wrap">
+            <span class="card-item-subtitle">${escapeHtml(v.category || 'Open Innovation')}</span>
+            <h3 class="card-item-title bengali-font">${escapeHtml(v.title)}</h3>
+            <p class="card-item-desc bengali-font">${escapeHtml(v.snippet || v.description || '')}</p>
+            <div class="card-actions-bar">
+              <button class="btn-secondary" onclick="openEditVentureModal('${v.id}')">
+                <i class="fa-solid fa-pen-to-square"></i> <span>এডিট করুন</span>
+              </button>
+              <button class="btn-danger" onclick="deleteVenture('${v.id}')">
+                <i class="fa-solid fa-trash-can"></i> <span>ডিলিট</span>
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
   }
+
+  window.onVentureCoverUrlInput = function (val) {
+    val = (val || '').trim();
+    const pImg = document.getElementById('ventureCoverPreviewImg');
+    const pPh = document.getElementById('ventureCoverPreviewPlaceholder');
+    if (pImg && pPh) {
+      if (val) {
+        pImg.src = val;
+        pImg.style.display = 'block';
+        pPh.style.display = 'none';
+      } else {
+        pImg.style.display = 'none';
+        pPh.style.display = 'flex';
+      }
+    }
+  };
+
+  window.openAddVentureModal = function () {
+    const modal = document.getElementById('ventureEditModal');
+    const form = document.getElementById('ventureEditForm');
+    if (!modal || !form) return;
+
+    form.reset();
+    document.getElementById('ventureEditId').value = '';
+    document.getElementById('ventureModalTitle').textContent = 'নতুন ভেঞ্চার যোগ করুন';
+
+    const pImg = document.getElementById('ventureCoverPreviewImg');
+    const pPh = document.getElementById('ventureCoverPreviewPlaceholder');
+    if (pImg && pPh) {
+      pImg.src = '';
+      pImg.style.display = 'none';
+      pPh.style.display = 'flex';
+    }
+
+    modal.classList.add('active');
+  };
+
+  window.openEditVentureModal = function (id) {
+    const v = (AdminStore.data.ventures || []).find(item => item.id == id);
+    if (!v) return;
+
+    const modal = document.getElementById('ventureEditModal');
+    if (!modal) return;
+
+    document.getElementById('ventureModalTitle').textContent = 'ভেঞ্চার এডিট করুন';
+    document.getElementById('ventureEditId').value = v.id;
+    document.getElementById('ventureTitleInput').value = v.title || '';
+    document.getElementById('ventureCategoryInput').value = v.category || '';
+    document.getElementById('ventureRoleInput').value = v.role || '';
+    document.getElementById('ventureCoverUrlInput').value = v.coverImg || '';
+    document.getElementById('ventureSnippetInput').value = v.snippet || v.description || '';
+    document.getElementById('ventureContentInput').value = v.content || '';
+
+    const pImg = document.getElementById('ventureCoverPreviewImg');
+    const pPh = document.getElementById('ventureCoverPreviewPlaceholder');
+    if (pImg && pPh) {
+      if (v.coverImg) {
+        pImg.src = v.coverImg;
+        pImg.style.display = 'block';
+        pPh.style.display = 'none';
+      } else {
+        pImg.style.display = 'none';
+        pPh.style.display = 'flex';
+      }
+    }
+
+    modal.classList.add('active');
+  };
+
+  window.closeVentureModal = function () {
+    const modal = document.getElementById('ventureEditModal');
+    if (modal) modal.classList.remove('active');
+  };
+
+  window.handleVentureFormSubmit = function (e) {
+    if (e) e.preventDefault();
+    const id = document.getElementById('ventureEditId').value;
+    const title = document.getElementById('ventureTitleInput').value.trim();
+    const category = document.getElementById('ventureCategoryInput').value.trim() || 'Open Innovation';
+    const role = document.getElementById('ventureRoleInput').value.trim() || 'Initiator & Pioneer';
+    const coverImg = document.getElementById('ventureCoverUrlInput').value.trim() || './Asist/GenZ/start.1.jpg';
+    const snippet = document.getElementById('ventureSnippetInput').value.trim();
+    const content = document.getElementById('ventureContentInput').value.trim();
+
+    if (!title) {
+      alert('অনুগ্রহ করে ভেঞ্চারের নাম লিখুন!');
+      return;
+    }
+
+    if (!AdminStore.data.ventures) AdminStore.data.ventures = [];
+
+    if (id) {
+      const idx = AdminStore.data.ventures.findIndex(item => item.id == id);
+      if (idx >= 0) {
+        AdminStore.data.ventures[idx] = {
+          ...AdminStore.data.ventures[idx],
+          title, category, role, coverImg,
+          snippet,
+          description: snippet,
+          content
+        };
+      }
+    } else {
+      const newId = 'venture_' + Date.now();
+      AdminStore.data.ventures.unshift({
+        id: newId,
+        title, category, role, coverImg,
+        snippet,
+        description: snippet,
+        content
+      });
+    }
+
+    AdminStore.save('ventures');
+    closeVentureModal();
+    renderVentures();
+    renderDashboard();
+    showToast('ভেঞ্চার সফলভাবে সংরক্ষিত হয়েছে! 🚀');
+  };
+
+  window.deleteVenture = function (id) {
+    if (confirm('আপনি কি নিশ্চিত যে এই ভেঞ্চারটি মুছে ফেলতে চান?')) {
+      AdminStore.data.ventures = (AdminStore.data.ventures || []).filter(v => v.id != id);
+      AdminStore.save('ventures');
+      renderVentures();
+      renderDashboard();
+      showToast('ভেঞ্চারটি মুছে ফেলা হয়েছে! 🗑️');
+    }
+  };
 
   // ==========================================
   // GUESTBOOK MODERATION

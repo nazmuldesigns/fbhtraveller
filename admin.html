@@ -108,6 +108,7 @@
         <button class="sidebar-btn" data-tab="ventures" onclick="switchTab('ventures')">
           <i class="fa-solid fa-microchip"></i>
           <span>The Lab ভেঞ্চারস</span>
+          <span class="sidebar-badge" id="badgeVentures">5</span>
         </button>
         <button class="sidebar-btn" data-tab="guestbook" onclick="switchTab('guestbook')">
           <i class="fa-solid fa-comments"></i>
@@ -277,7 +278,7 @@
           </button>
         </div>
 
-        <div id="articlesList">
+        <div class="admin-grid" id="articlesList">
           <!-- Rendered dynamically -->
         </div>
       </section>
@@ -285,9 +286,15 @@
       <!-- TAB 5: VENTURES -->
       <section class="admin-tab-content" id="tab-ventures">
         <div class="section-controls-bar">
-          <h2 class="bengali-font">The Lab ও স্টার্টআপ ভেঞ্চারস</h2>
+          <div>
+            <h2 class="bengali-font">The Lab ও স্টার্টআপ ভেঞ্চারস (The Lab & Initiatives)</h2>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">স্টার্টআপ, প্রজেক্ট এবং টেক ল্যাব উদ্যোগসমূহ পরিচালনা ও সম্পাদনা করুন</p>
+          </div>
+          <button class="btn-primary" onclick="openAddVentureModal()">
+            <i class="fa-solid fa-plus"></i> নতুন ভেঞ্চার যোগ করুন
+          </button>
         </div>
-        <div id="venturesList">
+        <div class="admin-grid" id="venturesList">
           <!-- Rendered dynamically -->
         </div>
       </section>
@@ -610,8 +617,30 @@
           <input type="text" id="articleDateInput" class="form-input" placeholder="যেমন: ১৫ মে ২০২৬">
         </div>
 
+        <!-- Article Cover Image Selection / Upload -->
         <div class="form-group">
-          <label class="form-label" for="articleExcerptInput">সংক্ষিপ্ত সারমর্ম (Excerpt)</label>
+          <label class="form-label" for="articleCoverUrlInput">আর্টিকেলের কভার ছবি (Cover Photo / Image)</label>
+          <div class="img-picker-container">
+            <div class="img-preview-box" onclick="document.getElementById('articleCoverFileInput').click()">
+              <div class="placeholder-text" id="articleCoverPreviewPlaceholder">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <span>কম্পিউটার থেকে কভার ছবি বেছে নিতে ক্লিক করুন</span>
+                <small style="color: var(--text-dim);">(JPG, PNG, WebP supported)</small>
+              </div>
+              <img id="articleCoverPreviewImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="Preview" style="display: none;">
+            </div>
+            <input type="file" id="articleCoverFileInput" class="file-input-hidden" accept="image/*"
+              onchange="handleImageUpload('articleCoverFileInput', 'articleCoverUrlInput', 'articleCoverPreviewImg', 'articleCoverPreviewPlaceholder')">
+
+            <div class="img-options-divider">অথবা সরাসরি ছবির লিঙ্ক / পাথ দিন</div>
+            <input type="text" id="articleCoverUrlInput" class="form-input"
+              placeholder="./Asist/GenZ/start.1.jpg বা https://..."
+              oninput="onArticleCoverUrlInput(this.value)">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="articleExcerptInput">সংক্ষিপ্ত সারমর্ম (Excerpt / Snippet)</label>
           <textarea id="articleExcerptInput" class="form-textarea bengali-font" style="min-height: 70px;" placeholder="আর্টিকেলের সংক্ষিপ্ত সারাংশ..."></textarea>
         </div>
 
@@ -624,6 +653,78 @@
           <button type="button" class="btn-secondary" onclick="closeArticleModal()">বাতিল</button>
           <button type="submit" class="btn-primary">
             <i class="fa-solid fa-paper-plane"></i> প্রকাশ করুন (Publish)
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL 4: VENTURE ADD / EDIT
+       ========================================== -->
+  <div class="admin-modal" id="ventureEditModal">
+    <div class="admin-modal-backdrop" onclick="closeVentureModal()"></div>
+    <div class="admin-modal-card" style="max-width: 750px;">
+      <div class="modal-header">
+        <h3 id="ventureModalTitle">ভেঞ্চার যোগ / এডিট করুন</h3>
+        <button class="modal-close-btn" onclick="closeVentureModal()" type="button">&times;</button>
+      </div>
+
+      <form class="modal-form" id="ventureEditForm" onsubmit="handleVentureFormSubmit(event)">
+        <input type="hidden" id="ventureEditId">
+
+        <div class="form-group">
+          <label class="form-label" for="ventureTitleInput">ভেঞ্চারের নাম / শিরোনাম (Title) *</label>
+          <input type="text" id="ventureTitleInput" class="form-input" placeholder="যেমন: Permanent Future Lab (PFLab)" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="ventureCategoryInput">ক্যাটেগরি (Category)</label>
+            <input type="text" id="ventureCategoryInput" class="form-input" placeholder="যেমন: Open Innovation & Shared Tech">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="ventureRoleInput">রোল / পদবী (Role / Tag)</label>
+            <input type="text" id="ventureRoleInput" class="form-input" placeholder="যেমন: Initiator & Grassroots Pioneer">
+          </div>
+        </div>
+
+        <!-- Cover Image Selection / Upload -->
+        <div class="form-group">
+          <label class="form-label" for="ventureCoverUrlInput">কভার ছবি (Cover Photo / Image)</label>
+          <div class="img-picker-container">
+            <div class="img-preview-box" onclick="document.getElementById('ventureCoverFileInput').click()">
+              <div class="placeholder-text" id="ventureCoverPreviewPlaceholder">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <span>কম্পিউটার থেকে ছবি বেছে নিতে ক্লিক করুন</span>
+                <small style="color: var(--text-dim);">(JPG, PNG, WebP supported)</small>
+              </div>
+              <img id="ventureCoverPreviewImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="Preview" style="display: none;">
+            </div>
+            <input type="file" id="ventureCoverFileInput" class="file-input-hidden" accept="image/*"
+              onchange="handleImageUpload('ventureCoverFileInput', 'ventureCoverUrlInput', 'ventureCoverPreviewImg', 'ventureCoverPreviewPlaceholder')">
+
+            <div class="img-options-divider">অথবা ছবির পাথ / লিঙ্ক দিন</div>
+            <input type="text" id="ventureCoverUrlInput" class="form-input"
+              placeholder="./Asist/GenZ/start.1.jpg বা https://..."
+              oninput="onVentureCoverUrlInput(this.value)">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="ventureSnippetInput">সংক্ষিপ্ত সারমর্ম (Snippet / Short Description)</label>
+          <textarea id="ventureSnippetInput" class="form-textarea bengali-font" style="min-height: 70px;" placeholder="ভেঞ্চারের সংক্ষিপ্ত সারমর্ম..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="ventureContentInput">সম্পূর্ণ বিবরণ ও বিস্তারিত (Full Details / Content)</label>
+          <textarea id="ventureContentInput" class="form-textarea bengali-font" style="min-height: 200px;" placeholder="ভেঞ্চারের বিস্তারিত বিবরণ লিখুন (HTML বা টেক্সট)..."></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1rem;">
+          <button type="button" class="btn-secondary" onclick="closeVentureModal()">বাতিল</button>
+          <button type="submit" class="btn-primary">
+            <i class="fa-solid fa-floppy-disk"></i> সংরক্ষণ করুন (Save)
           </button>
         </div>
       </form>

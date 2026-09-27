@@ -827,6 +827,10 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   renderArticlesGrid();
+  window.renderArticles = renderArticlesGrid;
+  window.renderVentures = window.renderVentures || function () {};
+  window.renderTravels = window.renderTravels || function () {};
+  window.renderGenz = window.renderGenz || function () {};
 
   // ==========================================
   // FULL-PAGE INTERACTIVE DETAILS VIEWER
