@@ -24,7 +24,7 @@
   <!-- Canvas Confetti for celebratory Gift unboxing -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
-  <link rel="stylesheet" href="style.css?v=2.6">
+  <link rel="stylesheet" href="style.css?v=2.7">
 </head>
 
 <body>
@@ -101,27 +101,27 @@
           <div class="hero-badge-wrapper">
             <div class="badge-pill uiverse-badge">
               <span class="badge-dot"></span>
-              <span class="badge-highlight">God First</span>
+              <span class="badge-highlight" id="heroBadgeHighlight">God First</span>
               <span class="badge-separator">|</span>
-              <span class="badge-sub">Faith • Purpose • Freedom</span>
+              <span class="badge-sub" id="heroBadgeSub">Faith • Purpose • Freedom</span>
             </div>
-            <div class="status-live-pill">
+            <div class="status-live-pill" id="heroStatusPill">
               <span class="ping-circle"></span>
-              <span>Available for Global PR & Advisory</span>
+              <span id="heroStatusText">Available for Global PR & Advisory</span>
             </div>
           </div>
 
-          <h1 class="hero-title">
-            I'm <span class="gradient-text">Fahad Bin Husne Ali</span>
+          <h1 class="hero-title" id="heroTitle">
+            I'm <span class="gradient-text" id="heroNameText">Fahad Bin Husne Ali</span>
           </h1>
 
           <div class="hero-typewriter-box">
-            <span class="typewriter-prefix">A passionate</span>
+            <span class="typewriter-prefix" id="typewriterPrefix">A passionate</span>
             <span class="typewriter-text" id="typewriter"></span>
             <span class="typewriter-cursor">|</span>
           </div>
 
-          <p class="hero-bio">
+          <p class="hero-bio" id="heroBioText">
             Connecting humans across cultures, exploring uncharted horizons, and turning raw human stories into
             inspiration. From the riverbanks of <strong>Bamna & Barisal</strong> to the ancient Silk Road of
             <strong>Samarkand</strong> and the skyscrapers of <strong>Kuala Lumpur</strong> — living with purpose,
@@ -155,47 +155,6 @@
               <i class="fa-solid fa-quote-left"></i>
               <span>Life Creed</span>
             </button>
-          </div>
-
-          <!-- Real-Time Facebook Pulse Card -->
-          <div class="hero-fb-live-card glass-card" id="heroFbCard">
-            <div class="fb-card-header">
-              <div class="fb-header-left">
-                <div class="fb-avatar-wrap">
-                  <img src="./Asist/Personal/profile1.jpg" alt="Fahad Bin Husne Ali" id="fbCardAvatar">
-                  <span class="fb-online-badge"><i class="fa-brands fa-facebook"></i></span>
-                </div>
-                <div class="fb-user-meta">
-                  <div class="fb-user-name">
-                    <span id="fbCardAuthor">Fahad Bin Husne Ali</span>
-                    <i class="fa-solid fa-circle-check" style="color: #3b82f6; font-size: 0.8rem;" title="Verified Creator"></i>
-                  </div>
-                  <span class="fb-post-time" id="fbCardTime"><i class="fa-regular fa-clock"></i> Recent Facebook Post</span>
-                </div>
-              </div>
-              <a href="https://www.facebook.com/fahadbinhusneali1" target="_blank" rel="noopener noreferrer" class="fb-view-link" title="View on Facebook">
-                <span>View on Facebook</span>
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              </a>
-            </div>
-
-            <div class="fb-card-body">
-              <p class="fb-caption bengali-font" id="fbCardCaption">
-                জীবনকে দেখতে শিখুন নতুন দৃষ্টিকোণ থেকে। প্রতিটি যাত্রাই নতুন কিছু শেখায়, প্রতিটি মানুষই অনন্য এক গল্পের বই।
-              </p>
-              <div class="fb-media-box" id="fbCardMediaBox">
-                <img src="./Asist/Travel Gallery/1.jpeg" alt="Facebook Post Photo" id="fbCardImage" loading="lazy">
-              </div>
-            </div>
-
-            <div class="fb-card-footer">
-              <div class="fb-engagement-pill">
-                <i class="fa-solid fa-thumbs-up" style="color: #3b82f6;"></i>
-                <i class="fa-solid fa-heart text-rose"></i>
-                <span id="fbCardLikes">12K+ Community</span>
-              </div>
-              <span class="fb-live-tag"><span class="pulse-dot"></span> Live Facebook Sync</span>
-            </div>
           </div>
 
           <!-- Stat Counters (UIverse Bento Counters) -->
@@ -1539,44 +1498,43 @@
               </a>
             </div>
 
-            <!-- Quick Inquiry / Contact Details -->
-            <div class="connect-box direct-contact-box glass-card">
-              <h3>Direct Channels</h3>
-              <p>Looking for a Virtual Assistant, Website Manager, or PR Collaborator?</p>
+            <!-- Direct PR & Inquiries via Gmail Box -->
+            <div class="connect-box gmail-pr-box glass-card">
+              <div class="gmail-icon-ring">
+                <i class="fa-solid fa-envelope-open-text"></i>
+              </div>
+              <h3 id="connectPrTitle">Direct PR & Inquiries</h3>
+              <p id="connectPrDesc">
+                যেকোনো পিআর কোলাবোরেশন, মিডিয়া এনগেজমেন্ট, প্রফেশনাল ভার্চুয়াল অ্যাসিস্ট্যান্স বা পার্টনারশিপের জন্য সরাসরি জিমেইলে যোগাযোগ করুন।
+              </p>
 
-              <div class="contact-links-list">
+              <div class="pr-badge-live">
+                <span class="live-dot" style="background:#ea4335; box-shadow:0 0 8px #ea4335;"></span>
+                <span>Asynchronous • High Integrity • Fast Response</span>
+              </div>
+
+              <div class="contact-links-list" style="width:100%; margin: 0.2rem 0;">
                 <div class="contact-item">
-                  <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                  <div class="contact-icon" style="background: rgba(234,67,53,0.15); color: #ea4335;"><i class="fa-solid fa-envelope"></i></div>
                   <div class="contact-info">
-                    <span class="contact-label">Send an Email</span>
-                    <a href="mailto:fahadbinhusneali@gmail.com" class="contact-val">fahadbinhusneali@gmail.com</a>
+                    <span class="contact-label">Official Gmail</span>
+                    <a href="mailto:fahadbinhusneali@gmail.com" class="contact-val" id="connectEmailText">fahadbinhusneali@gmail.com</a>
                   </div>
-                  <button class="copy-btn" onclick="copyText('fahadbinhusneali@gmail.com', this)" title="Copy Email">
+                  <button class="copy-btn" onclick="copyText(document.getElementById('connectEmailText').textContent, this)" title="Copy Email">
                     <i class="fa-regular fa-copy"></i>
                   </button>
                 </div>
-
-                <div class="contact-item">
-                  <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
-                  <div class="contact-info">
-                    <span class="contact-label">Current Base</span>
-                    <span class="contact-val">Bangladesh • Global Ready</span>
-                  </div>
-                </div>
-
-                <div class="contact-item">
-                  <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
-                  <div class="contact-info">
-                    <span class="contact-label">Work Protocol</span>
-                    <span class="contact-val">Asynchronous • High Integrity</span>
-                  </div>
-                </div>
               </div>
 
-              <div class="action-buttons-flex">
+              <div class="gmail-actions-row">
+                <a href="mailto:fahadbinhusneali@gmail.com?subject=PR%20%26%20Collaboration%20Inquiry%20%E2%80%94%20Fahad%20Bin%20Husne%20Ali" id="connectGmailBtn" class="uiverse-btn-gmail">
+                  <i class="fa-solid fa-paper-plane"></i>
+                  <span>Send Direct Email</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
                 <button class="uiverse-btn-secondary" onclick="openShareModal()">
                   <i class="fa-solid fa-share-nodes"></i>
-                  <span>Share Portfolio</span>
+                  <span>Share</span>
                 </button>
               </div>
             </div>
@@ -1596,9 +1554,26 @@
         <span class="brand-monogram">FBH</span>
         <span class="footer-name">Fahad Bin Husne Ali</span>
       </div>
-      <p class="footer-creed">
+      <p class="footer-creed" id="footerCreedText">
         God First | Online Professional | Traveler | Writer | PR Guy | Family Man
       </p>
+
+      <!-- Dynamic Social Media Icons -->
+      <div class="footer-social-bar" id="footerSocialBar">
+        <a href="https://www.facebook.com/fahadbinhusneali1" target="_blank" rel="noopener noreferrer" class="footer-social-icon fb" id="footerFbLink" title="Facebook 12K+ Community">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a href="https://x.com/fahadbinhusneali" target="_blank" rel="noopener noreferrer" class="footer-social-icon twitter" id="footerTwitterLink" title="Twitter / X">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/fahadbinhusneali" target="_blank" rel="noopener noreferrer" class="footer-social-icon linkedin" id="footerLinkedInLink" title="LinkedIn Professional">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a href="mailto:fahadbinhusneali@gmail.com" class="footer-social-icon email" id="footerEmailLink" title="Send Direct Gmail / Email">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
+
       <div class="footer-bottom">
         <p>© 2026 Fahad Bin Husne Ali. Official Portfolio. <a href="admin.html" class="footer-admin-link" title="Admin Portal" style="color: rgba(255,255,255,0.18); font-size: 0.72rem; text-decoration: none; margin-left: 0.4rem;"><i class="fa-solid fa-lock"></i></a></p>
         <a href="#hero" class="back-to-top" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></a>
@@ -1727,7 +1702,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
   <script src="firebase-init.js"></script>
 
-  <script src="script.js?v=2.6"></script>
+  <script src="script.js?v=2.7"></script>
 </body>
 
 </html>

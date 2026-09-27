@@ -171,6 +171,31 @@
     }
   ];
 
+  const DEFAULT_HERO = {
+    profileImg: './Asist/Personal/profile1.jpg',
+    badgeHighlight: 'God First',
+    focusLine: 'Faith • Purpose • Freedom',
+    status: 'Available for Global PR & Advisory',
+    roles: [
+      "Online Professional & Digital Nomad",
+      "Initiator @ Permanent Future Lab",
+      "Raw Storyteller & Social Observer",
+      "Traveler from Bamna to the Silk Road",
+      "Seats2meet Social Entrepreneur",
+      "God First • Devoted Family Man"
+    ],
+    bio: "Connecting humans across cultures, exploring uncharted horizons, and turning raw human stories into inspiration. From the riverbanks of Bamna & Barisal to the ancient Silk Road of Samarkand and the skyscrapers of Kuala Lumpur — living with purpose, family at heart, and God above all."
+  };
+
+  const DEFAULT_SOCIAL = {
+    fb: "https://www.facebook.com/fahadbinhusneali1",
+    twitter: "https://x.com/fahadbinhusneali",
+    linkedin: "https://www.linkedin.com/in/fahadbinhusneali",
+    email: "fahadbinhusneali@gmail.com",
+    prTitle: "Direct PR & Inquiries",
+    prDesc: "যেকোনো পিআর কোলাবোরেশন, মিডিয়া এনগেজমেন্ট, প্রফেশনাল ভার্চুয়াল অ্যাসিস্ট্যান্স বা পার্টনারশিপের জন্য সরাসরি জিমেইলে যোগাযোগ করুন।"
+  };
+
   // ==========================================
   // ADMIN DATA STORE
   // ==========================================
@@ -183,6 +208,18 @@
         if (stored) {
           this.data = JSON.parse(stored);
           let modified = false;
+          if (!this.data.hero) {
+            this.data.hero = JSON.parse(JSON.stringify(DEFAULT_HERO));
+            modified = true;
+          }
+          if (!this.data.social) {
+            this.data.social = JSON.parse(JSON.stringify(DEFAULT_SOCIAL));
+            modified = true;
+          }
+          if (this.data.heroFbPost) {
+            delete this.data.heroFbPost;
+            modified = true;
+          }
           if (!this.data.travelGallery || !this.data.travelGallery.length) {
             this.data.travelGallery = DEFAULT_TRAVEL_GALLERY;
             modified = true;
@@ -256,6 +293,8 @@
 
     resetToDefaults() {
       this.data = {
+        hero: JSON.parse(JSON.stringify(DEFAULT_HERO)),
+        social: JSON.parse(JSON.stringify(DEFAULT_SOCIAL)),
         travelGallery: [...DEFAULT_TRAVEL_GALLERY],
         loveCards: [...DEFAULT_LOVE_CARDS],
         articles: JSON.parse(JSON.stringify(DEFAULT_ARTICLES)),
@@ -348,7 +387,7 @@
     const titleEl = document.getElementById('topbarPageTitle');
     const titles = {
       'overview': 'ড্যাশবোর্ড ও সার্বিক পরিসংখ্যান',
-      'hero-fb': 'হিরো ফেসবুক পোস্ট লাইভ কন্ট্রোল',
+      'hero-section': 'হিরো সেকশন ও প্রোফাইল কন্ট্রোল',
       'travel-gallery': 'প্যারালাক্স ট্রাভেল গ্যালারি (Carousel)',
       'love-cards': 'লাভ ও ফ্যামিলি মেমোরিজ (3D Cards)',
       'articles': 'লেখালেখি ও ব্লগ (Articles)',
@@ -360,7 +399,7 @@
 
     // Render tab specifics
     if (tabId === 'overview') renderDashboard();
-    else if (tabId === 'hero-fb') renderHeroFb();
+    else if (tabId === 'hero-section') renderHeroSection();
     else if (tabId === 'travel-gallery') renderTravelGallery();
     else if (tabId === 'love-cards') renderLoveCards();
     else if (tabId === 'articles') renderArticles();
@@ -686,84 +725,155 @@
   }
 
   // ==========================================
-  // HERO FACEBOOK POST TAB
+  // HERO SECTION & PROFILE TAB
   // ==========================================
-  function renderHeroFb() {
-    const post = AdminStore.data.heroFbPost || {
-      caption: "জীবনকে দেখতে শিখুন নতুন দৃষ্টিকোণ থেকে। প্রতিটি যাত্রাই নতুন কিছু শেখায়, প্রতিটি মানুষই অনন্য এক গল্পের বই।",
-      image: "./Asist/Travel Gallery/1.jpeg",
-      timeAgo: "Recent Facebook Post",
-      postUrl: "https://www.facebook.com/fahadbinhusneali1"
-    };
+  function renderHeroSection() {
+    const hero = AdminStore.data.hero || DEFAULT_HERO;
+    const social = AdminStore.data.social || DEFAULT_SOCIAL;
 
-    const captionInput = document.getElementById('fbAdminCaption');
-    const urlInput = document.getElementById('fbAdminUrlInput');
-    const timeInput = document.getElementById('fbAdminTime');
-    const postUrlInput = document.getElementById('fbAdminPostUrl');
+    const previewImg = document.getElementById('heroAdminPreviewImg');
+    const placeholder = document.getElementById('heroAdminPreviewPlaceholder');
+    const urlInput = document.getElementById('heroAdminImgUrl');
+    const badgeHighlightInput = document.getElementById('heroAdminBadgeHighlight');
+    const focusLineInput = document.getElementById('heroAdminFocusLine');
+    const statusInput = document.getElementById('heroAdminStatus');
+    const rolesInput = document.getElementById('heroAdminRoles');
+    const bioInput = document.getElementById('heroAdminBio');
 
-    if (captionInput) captionInput.value = post.caption || '';
-    if (urlInput) urlInput.value = post.image || '';
-    if (timeInput) timeInput.value = post.timeAgo || '';
-    if (postUrlInput) postUrlInput.value = post.postUrl || '';
+    const fbInput = document.getElementById('heroAdminFb');
+    const twitterInput = document.getElementById('heroAdminTwitter');
+    const linkedinInput = document.getElementById('heroAdminLinkedIn');
+    const emailInput = document.getElementById('heroAdminEmail');
+    const prTitleInput = document.getElementById('heroAdminPrTitle');
+    const prDescInput = document.getElementById('heroAdminPrDesc');
 
-    const previewImg = document.getElementById('fbAdminPreviewImg');
-    const placeholder = document.getElementById('fbAdminPreviewPlaceholder');
-    if (previewImg && placeholder) {
-      if (post.image) {
-        previewImg.src = post.image;
-        previewImg.style.display = 'block';
-        placeholder.style.display = 'none';
-      } else {
-        previewImg.style.display = 'none';
-        placeholder.style.display = 'flex';
-      }
+    if (urlInput) urlInput.value = hero.profileImg || '';
+    if (badgeHighlightInput) badgeHighlightInput.value = hero.badgeHighlight || 'God First';
+    if (focusLineInput) focusLineInput.value = hero.focusLine || 'Faith • Purpose • Freedom';
+    if (statusInput) statusInput.value = hero.status || 'Available for Global PR & Advisory';
+    if (rolesInput) {
+      rolesInput.value = Array.isArray(hero.roles) ? hero.roles.join('\n') : (hero.roles || '');
     }
+    if (bioInput) bioInput.value = hero.bio || '';
 
-    window.updateFbPreview();
+    if (fbInput) fbInput.value = social.fb || '';
+    if (twitterInput) twitterInput.value = social.twitter || '';
+    if (linkedinInput) linkedinInput.value = social.linkedin || '';
+    if (emailInput) emailInput.value = social.email || 'fahadbinhusneali@gmail.com';
+    if (prTitleInput) prTitleInput.value = social.prTitle || 'Direct PR & Inquiries';
+    if (prDescInput) prDescInput.value = social.prDesc || '';
+
+    if (previewImg) {
+      previewImg.src = hero.profileImg || './Asist/Personal/profile1.jpg';
+      previewImg.style.display = 'block';
+      if (placeholder) placeholder.style.display = 'none';
+    }
   }
 
-  window.updateFbPreview = function () {
-    const caption = document.getElementById('fbAdminCaption')?.value || 'জীবনকে দেখতে শিখুন নতুন দৃষ্টিকোণ থেকে...';
-    const imgUrl = document.getElementById('fbAdminUrlInput')?.value || '';
-    const time = document.getElementById('fbAdminTime')?.value || 'Recent Facebook Post';
-
-    const pCaption = document.getElementById('previewCaptionText');
-    const pTime = document.getElementById('previewTimeText');
-    const pBox = document.getElementById('previewMediaBox');
-    const pImg = document.getElementById('previewMediaImg');
-
-    if (pCaption) pCaption.textContent = caption;
-    if (pTime) pTime.innerHTML = `<i class="fa-regular fa-clock"></i> ${escapeHtml(time)}`;
-    if (pBox && pImg) {
-      if (imgUrl) {
-        pImg.src = imgUrl;
-        pBox.style.display = 'block';
+  window.onHeroImgUrlInput = function (val) {
+    const previewImg = document.getElementById('heroAdminPreviewImg');
+    const placeholder = document.getElementById('heroAdminPreviewPlaceholder');
+    if (previewImg) {
+      if (val && val.trim()) {
+        previewImg.src = val.trim();
+        previewImg.style.display = 'block';
+        if (placeholder) placeholder.style.display = 'none';
       } else {
-        pBox.style.display = 'none';
+        previewImg.src = './Asist/Personal/profile1.jpg';
+        previewImg.style.display = 'block';
       }
     }
   };
 
-  window.handleSaveHeroFb = function (e) {
-    if (e) e.preventDefault();
-    const caption = document.getElementById('fbAdminCaption')?.value.trim() || '';
-    const image = document.getElementById('fbAdminUrlInput')?.value.trim() || '';
-    const timeAgo = document.getElementById('fbAdminTime')?.value.trim() || 'Just now';
-    const postUrl = document.getElementById('fbAdminPostUrl')?.value.trim() || 'https://www.facebook.com/fahadbinhusneali1';
+  window.handleHeroPhotoUpload = function (event) {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
 
-    AdminStore.data.heroFbPost = {
-      author: "Fahad Bin Husne Ali",
-      authorAvatar: "./Asist/Personal/profile1.jpg",
-      caption,
-      image,
-      timeAgo,
-      postUrl,
-      likesCount: "12K+ Community",
-      lastSynced: new Date().toISOString()
+    if (!file.type.startsWith('image/')) {
+      alert('অনুগ্রহ করে শুধুমাত্র ইমেজ (JPG, PNG, WEBP) ফাইল নির্বাচন করুন।');
+      return;
+    }
+
+    if (file.size > 8 * 1024 * 1024) {
+      alert('ছবির সাইজ অনেক বড়! সর্বোচ্চ 8MB সাইজের ছবি আপলোড করতে পারবেন।');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const dataUrl = e.target.result;
+      const previewImg = document.getElementById('heroAdminPreviewImg');
+      const placeholder = document.getElementById('heroAdminPreviewPlaceholder');
+      const urlInput = document.getElementById('heroAdminImgUrl');
+
+      if (previewImg) {
+        previewImg.src = dataUrl;
+        previewImg.style.display = 'block';
+      }
+      if (placeholder) placeholder.style.display = 'none';
+      if (urlInput) urlInput.value = dataUrl;
+      showToast('ছবি সফলভাবে যুক্ত হয়েছে! এবার সেভ বাটনে ক্লিক করুন। 📸');
+    };
+    reader.readAsDataURL(file);
+  };
+
+  window.handleRemoveHeroPhoto = function () {
+    const defaultPic = './Asist/Personal/profile1.jpg';
+    const previewImg = document.getElementById('heroAdminPreviewImg');
+    const placeholder = document.getElementById('heroAdminPreviewPlaceholder');
+    const urlInput = document.getElementById('heroAdminImgUrl');
+    const fileInput = document.getElementById('heroAdminFileInput');
+
+    if (previewImg) {
+      previewImg.src = defaultPic;
+      previewImg.style.display = 'block';
+    }
+    if (placeholder) placeholder.style.display = 'none';
+    if (urlInput) urlInput.value = defaultPic;
+    if (fileInput) fileInput.value = '';
+
+    showToast('হিরো ছবি ডিফল্ট অবস্থায় রিসেট করা হয়েছে। সেভ করতে নিচে ক্লিক করুন! 🔄');
+  };
+
+  window.handleSaveHeroSection = function (e) {
+    if (e) e.preventDefault();
+
+    const profileImg = document.getElementById('heroAdminImgUrl')?.value.trim() || './Asist/Personal/profile1.jpg';
+    const badgeHighlight = document.getElementById('heroAdminBadgeHighlight')?.value.trim() || 'God First';
+    const focusLine = document.getElementById('heroAdminFocusLine')?.value.trim() || 'Faith • Purpose • Freedom';
+    const status = document.getElementById('heroAdminStatus')?.value.trim() || 'Available for Global PR & Advisory';
+    const rolesRaw = document.getElementById('heroAdminRoles')?.value || '';
+    const roles = rolesRaw.split('\n').map(r => r.trim()).filter(r => r.length > 0);
+    const bio = document.getElementById('heroAdminBio')?.value.trim() || '';
+
+    const fb = document.getElementById('heroAdminFb')?.value.trim() || '';
+    const twitter = document.getElementById('heroAdminTwitter')?.value.trim() || '';
+    const linkedin = document.getElementById('heroAdminLinkedIn')?.value.trim() || '';
+    const email = document.getElementById('heroAdminEmail')?.value.trim() || 'fahadbinhusneali@gmail.com';
+    const prTitle = document.getElementById('heroAdminPrTitle')?.value.trim() || 'Direct PR & Inquiries';
+    const prDesc = document.getElementById('heroAdminPrDesc')?.value.trim() || '';
+
+    AdminStore.data.hero = {
+      profileImg,
+      badgeHighlight,
+      focusLine,
+      status,
+      roles: roles.length ? roles : DEFAULT_HERO.roles,
+      bio
     };
 
-    AdminStore.save('heroFbPost');
-    showToast('হিরো ফেসবুক পোস্ট সফলভাবে সেভ ও লাইভ আপডেট হয়েছে! 🚀');
+    AdminStore.data.social = {
+      fb,
+      twitter,
+      linkedin,
+      email,
+      prTitle,
+      prDesc
+    };
+
+    AdminStore.save('hero');
+    AdminStore.save('social');
+    showToast('হিরো সেকশন ও প্রোফাইল ডাটা সফলভাবে সেভ ও লাইভ আপডেট হয়েছে! 🚀');
   };
 
   window.openAddLoveModal = function () {

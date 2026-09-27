@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. TYPEWRITER EFFECT
   // ==========================================
   const typewriterElement = document.getElementById('typewriter');
-  const roles = [
+  let roles = [
     "Online Professional & Digital Nomad",
     "Initiator @ Permanent Future Lab",
     "Raw Storyteller & Social Observer",
@@ -18,6 +18,15 @@ document.addEventListener('DOMContentLoaded', () => {
     "Seats2meet Social Entrepreneur",
     "God First • Devoted Family Man"
   ];
+
+  window.updateHeroRoles = function (newRoles) {
+    if (Array.isArray(newRoles) && newRoles.length) {
+      roles = [...newRoles];
+      roleIndex = 0;
+      charIndex = 0;
+      isDeleting = false;
+    }
+  };
 
   let roleIndex = 0;
   let charIndex = 0;
@@ -117,7 +126,34 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // 4. PORTFOLIO DATA STORE & CMS CORE ENGINE
   // ==========================================
+  const DEFAULT_HERO = {
+    profileImg: './Asist/Personal/profile1.jpg',
+    badgeHighlight: 'God First',
+    focusLine: 'Faith • Purpose • Freedom',
+    status: 'Available for Global PR & Advisory',
+    roles: [
+      "Online Professional & Digital Nomad",
+      "Initiator @ Permanent Future Lab",
+      "Raw Storyteller & Social Observer",
+      "Traveler from Bamna to the Silk Road",
+      "Seats2meet Social Entrepreneur",
+      "God First • Devoted Family Man"
+    ],
+    bio: "Connecting humans across cultures, exploring uncharted horizons, and turning raw human stories into inspiration. From the riverbanks of Bamna & Barisal to the ancient Silk Road of Samarkand and the skyscrapers of Kuala Lumpur — living with purpose, family at heart, and God above all."
+  };
+
+  const DEFAULT_SOCIAL = {
+    fb: "https://www.facebook.com/fahadbinhusneali1",
+    twitter: "https://x.com/fahadbinhusneali",
+    linkedin: "https://www.linkedin.com/in/fahadbinhusneali",
+    email: "fahadbinhusneali@gmail.com",
+    prTitle: "Direct PR & Inquiries",
+    prDesc: "যেকোনো পিআর কোলাবোরেশন, মিডিয়া এনগেজমেন্ট, প্রফেশনাল ভার্চুয়াল অ্যাসিস্ট্যান্স বা পার্টনারশিপের জন্য সরাসরি জিমেইলে যোগাযোগ করুন।"
+  };
+
   const DEFAULT_PORTFOLIO_DATA = {
+    hero: DEFAULT_HERO,
+    social: DEFAULT_SOCIAL,
     articles: [
       {
         id: 'kidney',
@@ -565,6 +601,9 @@ document.addEventListener('DOMContentLoaded', () => {
           this.data = JSON.parse(stored);
           let needsSave = false;
           // Ensure new fields exist
+          if (!this.data.hero) { this.data.hero = JSON.parse(JSON.stringify(DEFAULT_HERO)); needsSave = true; }
+          if (!this.data.social) { this.data.social = JSON.parse(JSON.stringify(DEFAULT_SOCIAL)); needsSave = true; }
+          if (this.data.heroFbPost) { delete this.data.heroFbPost; needsSave = true; }
           if (!this.data.travelGallery || !this.data.travelGallery.length) { this.data.travelGallery = DEFAULT_TRAVEL_GALLERY;
           this.data.loveCards = DEFAULT_LOVE_CARDS; needsSave = true; }
           if (!this.data.loveCards || !this.data.loveCards.length) { this.data.loveCards = DEFAULT_LOVE_CARDS; needsSave = true; }
@@ -691,7 +730,8 @@ document.addEventListener('DOMContentLoaded', () => {
       renderVentures();
       renderTravels();
       renderGenz();
-      if (window.renderHeroFacebookCard) window.renderHeroFacebookCard();
+      if (window.renderHeroSection) window.renderHeroSection();
+      if (window.renderFooterSocialLinks) window.renderFooterSocialLinks();
       if (typeof showToast === 'function') {
         showToast('এডমিন আপডেট লাইভ সিঙ্ক হয়েছে! ✨');
       }
@@ -708,7 +748,8 @@ document.addEventListener('DOMContentLoaded', () => {
       renderVentures();
       renderTravels();
       renderGenz();
-      if (window.renderHeroFacebookCard) window.renderHeroFacebookCard();
+      if (window.renderHeroSection) window.renderHeroSection();
+      if (window.renderFooterSocialLinks) window.renderFooterSocialLinks();
     }
   });
 
@@ -913,7 +954,8 @@ document.addEventListener('DOMContentLoaded', () => {
           PortfolioStore.init();
           renderArticlesGrid();
           renderVenturesGrid();
-          if (window.renderHeroFacebookCard) window.renderHeroFacebookCard();
+          if (window.renderHeroSection) window.renderHeroSection();
+          if (window.renderFooterSocialLinks) window.renderFooterSocialLinks();
         }
       };
     }
@@ -922,7 +964,8 @@ document.addEventListener('DOMContentLoaded', () => {
         PortfolioStore.init();
         renderArticlesGrid();
         renderVenturesGrid();
-        if (window.renderHeroFacebookCard) window.renderHeroFacebookCard();
+        if (window.renderHeroSection) window.renderHeroSection();
+        if (window.renderFooterSocialLinks) window.renderFooterSocialLinks();
       }
     });
   } catch (err) {
@@ -2944,49 +2987,86 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // HERO LIVE FACEBOOK POST SYNC
+    // HERO SECTION & PROFILE LIVE SYNC
     // ==========================================
-    window.renderHeroFacebookCard = function() {
-      const fbCard = document.getElementById('heroFbCard');
-      if (!fbCard) return;
+    window.renderHeroSection = function () {
+      if (typeof PortfolioStore === 'undefined' || !PortfolioStore.data) return;
+      const hero = PortfolioStore.data.hero || DEFAULT_HERO;
 
-      const fbAvatar = document.getElementById('fbCardAvatar');
-      const fbAuthor = document.getElementById('fbCardAuthor');
-      const fbTime = document.getElementById('fbCardTime');
-      const fbCaption = document.getElementById('fbCardCaption');
-      const fbMediaBox = document.getElementById('fbCardMediaBox');
-      const fbImage = document.getElementById('fbCardImage');
-      const fbLikes = document.getElementById('fbCardLikes');
-
-      function applyData(d) {
-        if (!d) return;
-        if (d.author && fbAuthor) fbAuthor.textContent = d.author;
-        if (d.authorAvatar && fbAvatar) fbAvatar.src = d.authorAvatar;
-        if (d.caption && fbCaption) fbCaption.textContent = d.caption;
-        if (d.timeAgo && fbTime) fbTime.innerHTML = `<i class="fa-regular fa-clock"></i> ${d.timeAgo}`;
-        if (d.likesCount && fbLikes) fbLikes.textContent = d.likesCount;
-
-        if (d.image && fbImage && fbMediaBox) {
-          fbImage.src = d.image;
-          fbMediaBox.style.display = 'block';
-        } else if (fbMediaBox) {
-          fbMediaBox.style.display = 'none';
-        }
+      // 1. Profile image
+      const mainHeroImg = document.getElementById('mainHeroImage');
+      if (mainHeroImg && hero.profileImg) {
+        mainHeroImg.src = hero.profileImg;
       }
 
-      // Check PortfolioStore first (from Admin Panel live update)
-      if (typeof PortfolioStore !== 'undefined' && PortfolioStore.data && PortfolioStore.data.heroFbPost) {
-        applyData(PortfolioStore.data.heroFbPost);
-      } else {
-        // Fallback to latest-fb-post.json
-        fetch('./latest-fb-post.json?t=' + Date.now())
-          .then(r => r.json())
-          .then(jsonData => applyData(jsonData))
-          .catch(err => console.log('FB Post sync note:', err));
+      // 2. Badge highlight & Focus line
+      const badgeHighlight = document.getElementById('heroBadgeHighlight');
+      if (badgeHighlight && hero.badgeHighlight) {
+        badgeHighlight.textContent = hero.badgeHighlight;
+      }
+      const badgeSub = document.getElementById('heroBadgeSub');
+      if (badgeSub && hero.focusLine) {
+        badgeSub.textContent = hero.focusLine;
+      }
+
+      // 3. Status pill
+      const statusText = document.getElementById('heroStatusText');
+      if (statusText && hero.status) {
+        statusText.textContent = hero.status;
+      }
+
+      // 4. Hero bio text
+      const bioEl = document.getElementById('heroBioText');
+      if (bioEl && hero.bio) {
+        bioEl.textContent = hero.bio;
+      }
+
+      // 5. Typewriter animated roles
+      if (hero.roles && Array.isArray(hero.roles) && hero.roles.length) {
+        if (typeof window.updateHeroRoles === 'function') {
+          window.updateHeroRoles(hero.roles);
+        }
       }
     };
 
-    window.renderHeroFacebookCard();
+    // ==========================================
+    // FOOTER SOCIAL & PR GMAIL LIVE SYNC
+    // ==========================================
+    window.renderFooterSocialLinks = function () {
+      if (typeof PortfolioStore === 'undefined' || !PortfolioStore.data) return;
+      const social = PortfolioStore.data.social || DEFAULT_SOCIAL;
+
+      // 1. Footer social links
+      const fbLink = document.getElementById('footerFbLink');
+      const twitterLink = document.getElementById('footerTwitterLink');
+      const linkedinLink = document.getElementById('footerLinkedInLink');
+      const emailLink = document.getElementById('footerEmailLink');
+
+      if (fbLink) fbLink.href = social.fb || 'https://www.facebook.com/fahadbinhusneali1';
+      if (twitterLink) twitterLink.href = social.twitter || 'https://x.com/fahadbinhusneali';
+      if (linkedinLink) linkedinLink.href = social.linkedin || 'https://www.linkedin.com/in/fahadbinhusneali';
+      if (emailLink) emailLink.href = `mailto:${social.email || 'fahadbinhusneali@gmail.com'}`;
+
+      // 2. PR Gmail Box in Connect section
+      const prTitle = document.getElementById('connectPrTitle');
+      const prDesc = document.getElementById('connectPrDesc');
+      const connectEmailText = document.getElementById('connectEmailText');
+      const connectGmailBtn = document.getElementById('connectGmailBtn');
+
+      if (prTitle && social.prTitle) prTitle.textContent = social.prTitle;
+      if (prDesc && social.prDesc) prDesc.textContent = social.prDesc;
+      if (connectEmailText && social.email) {
+        connectEmailText.textContent = social.email;
+        connectEmailText.href = `mailto:${social.email}`;
+      }
+      if (connectGmailBtn) {
+        const emailAddr = social.email || 'fahadbinhusneali@gmail.com';
+        connectGmailBtn.href = `mailto:${emailAddr}?subject=PR%20%26%20Collaboration%20Inquiry%20%E2%80%94%20Fahad%20Bin%20Husne%20Ali`;
+      }
+    };
+
+    window.renderHeroSection();
+    window.renderFooterSocialLinks();
 
   });
 

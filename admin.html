@@ -95,10 +95,10 @@
         </button>
 
         <span class="nav-category">কনটেন্ট ও পাবলিশিং</span>
-        <button class="sidebar-btn" data-tab="hero-fb" onclick="switchTab('hero-fb')">
-          <i class="fa-brands fa-facebook" style="color: #3b82f6;"></i>
-          <span>হিরো ফেসবুক পোস্ট</span>
-          <span class="sidebar-badge" style="background: rgba(59,130,246,0.2); color: #60a5fa;">Live</span>
+        <button class="sidebar-btn" data-tab="hero-section" onclick="switchTab('hero-section')">
+          <i class="fa-solid fa-id-badge" style="color: #38bdf8;"></i>
+          <span>হিরো সেকশন ও প্রোফাইল</span>
+          <span class="sidebar-badge" style="background: rgba(56,189,248,0.2); color: #38bdf8;">Hero</span>
         </button>
         <button class="sidebar-btn" data-tab="articles" onclick="switchTab('articles')">
           <i class="fa-solid fa-feather-pointed"></i>
@@ -362,102 +362,158 @@
             <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem;">
               যদি কোনো জটিলতা তৈরি হয়, তবে এক ক্লিকে সম্পূর্ণ ওয়েবসাইটকে প্রাথমিক ফ্রেশ অবস্থায় রিসেট করুন।
             </p>
-      <!-- TAB: HERO FACEBOOK POST -->
-      <section class="admin-tab-content" id="tab-hero-fb">
+            <button class="btn-danger" onclick="resetToFactoryDefaults()">
+              <i class="fa-solid fa-triangle-exclamation"></i> ফ্যাক্টরি রিসেট করুন
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB: HERO SECTION & PROFILE -->
+      <section class="admin-tab-content" id="tab-hero-section">
         <div class="tab-header-box" style="margin-bottom: 1.5rem;">
           <div>
             <h2 class="bengali-font" style="font-size: 1.4rem; color: #fff; margin-bottom: 0.3rem;">
-              <i class="fa-brands fa-facebook" style="color: #3b82f6;"></i> হিরো ফেসবুক পোস্ট লাইভ কন্ট্রোল
+              <i class="fa-solid fa-id-badge" style="color: #38bdf8;"></i> হিরো সেকশন ও প্রোফাইল কন্ট্রোল
             </h2>
             <p class="bengali-font" style="color: var(--text-muted); font-size: 0.9rem;">
-              ফেসবুকে আপনার সর্বশেষ যে পোস্টটি দিয়েছেন, তার ক্যাপশন ও ছবি এখানে লিখে সেভ করলেই তা সরাসরি ওয়েবসাইটের Hero সেকশনে লাইভ দেখাবে।
+              পোর্টফোলিওর প্রথম সেকশন (Hero Banner), প্রোফাইল পিকচার, ফোকাস ট্যাগলাইন, টাইপরাইটার রোলস এবং সোশ্যাল ও জিমেইল পিআর ইনফো এখান থেকে লাইভ এডিট করুন।
             </p>
           </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem;">
-          <!-- Edit Form -->
-          <div class="admin-item-card" style="padding: 1.75rem;">
-            <form onsubmit="handleSaveHeroFb(event)">
-              <div class="form-group" style="margin-bottom: 1.25rem;">
-                <label class="form-label">পোস্টের ক্যাপশন / স্ট্যাটাস (Caption / Text)</label>
-                <textarea id="fbAdminCaption" class="form-input" rows="4" placeholder="ফেসবুক পোস্টের টেক্সট বা ক্যাপশন লিখুন..." required oninput="updateFbPreview()"></textarea>
-              </div>
+        <form onsubmit="handleSaveHeroSection(event)">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1.5rem;">
 
-              <div class="form-group" style="margin-bottom: 1.25rem;">
-                <label class="form-label"><i class="fa-solid fa-image text-gold"></i> হোমপেজ হিরো পোস্ট থাম্বনেইল / ছবি (Homepage Hero Card Thumbnail) *</label>
-                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem;">পোর্টফোলিওর হোম পেজে Hero সেকশনের লাইভ ফেসবুক কার্ডে এই ছবিটি শো হবে।</p>
-                <div class="img-picker-container">
-                  <div class="img-preview-box" onclick="document.getElementById('fbAdminFileInput').click()">
-                    <div class="placeholder-text" id="fbAdminPreviewPlaceholder">
-                      <i class="fa-solid fa-cloud-arrow-up"></i>
-                      <span>ছবি আপলোড করতে ক্লিক করুন</span>
-                    </div>
-                    <img id="fbAdminPreviewImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="Preview" style="display: none;">
+            <!-- 1. Hero Profile Picture Card -->
+            <div class="admin-item-card" style="padding: 1.75rem;">
+              <h3 style="font-size: 1.15rem; margin-bottom: 0.4rem; color: var(--accent-gold);">
+                <i class="fa-solid fa-camera"></i> হিরো প্রোফাইল ছবি (Hero Portrait)
+              </h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+                হোম পেজের Hero সেকশনের মূল গোল পোর্ট্রেট কার্ডে এই ছবিটি প্রদর্শিত হবে।
+              </p>
+
+              <div class="img-picker-container" style="margin-bottom: 1rem;">
+                <div class="img-preview-box" style="height: 240px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); border-radius: 16px; overflow: hidden; border: 1.5px dashed rgba(255,255,255,0.2); cursor: pointer;" onclick="document.getElementById('heroAdminFileInput').click()">
+                  <div class="placeholder-text" id="heroAdminPreviewPlaceholder" style="display: none; flex-direction: column; align-items: center; gap: 0.5rem; color: var(--text-muted);">
+                    <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2rem;"></i>
+                    <span>ছবি আপলোড করতে ক্লিক করুন</span>
                   </div>
-                  <input type="file" id="fbAdminFileInput" class="file-input-hidden" accept="image/*"
-                    onchange="handleImageUpload('fbAdminFileInput', 'fbAdminUrlInput', 'fbAdminPreviewImg', 'fbAdminPreviewPlaceholder')">
-                  <input type="text" id="fbAdminUrlInput" class="form-input" placeholder="ছবির লিংক বা পাথ (https://...)" style="margin-top: 0.5rem;" oninput="updateFbPreview()">
+                  <img id="heroAdminPreviewImg" src="./Asist/Personal/profile1.jpg" alt="Hero Portrait Preview" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
-              </div>
 
-              <div class="form-grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
-                <div class="form-group">
-                  <label class="form-label">পোস্টের সময় (Time Tag)</label>
-                  <input type="text" id="fbAdminTime" class="form-input" placeholder="যেমন: Just now বা ১০ মিনিট আগে" oninput="updateFbPreview()">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">ফেসবুক লিঙ্ক</label>
-                  <input type="text" id="fbAdminPostUrl" class="form-input" placeholder="https://www.facebook.com/fahadbinhusneali1">
-                </div>
-              </div>
+                <input type="file" id="heroAdminFileInput" class="file-input-hidden" accept="image/*"
+                  onchange="handleHeroPhotoUpload(event)">
 
-              <button type="submit" class="btn-primary" style="width: 100%;">
-                <i class="fa-solid fa-floppy-disk"></i> সেভ করুন ও ওয়েবসাইটে লাইভ আপডেট করুন
-              </button>
-            </form>
-          </div>
+                <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+                  <button type="button" class="btn-secondary" onclick="document.getElementById('heroAdminFileInput').click()" style="flex: 1;">
+                    <i class="fa-solid fa-upload"></i> ছবি আপলোড করুন
+                  </button>
+                  <button type="button" class="btn-danger" onclick="handleRemoveHeroPhoto()" style="flex: 1;" title="ছবি রিমুভ করে ডিফল্ট ছবি দিন">
+                    <i class="fa-solid fa-trash-can"></i> ছবি রিমুভ করুন
+                  </button>
+                </div>
 
-          <!-- Live Preview Box -->
-          <div class="admin-item-card" style="padding: 1.75rem;">
-            <h3 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--accent-cyan);">
-              <i class="fa-solid fa-eye"></i> ওয়েবসাইটে যেমন দেখাবে (Live Preview):
-            </h3>
-            <div class="hero-fb-live-card glass-card" style="margin: 0;">
-              <div class="fb-card-header">
-                <div class="fb-header-left">
-                  <div class="fb-avatar-wrap">
-                    <img src="./Asist/Personal/profile1.jpg" alt="Fahad Bin Husne Ali">
-                    <span class="fb-online-badge"><i class="fa-brands fa-facebook"></i></span>
-                  </div>
-                  <div class="fb-user-meta">
-                    <div class="fb-user-name">
-                      <span>Fahad Bin Husne Ali</span>
-                      <i class="fa-solid fa-circle-check" style="color: #3b82f6; font-size: 0.8rem;"></i>
-                    </div>
-                    <span class="fb-post-time" id="previewTimeText"><i class="fa-regular fa-clock"></i> Recent Facebook Post</span>
-                  </div>
+                <div class="form-group" style="margin-top: 0.85rem;">
+                  <label class="form-label">ছবির ডিরেক্ট URL / পাথ (Image URL)</label>
+                  <input type="text" id="heroAdminImgUrl" class="form-input" placeholder="./Asist/Personal/profile1.jpg বা https://..." oninput="onHeroImgUrlInput(this.value)">
                 </div>
-              </div>
-              <div class="fb-card-body">
-                <p class="fb-caption bengali-font" id="previewCaptionText">
-                  জীবনকে দেখতে শিখুন নতুন দৃষ্টিকোণ থেকে...
-                </p>
-                <div class="fb-media-box" id="previewMediaBox">
-                  <img src="./Asist/Travel Gallery/1.jpeg" alt="Post photo" id="previewMediaImg">
-                </div>
-              </div>
-              <div class="fb-card-footer">
-                <div class="fb-engagement-pill">
-                  <i class="fa-solid fa-thumbs-up" style="color: #3b82f6;"></i>
-                  <i class="fa-solid fa-heart" style="color: #f43f5e;"></i>
-                  <span>12K+ Community</span>
-                </div>
-                <span class="fb-live-tag"><span class="pulse-dot"></span> Live Facebook Sync</span>
               </div>
             </div>
+
+            <!-- 2. Tagline, Focus Line & Status -->
+            <div class="admin-item-card" style="padding: 1.75rem;">
+              <h3 style="font-size: 1.15rem; margin-bottom: 0.4rem; color: var(--accent-cyan);">
+                <i class="fa-solid fa-bullseye"></i> ফোকাস লাইন ও স্ট্যাটাস
+              </h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+                হিরো ব্যাজের ফোকাস লাইন এবং লাইভ অ্যাভেইলেবিলিটি স্ট্যাটাস।
+              </p>
+
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label class="form-label">ব্যাজ হাইলাইট (Badge Highlight)</label>
+                <input type="text" id="heroAdminBadgeHighlight" class="form-input" placeholder="যেমন: God First">
+              </div>
+
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label class="form-label">ফোকাস হওয়া লাইন (Focus Tagline) *</label>
+                <input type="text" id="heroAdminFocusLine" class="form-input" placeholder="যেমন: Faith • Purpose • Freedom" required>
+              </div>
+
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label class="form-label">অ্যাভেইলেবিলিটি স্ট্যাটাস (Status Pill)</label>
+                <input type="text" id="heroAdminStatus" class="form-input" placeholder="যেমন: Available for Global PR & Advisory">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">টাইপরাইটার রোলস (প্রতি লাইনে ১টি করে রোল লিখুন)</label>
+                <textarea id="heroAdminRoles" class="form-input" rows="5" placeholder="Online Professional & Digital Nomad&#10;Initiator @ Permanent Future Lab&#10;Raw Storyteller & Social Observer&#10;Traveler from Bamna to the Silk Road&#10;Seats2meet Social Entrepreneur&#10;God First • Devoted Family Man"></textarea>
+              </div>
+            </div>
+
+            <!-- 3. Hero Bio Description -->
+            <div class="admin-item-card" style="padding: 1.75rem;">
+              <h3 style="font-size: 1.15rem; margin-bottom: 0.4rem; color: #a78bfa;">
+                <i class="fa-solid fa-align-left"></i> হিরো বায়ো পরিচিতি (Intro Paragraph)
+              </h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+                টাইটেলের নিচে প্রদর্শিত সংক্ষিপ্ত পরিচিতি।
+              </p>
+
+              <div class="form-group">
+                <textarea id="heroAdminBio" class="form-input" rows="6" placeholder="Connecting humans across cultures, exploring uncharted horizons..."></textarea>
+              </div>
+            </div>
+
+            <!-- 4. Social Links & PR Gmail Channels -->
+            <div class="admin-item-card" style="padding: 1.75rem;">
+              <h3 style="font-size: 1.15rem; margin-bottom: 0.4rem; color: var(--accent-rose);">
+                <i class="fa-solid fa-share-nodes"></i> সোশ্যাল প্রোফাইল ও জিমেইল পিআর ইনফো
+              </h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+                এই লিংকগুলো ওয়েবসাইটের একদম নিচে (Footer) আইকন আকারে এবং PR সেকশনে ডিরেক্ট জিমেইল যোগাযোগে ব্যবহৃত হবে।
+              </p>
+
+              <div class="form-group" style="margin-bottom: 0.85rem;">
+                <label class="form-label"><i class="fa-brands fa-facebook" style="color: #3b82f6;"></i> ফেসবুক অ্যাকাউন্ট লিংক</label>
+                <input type="text" id="heroAdminFb" class="form-input" placeholder="https://www.facebook.com/fahadbinhusneali1">
+              </div>
+
+              <div class="form-group" style="margin-bottom: 0.85rem;">
+                <label class="form-label"><i class="fa-brands fa-x-twitter" style="color: #38bdf8;"></i> টুইটার / X অ্যাকাউন্ট লিংক</label>
+                <input type="text" id="heroAdminTwitter" class="form-input" placeholder="https://x.com/fahadbinhusneali">
+              </div>
+
+              <div class="form-group" style="margin-bottom: 0.85rem;">
+                <label class="form-label"><i class="fa-brands fa-linkedin" style="color: #0a66c2;"></i> লিংকডইন প্রোফাইল লিংক</label>
+                <input type="text" id="heroAdminLinkedIn" class="form-input" placeholder="https://www.linkedin.com/in/fahadbinhusneali">
+              </div>
+
+              <div class="form-group" style="margin-bottom: 0.85rem;">
+                <label class="form-label"><i class="fa-solid fa-envelope" style="color: #ea4335;"></i> অফিসিয়াল জিমেইল / ইমেইল ঠিকানা *</label>
+                <input type="email" id="heroAdminEmail" class="form-input" placeholder="fahadbinhusneali@gmail.com" required>
+              </div>
+
+              <div class="form-group" style="margin-bottom: 0.85rem;">
+                <label class="form-label">পিআর কার্ড টাইটেল (PR Card Title)</label>
+                <input type="text" id="heroAdminPrTitle" class="form-input" placeholder="Direct PR & Inquiries">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">পিআর কার্ডের বর্ণনা (PR Card Description)</label>
+                <textarea id="heroAdminPrDesc" class="form-input" rows="2" placeholder="যেকোনো পিআর কোলাবোরেশন বা পার্টনারশিপের জন্য সরাসরি জিমেইলে যোগাযোগ করুন..."></textarea>
+              </div>
+            </div>
+
           </div>
-        </div>
+
+          <div style="margin-top: 1.5rem;">
+            <button type="submit" class="btn-primary" style="padding: 1rem 2rem; font-size: 1.05rem;">
+              <i class="fa-solid fa-floppy-disk"></i> হিরো সেকশন ও প্রোফাইল ইনফো সেভ করুন
+            </button>
+          </div>
+        </form>
       </section>
 
     </main>
@@ -806,7 +862,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
   <script src="firebase-init.js"></script>
 
-  <script src="admin.js?v=2.6"></script>
+  <script src="admin.js?v=2.7"></script>
 </body>
 
 </html>
