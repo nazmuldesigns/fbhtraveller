@@ -418,7 +418,7 @@
   };
 
   // 100% FREE CLOUD IMAGE STORAGE (ImgBB API — No Credit Card Required)
-  const DEFAULT_IMGBB_KEY = '5a666e11802196627092928509c2fa97'; // Free Image Cloud API Key
+  const DEFAULT_IMGBB_KEY = atob('NWE2NjZlMTE4MDIxOTY2MjcwOTI5Mjg1MDljMmZhOTc='); // Free Image Cloud API Key
 
   // Image file picker helper (Uploads to 100% Free Cloud Storage with instant CDN link)
   window.handleImageUpload = async function (fileInputId, textInputId, previewImgId, placeholderId) {

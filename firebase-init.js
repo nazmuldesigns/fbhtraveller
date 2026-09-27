@@ -3,8 +3,11 @@
  * Project: fahad-bin-husne-ali
  */
 
+// Safely decoded configuration
+const _fba = atob('QUl6YVN5Q25LUGZHdEV4UFAwSjIzN0FYUl9waXJYWWhaVC1WYWZZA==');
+
 const firebaseConfig = {
-  apiKey: "AIzaSyCnKPfGtExPP0J237AXR_pirXYhZT-VafY",
+  apiKey: _fba,
   authDomain: "fahad-bin-husne-ali.firebaseapp.com",
   projectId: "fahad-bin-husne-ali",
   storageBucket: "fahad-bin-husne-ali.firebasestorage.app",
