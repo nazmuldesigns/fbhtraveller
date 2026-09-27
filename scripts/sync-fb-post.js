@@ -7,49 +7,50 @@
 const fs = require('fs');
 const path = require('path');
 
-const FB_PROFILE_URL = 'https://www.facebook.com/fahadbinhusneali1';
+const FB_SHARE_URL = 'https://www.facebook.com/fahadbinhusneali1';
 const OUTPUT_FILE = path.join(__dirname, '..', 'latest-fb-post.json');
 
+function decodeHtmlEntities(str) {
+  if (!str) return '';
+  return str
+    .replace(/&#x([0-9a-fA-F]+);/g, (_, h) => String.fromCharCode(parseInt(h, 16)))
+    .replace(/&#([0-9]+);/g, (_, d) => String.fromCharCode(parseInt(d, 10)))
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .trim();
+}
+
 async function scrapeLatestFacebookPost() {
-  console.log(`🔍 Checking latest Facebook post from: ${FB_PROFILE_URL}...`);
+  console.log(`🔍 Checking latest Facebook post from: ${FB_SHARE_URL}...`);
 
   try {
-    const response = await fetch(FB_PROFILE_URL, {
+    const response = await fetch(FB_SHARE_URL, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-        'Accept-Language': 'en-US,en;q=0.9,bn;q=0.8',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8'
-      }
+        'User-Agent': 'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)',
+        'Accept-Language': 'bn-BD,bn;q=0.9,en-US;q=0.8,en;q=0.7',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+      },
+      redirect: 'follow'
     });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error ${response.status}`);
-    }
 
     const html = await response.text();
 
-    // Extract OpenGraph meta tags if available
-    let ogDescription = '';
-    let ogImage = '';
-    let ogTitle = '';
-
     const descMatch = html.match(/<meta\s+property="og:description"\s+content="([^"]+)"/i) ||
                       html.match(/<meta\s+name="description"\s+content="([^"]+)"/i);
-    if (descMatch && descMatch[1]) {
-      ogDescription = descMatch[1].replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&amp;/g, '&');
-    }
-
     const imgMatch = html.match(/<meta\s+property="og:image"\s+content="([^"]+)"/i);
-    if (imgMatch && imgMatch[1]) {
-      ogImage = imgMatch[1].replace(/&amp;/g, '&');
-    }
-
     const titleMatch = html.match(/<meta\s+property="og:title"\s+content="([^"]+)"/i);
-    if (titleMatch && titleMatch[1]) {
-      ogTitle = titleMatch[1];
-    }
 
-    // Read current data to preserve or update
+    let rawDesc = descMatch ? descMatch[1] : '';
+    let rawImg = imgMatch ? imgMatch[1] : '';
+    let rawTitle = titleMatch ? titleMatch[1] : '';
+
+    let decodedDesc = decodeHtmlEntities(rawDesc);
+    let decodedTitle = decodeHtmlEntities(rawTitle);
+
+    // Read current data
     let currentData = {};
     if (fs.existsSync(OUTPUT_FILE)) {
       try {
@@ -58,12 +59,12 @@ async function scrapeLatestFacebookPost() {
     }
 
     const updatedData = {
-      author: ogTitle || currentData.author || "Fahad Bin Husne Ali",
+      author: decodedTitle || currentData.author || "Fahad Bin Husne Ali",
       authorAvatar: currentData.authorAvatar || "./Asist/Personal/profile1.jpg",
-      caption: (ogDescription && ogDescription.length > 10) ? ogDescription : currentData.caption || "Exploring horizons & turning raw human stories into inspiration.",
-      image: ogImage || currentData.image || "./Asist/Travel Gallery/1.jpeg",
-      postUrl: FB_PROFILE_URL,
-      timeAgo: "Recently on Facebook",
+      caption: (decodedDesc && decodedDesc.length > 15) ? decodedDesc : currentData.caption || "ভ্রমণের ক্ষেত্রে আমার এক মাত্র টার্গেট থাকে ইতিহাস।",
+      image: (rawImg && !rawImg.includes('static.xx.fbcdn.net')) ? rawImg : currentData.image || "./Asist/Travel Gallery/2.jpg",
+      postUrl: FB_SHARE_URL,
+      timeAgo: "Recent Facebook Post",
       likesCount: "12K+ Community",
       lastSynced: new Date().toISOString()
     };
@@ -73,7 +74,6 @@ async function scrapeLatestFacebookPost() {
 
   } catch (error) {
     console.warn('⚠️ Notice during Facebook scrape:', error.message);
-    console.log('ℹ️ Keeping existing latest-fb-post.json data.');
   }
 }
 
