@@ -22,7 +22,7 @@
 
     // Update buttons & tooltips
     const themeBtn = document.getElementById('themeToggleBtn');
-    const isBn = (localStorage.getItem('fahad_portfolio_lang') || 'bn') === 'bn';
+    const isBn = (localStorage.getItem('fahad_portfolio_lang') || 'en') === 'bn';
     if (themeBtn) {
       themeBtn.title = active === 'light'
         ? (isBn ? 'ডার্ক মোড চালু করুন (Switch to Dark)' : 'Switch to Dark Mode')
@@ -43,7 +43,7 @@
     const next = current === 'light' ? 'dark' : 'light';
     applyTheme(next);
 
-    const isBn = (localStorage.getItem('fahad_portfolio_lang') || 'bn') === 'bn';
+    const isBn = (localStorage.getItem('fahad_portfolio_lang') || 'en') === 'bn';
     if (typeof showToast === 'function') {
       const msg = next === 'light'
         ? (isBn ? 'লাইট মোড সক্রিয় হয়েছে ☀️' : 'Light Mode activated ☀️')
@@ -752,7 +752,7 @@
   }
 
   window.toggleLanguage = function () {
-    const current = localStorage.getItem(LANG_STORAGE_KEY) || 'bn';
+    const current = localStorage.getItem(LANG_STORAGE_KEY) || 'en';
     const next = current === 'bn' ? 'en' : 'bn';
     applyLanguage(next);
 
@@ -763,7 +763,7 @@
   };
 
   window.initLanguage = function () {
-    const saved = localStorage.getItem(LANG_STORAGE_KEY) || 'bn';
+    const saved = localStorage.getItem(LANG_STORAGE_KEY) || 'en';
     applyLanguage(saved);
   };
 
@@ -772,7 +772,7 @@
     if (e.key === THEME_STORAGE_KEY) {
       applyTheme(e.newValue || 'dark');
     } else if (e.key === LANG_STORAGE_KEY) {
-      applyLanguage(e.newValue || 'bn');
+      applyLanguage(e.newValue || 'en');
     }
   });
 

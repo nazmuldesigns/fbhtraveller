@@ -798,7 +798,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const grid = document.getElementById('articlesGrid');
     if (!grid) return;
 
-    const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'bn') === 'en';
+    const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'en') === 'en';
     const articles = PortfolioStore.getArticles();
     const countPill = document.getElementById('articlesCountText');
     if (countPill) {
@@ -901,7 +901,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const grid = document.getElementById('bentoVenturesGrid');
     if (!grid) return;
 
-    const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'bn') === 'en';
+    const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'en') === 'en';
     const ventures = PortfolioStore.getVentures();
     if (!ventures || !ventures.length) return;
 
@@ -1021,7 +1021,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentDetailItem = null;
 
   window.openDetailView = function(type, id) {
-    const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'bn') === 'en';
+    const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'en') === 'en';
     let item = null;
     let categoryLabel = '';
     let authorName = isEn ? 'Fahad Bin Husne Ali' : 'ফাহাদ বিন হুসনে আলী';
@@ -2416,7 +2416,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let rotatingCardsData = PortfolioStore.getLoveCards();
 
       window.renderRotatingCards = function() {
-        const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'bn') === 'en';
+        const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'en') === 'en';
         rotatingCardsData = PortfolioStore.getLoveCards();
         const cards = rotatingCardsRing.querySelectorAll('.rc-card');
         rotatingCardsData.forEach((item, idx) => {
@@ -2511,7 +2511,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = rotatingCardsData[index];
         if (!data) return;
 
-        const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'bn') === 'en';
+        const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'en') === 'en';
         let title = data.title;
         let tag = data.tag;
         let desc = data.desc;
@@ -2829,7 +2829,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Render items from PortfolioStore
       window.renderParallaxCarouselTracks = function() {
-        const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'bn') === 'en';
+        const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'en') === 'en';
         const allPhotos = PortfolioStore.getTravelGallery();
         const row1Photos = allPhotos.slice(0, 10);
         const row2Photos = allPhotos.slice(10, 20);
@@ -3099,7 +3099,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.renderHeroSection = function () {
       if (typeof PortfolioStore === 'undefined' || !PortfolioStore.data) return;
       const hero = PortfolioStore.data.hero || DEFAULT_HERO;
-      const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'bn') === 'en';
+      const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'en') === 'en';
 
       // 1. Profile image
       const mainHeroImg = document.getElementById('mainHeroImage');
@@ -3147,7 +3147,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.renderFooterSocialLinks = function () {
       if (typeof PortfolioStore === 'undefined' || !PortfolioStore.data) return;
       const social = PortfolioStore.data.social || DEFAULT_SOCIAL;
-      const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'bn') === 'en';
+      const isEn = (localStorage.getItem('fahad_portfolio_lang') || 'en') === 'en';
 
       // 1. Footer social links
       const fbLink = document.getElementById('footerFbLink');
